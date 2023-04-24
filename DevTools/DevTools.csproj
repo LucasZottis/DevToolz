@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove=".github\**" />
+    <Content Remove=".github\**" />
+    <EmbeddedResource Remove=".github\**" />
+    <None Remove=".github\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BibliotecaPublica.Core" Version="7.1.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.4" PrivateAssets="all" />
@@ -19,10 +26,6 @@
 
   <ItemGroup>
     <Folder Include="Components\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include=".github\Worflows\publish.yml" />
   </ItemGroup>
 
 </Project>
