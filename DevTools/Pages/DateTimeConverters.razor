@@ -1,0 +1,77 @@
+﻿@page "/converters/date-time-converters"
+@layout ConvertersLayout
+
+<div class="row">
+    <h5 class="mt-2 mb- p-2 text-center fw-bold">
+        Conversor de Horas
+    </h5>
+</div>
+<div class="row mb-3 ms-1 me-1">
+    <div class="col-2">
+        <label for="exampleFormControlInput1" class="form-label fw-bold">Horas</label>
+        <input type="text" inputmode="numeric" class="form-control" id="exampleFormControlInput1" placeholder="0" @bind="_hours" @onblur="OnLeaveTimeSpan">
+    </div>
+    <div class="col-2">
+        <label for="exampleFormControlInput1" class="form-label fw-bold">Minutos</label>
+        <input type="text" inputmode="numeric" class="form-control" id="exampleFormControlInput1" placeholder="0" @bind="_minutes" @onblur="OnLeaveTimeSpan">
+    </div>
+    <div class="col-2">
+        <label for="exampleFormControlInput1" class="form-label fw-bold">Segundos</label>
+        <input type="text" inputmode="numeric" class="form-control" id="exampleFormControlInput1" placeholder="0" @bind="_seconds" @onblur="OnLeaveTimeSpan">
+    </div>
+    <div class="col">
+        <label for="exampleFormControlInput1" class="form-label fw-bold">Valor decimal</label>
+        <input type="text" inputmode="numeric" class="form-control" id="exampleFormControlInput1" placeholder="0,00" @bind="_decimalTimeSpan" @onblur="OnLeaveDecimal">
+    </div>
+</div>
+<div class="ms-3 me-3">
+    <div class="row rounded-1 mb-1 p-1">
+        <div class="col">
+            Horas em número decimal
+        </div>
+        <div class="col text-end">
+            @_decimalTimeSpan
+        </div>
+    </div>
+    <div class="row rounded-1 mb-1 p-1">
+        <div class="col">
+            Minutos em número decimal
+        </div>
+        <div class="col text-end">
+            @(_decimalTimeSpan * 60)
+        </div>
+    </div>
+    <div class="row rounded-1 mb-1 p-1">
+        <div class="col">
+            Segundos em número decimal
+        </div>
+        <div class="col text-end">
+            @(_decimalTimeSpan * 3600)
+        </div>
+    </div>
+    <div class="row rounded-1 mb-1 p-1">
+        <div class="col">
+            Hora convertida
+        </div>
+        <div class="col text-end">
+            @_timeSpan
+        </div>
+    </div>
+</div>
+
+<hr class="m-auto" style="border: 2px solid rgba(192, 192, 192, 0.701); width: 95%" />
+
+<div class="row m-2">
+    <h5 class="p-2 text-center fw-bold">
+        Qual o cálculo usado?
+    </h5>
+    <p>
+        Suponha que você deseja converter 1 hora, 15 minutos e 36 segundos para decimal. Para tranformar esse valor em horas decimais, siga as etapas abaixo:
+    </p>
+    <p>
+        Divida o valor em minutos por 60 (isto é, 15/60 = 0,25). Divida os segundos por 3600 (isto é, 36/3600 = 0,01). Sume os dois valores acima para obter a parte fracionária (isto é 0,25 + 0,01 = 0,26). O resultado final será 1 + 0,26 = 1,26 horas em decimal.
+    </p>
+    <p>
+        Em suma: horas decimais = número inteiro de horas, mais minutos divididos por 60, mais segundos divididos por 3600.
+    </p>
+</div>

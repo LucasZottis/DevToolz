@@ -1,0 +1,14 @@
+﻿@inherits LayoutComponentBase
+@layout MainLayout
+
+@if ( Sidebar != null )
+{
+    <div class="col sidebar mt-2 pt-1">
+        @Sidebar
+        @*<a href="/Conversors/DateTimeConverters">Conversão de horas</a>*@
+    </div>
+}
+
+<div class="content mt-2 pt-1 @_withSidebarLayout">
+    @Body
+</div>
