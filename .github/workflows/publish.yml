@@ -19,7 +19,7 @@ jobs:
           dotnet-version: 7.0.202
       # publishes Blazor project to the release-folder
       - name: Publish .NET Core Project
-        run: dotnet publish DevTools.csproj -c Release -o release --nologo
+        run: dotnet publish ./DevTools/DevTools.csproj -c Release -o release --nologo
       # changes the base-tag in index.html from '/' to 'BlazorGitHubPagesDemo' to match GitHub Pages repository subdirectory
       - name: Change base-tag in index.html from / to DevTools
         run: sed -i 's/<base href="\/" \/>/<base href="\/DevTools\/" \/>/g' release/wwwroot/index.html
