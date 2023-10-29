@@ -1,0 +1,77 @@
+﻿@inherits ComponentBase
+
+<RadzenStack class="w-75 mt-3 mx-auto">
+    <RadzenText TextStyle="TextStyle.DisplayH5" TextAlign="TextAlign.Center">
+        <h1>Algoritmo para Validação do CNPJ</h1>
+    </RadzenText>
+
+    <RadzenText TextStyle="TextStyle.H6">
+        <p>Para validar um CNPJ, primeiro é importante entender sua estrutura. Um CNPJ é composto por três partes: a inscrição principal, o número de filiais e os dígitos verificadores. A validação oficial do CNPJ envolve também o cálculo de um oitavo dígito, mas algumas empresas possuem números que, quando validados dessa maneira, são considerados inválidos. Portanto, é mais seguro validar apenas os dígitos verificadores, garantindo que nenhum CNPJ seja considerado inválido.</p>
+    </RadzenText>
+
+    <RadzenText TextStyle="TextStyle.Subtitle1" TextAlign="TextAlign.Center">
+        <h3>Passo 1: Validando os Dígitos Verificadores</h3>
+    </RadzenText>
+
+    <RadzenText TextAlign="TextAlign.Justify">
+        <p>Vamos calcular os dígitos verificadores de um CNPJ hipotético, como por exemplo, 11.222.333/0001-XX.</p>
+
+        <RadzenGrid Data=@calculoPasso1 TItem="Calculo">
+            <Columns>
+                <RadzenGridColumn TItem="Calculo" Property="Multipl1" Title="1" />
+                <RadzenGridColumn TItem="Calculo" Property="Multipl2" Title="2" />
+                <RadzenGridColumn TItem="Calculo" Property="Resultado" Title="Resultado" />
+            </Columns>
+        </RadzenGrid>
+
+        <br />
+        <p>Em seguida, multiplicamos os números em cada coluna:</p>
+
+        <RadzenGrid Data="calculoPasso1Resultado" TItem="int">
+            <Columns>
+                <RadzenGridColumn TItem="int" Property="resultado" Title="Resultado" />
+            </Columns>
+        </RadzenGrid>
+
+        <br />
+        <p>Somamos os resultados de cada coluna:</p>
+        <p>@calculoPasso1Resultado.Sum()</p>
+
+        <p>Agora, dividimos a soma pelo número 11. O quociente é @calculoPasso1Resultado.Sum() / 11. O resto é @calculoPasso1Resultado.Sum() % 11.</p>
+
+        <p>Se o resto for menor que 2, o dígito verificador é 0; caso contrário, subtraímos o resto de 11 para obter o dígito. Nesse caso, o primeiro dígito verificador é @(resto < 2 ? 0 : 11 - resto).</p>
+    </RadzenText>
+
+    <RadzenText TextStyle="TextStyle.Subtitle1" TextAlign="TextAlign.Center">
+        <h3>Passo 2: Validando o Segundo Dígito Verificador</h3>
+    </RadzenText>
+
+    <RadzenText TextAlign="TextAlign.Justify">
+        <p>Agora, temos o primeiro dígito calculado, e o CNPJ fica como 11.222.333/0001-8X. Para calcular o segundo dígito verificador, repetimos o processo, mas com uma sequência de multiplicadores ligeiramente diferente.</p>
+
+        <RadzenGrid Data=@calculoPasso2 TItem="Calculo">
+            <Columns>
+                <RadzenGridColumn TItem="Calculo" Property="Multipl1" Title="1" />
+                <RadzenGridColumn TItem="Calculo" Property="Multipl2" Title="2" />
+                <RadzenGridColumn TItem="Calculo" Property="Resultado" Title="Resultado" />
+            </Columns>
+        </RadzenGrid>
+
+        <br />
+        <p>Multiplicamos os números em cada coluna e somamos os resultados:</p>
+
+        <RadzenGrid Data="calculoPasso2Resultado" TItem="int">
+            <Columns>
+                <RadzenGridColumn TItem="int" Property="resultado" Title="Resultado" />
+            </Columns>
+        </RadzenGrid>
+
+        <br />
+        <p>Agora, dividimos a soma pelo número 11. O quociente é @calculoPasso2Resultado.Sum() / 11. O resto é @calculoPasso2Resultado.Sum() % 11.</p>
+
+        <p>Se o resto for menor que 2, o dígito verificador é 0; caso contrário, subtraímos o resto de 11 para obter o dígito. Nesse caso, o último dígito verificador é @(resto < 2 ? 0 : 11 - resto).</p>
+
+        <h3>DV Módulo 11 e DV Módulo 10</h3>
+        <p>Os dígitos de verificação, também chamados de DV (Dígito de Verificação), são usados para detectar erros de digitação. No caso do CNPJ, o DV módulo 11 é calculado com base na multiplicação dos algarismos do CNPJ por uma sequência de números e a divisão por 11. O DV módulo 10 é usado para tornar o número múltiplo de 10, ajustando a soma das multiplicações dos algarismos.</p>
+    </RadzenText>
+</RadzenStack>
