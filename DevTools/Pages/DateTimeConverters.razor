@@ -1,80 +1,83 @@
 ﻿@page "/converters/date-time-converters"
-@layout ConvertersLayout
+@layout MainLayout
 
-<div class="row">
-    <div class="jumbotron">
-        <h1 class="mt-2 mb- p-2 text-center fw-bold">
-            Conversor de Horas
-        </h1>
-    </div>
-</div>
-<div class="row mb-3 ms-1 me-1">
-    <div class="col-2">
-        <label for="exampleFormControlInput1" class="form-label fw-bold">Horas</label>
-        <input type="text" inputmode="numeric" class="form-control" id="exampleFormControlInput1" placeholder="0" @bind="_hours" @onblur="OnLeaveTimeSpan">
-    </div>
-    <div class="col-2">
-        <label for="exampleFormControlInput1" class="form-label fw-bold">Minutos</label>
-        <input type="text" inputmode="numeric" class="form-control" id="exampleFormControlInput1" placeholder="0" @bind="_minutes" @onblur="OnLeaveTimeSpan">
-    </div>
-    <div class="col-2">
-        <label for="exampleFormControlInput1" class="form-label fw-bold">Segundos</label>
-        <input type="text" inputmode="numeric" class="form-control" id="exampleFormControlInput1" placeholder="0" @bind="_seconds" @onblur="OnLeaveTimeSpan">
-    </div>
-    <div class="col">
-        <label for="exampleFormControlInput1" class="form-label fw-bold">Valor decimal</label>
-        <input type="text" inputmode="numeric" class="form-control" id="exampleFormControlInput1" placeholder="0,00" @bind="_decimalTimeSpan" @onblur="OnLeaveDecimal">
-    </div>
-</div>
-<div class="ms-3 me-3">
-    <div class="row rounded-1 mb-1 p-1">
-        <div class="col">
-            Horas em número decimal
-        </div>
-        <div class="col text-end">
-            @_decimalTimeSpan
-        </div>
-    </div>
-    <div class="row rounded-1 mb-1 p-1">
-        <div class="col">
-            Minutos em número decimal
-        </div>
-        <div class="col text-end">
-            @(_decimalTimeSpan * 60)
-        </div>
-    </div>
-    <div class="row rounded-1 mb-1 p-1">
-        <div class="col">
-            Segundos em número decimal
-        </div>
-        <div class="col text-end">
-            @(_decimalTimeSpan * 3600)
-        </div>
-    </div>
-    <div class="row rounded-1 mb-1 p-1">
-        <div class="col">
-            Hora convertida
-        </div>
-        <div class="col text-end">
-            @_timeSpan
-        </div>
-    </div>
-</div>
+<RadzenStack>
+    <RadzenStack>
+        <RadzenText TextStyle="TextStyle.DisplayH5" TextAlign="TextAlign.Center">
+            Você sabia que é possível transformar um valor de tempo expresso em horas, minutos e segundos em um formato decimal?
+        </RadzenText>
+        <RadzenText TextStyle="TextStyle.H5" TextAlign="TextAlign.Center">
+            Esse cálculo é extremamente útil em diversas situações, 
+            como em cálculos de pagamento de salário por hora trabalhada ou em cálculos de tempo gasto em atividades.
+            Abaixo nós criamos uma ferramenta que permite que você faça essa conversão de forma simples e rápida.
+        </RadzenText>
+    </RadzenStack>
 
-<hr class="m-auto" style="border: 2px solid rgba(192, 192, 192, 0.701); width: 95%" />
+    <hr class="m-auto" style="border: 2px solid rgba(192, 192, 192, 0.701); width: 100%" />
 
-<div class="row m-2">
-    <div class="jumbotron">
-        <h1 class="p-2 text-center fw-bold">
-            Como converter tempo em horas decimais?
-        </h1>
-    </div>
-    <div class="row">
-        <div class="col-md-8 mx-auto">
-            <p class="lead text-justify">
-                Você sabia que é possível transformar um valor de tempo expresso em horas, minutos e segundos em um formato decimal?
-                Esse cálculo é extremamente útil em diversas situações, como em cálculos de pagamento de salário por hora trabalhada ou em cálculos de tempo gasto em atividades.
-            </p>
+    <RadzenStack Orientation="Orientation.Vertical">
+        <RadzenText Text="Horas" TextStyle="TextStyle.Subtitle1" TagName="TagName.H3" />
+        <RadzenNumeric Value="_hours" ShowUpDown="false" TValue="int?" ValueChanged="OnLeaveHours" />
+
+        <RadzenText Text="Minutos" TextStyle="TextStyle.Subtitle1" TagName="TagName.H3" />
+        <RadzenNumeric Value="_minutes" ShowUpDown="false" TValue="int?" ValueChanged="OnLeaveMinutes" />
+
+        <RadzenText Text="Segundos" TextStyle="TextStyle.Subtitle1" TagName="TagName.H3" />
+        <RadzenNumeric Value="_seconds" ShowUpDown="false" TValue="int?" ValueChanged="OnLeaveSeconds" />
+
+        <RadzenText Text="Valor decimal" TextStyle="TextStyle.Subtitle1" TagName="TagName.H3" />
+        <RadzenNumeric Value="_decimalTimeSpan" ShowUpDown="false" TValue="decimal?" ValueChanged="OnLeaveDecimal" />
+    </RadzenStack>
+    <RadzenStack Orientation="Orientation.Vertical">
+        <RadzenRow>
+            <RadzenColumn>
+                <RadzenText Text="Horas em decimal" TextStyle="TextStyle.DisplayH6" TagName="TagName.H3" />
+            </RadzenColumn>
+            <RadzenColumn>
+                <RadzenText TextStyle="TextStyle.DisplayH6" TextAlign="TextAlign.End" TagName="TagName.H3">
+                    @(_decimalTimeSpan ?? 0.00m)
+                </RadzenText>
+            </RadzenColumn>
+        </RadzenRow>
+        <RadzenRow>
+            <RadzenColumn>
+                <RadzenText Text="Minutos em decimal" TextStyle="TextStyle.DisplayH6" TagName="TagName.H3" />
+            </RadzenColumn>
+            <RadzenColumn>
+                <RadzenText TextStyle="TextStyle.DisplayH6" TextAlign="TextAlign.End" TagName="TagName.H3">
+                    @(_decimalTimeSpan * 60 ?? 0.00m)
+                </RadzenText>
+            </RadzenColumn>
+        </RadzenRow>
+        <RadzenRow>
+            <RadzenColumn>
+                <RadzenText Text="Segundos em decimal" TextStyle="TextStyle.DisplayH6" TagName="TagName.H3" />
+            </RadzenColumn>
+            <RadzenColumn>
+                <RadzenText TextStyle="TextStyle.DisplayH6" TextAlign="TextAlign.End" TagName="TagName.H3">
+                    @(_decimalTimeSpan * 3600 ?? 0.00m)
+                </RadzenText>
+            </RadzenColumn>
+        </RadzenRow>
+        <RadzenRow>
+            <RadzenColumn>
+                <RadzenText Text="Hora convertida" TextStyle="TextStyle.DisplayH6" TagName="TagName.H3" />
+            </RadzenColumn>
+            <RadzenColumn>
+                <RadzenText TextStyle="TextStyle.DisplayH6" TextAlign="TextAlign.End" TagName="TagName.H3">
+                    @_timeSpan
+                </RadzenText>
+            </RadzenColumn>
+        </RadzenRow>
+    </RadzenStack>
+
+    <hr class="m-auto" style="border: 2px solid rgba(192, 192, 192, 0.701); width: 100%" />
+
+    <RadzenStack>
+        <RadzenText TextStyle="TextStyle.DisplayH4" TextAlign="TextAlign.Center">
+            Como é feito esse cálculo?
+        </RadzenText>
+        <RadzenText TextStyle="TextStyle.H6" TextAlign="TextAlign.Justify" class="w-75 m-auto">
             <p class="text-justify">
                 O processo é simples: primeiro, transformamos os minutos em fração de hora, dividindo-os por 60.
                 Em seguida, fazemos o mesmo com os segundos, dividindo-os por 3600.
@@ -85,12 +88,12 @@
                 Por exemplo, se quisermos converter 1 hora, 15 minutos e 36 segundos para formato decimal, seguimos essas etapas e obtemos o resultado de 1,26 horas em formato decimal.
             </p>
             <p class="text-justify">
-                Agora você já sabe como transformar um valor de tempo em horas decimais! 
-                Esse cálculo pode ser uma ferramenta muito útil em diversos cenários e pode facilitar muito seus cálculos matemáticos e financeiros. 
+                Agora você já sabe como transformar um valor de tempo em horas decimais!
+                Esse cálculo pode ser uma ferramenta muito útil em diversos cenários e pode facilitar muito seus cálculos matemáticos e financeiros.
             </p>
             <p>
                 Que tal experimentar?
             </p>
-        </div>
-    </div>
-</div>
+        </RadzenText>
+    </RadzenStack>
+</RadzenStack>

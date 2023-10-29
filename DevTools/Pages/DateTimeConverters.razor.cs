@@ -4,43 +4,48 @@ namespace DevTools.Pages;
 
 public partial class DateTimeConverters
 {
-    private int _hours;
-    private int _minutes;
-    private int _seconds;
+    private int? _hours;
+    private int? _minutes;
+    private int? _seconds;
 
-    private decimal _decimalTimeSpan;
+    private decimal? _decimalTimeSpan;
     private TimeSpan _timeSpan = new TimeSpan();
 
-    private async Task OnLeaveTimeSpan()
+    private void CalculateTimeSpan()
     {
-        _timeSpan = new TimeSpan( _hours, _minutes, _seconds );
-        _decimalTimeSpan = ToDecimal( _timeSpan );
+        _timeSpan = new TimeSpan( _hours ?? 0, _minutes ?? 0, _seconds ?? 0 );
+        _decimalTimeSpan = _timeSpan.ToDecimal();
     }
 
-    private async Task OnLeaveDecimal()
+    private void CalculateDecimal()
     {
-        _timeSpan = ToTimeSpan( _decimalTimeSpan );
+        _timeSpan = ( _decimalTimeSpan ?? 0 ).ToTimeSpan();
         _hours = _timeSpan.Hours;
         _minutes = _timeSpan.Minutes;
         _seconds = _timeSpan.Seconds;
     }
 
-    public TimeSpan ToTimeSpan( decimal value )
+    private async Task OnLeaveHours( int? value )
     {
-        var decimalMinutes = value - value.ParaInt();
-        var minutes = decimalMinutes * 60;
-        var decimalSeconds = minutes - minutes.ParaInt();
-        var seconds = Math.Round( decimalSeconds * 60, 0 );
-
-        return new TimeSpan( value.ParaInt(), minutes.ParaInt(), seconds.ParaInt() );
+        _hours = value;
+        CalculateTimeSpan();
     }
 
-    public decimal ToDecimal( TimeSpan value )
+    private async Task OnLeaveMinutes( int? value )
     {
-        decimal minutes = value.Minutes / 60.ParaDecimal();
-        decimal seconds = value.Seconds / 3600.ParaDecimal();
-        var hours = ( value.Days * 24 ) + value.Hours;
+        _minutes = value;
+        CalculateTimeSpan();
+    }
 
-        return hours + minutes + seconds;
+    private async Task OnLeaveSeconds( int? value )
+    {
+        _seconds = value;
+        CalculateTimeSpan();
+    }
+
+    private async Task OnLeaveDecimal( decimal? value )
+    {
+        _decimalTimeSpan = value;
+        CalculateDecimal();
     }
 }
