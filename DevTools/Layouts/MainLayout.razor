@@ -3,35 +3,30 @@
 <RadzenComponents />
 
 <div class="page">
-    <header class="text-center">
-        <RadzenPanel>
-            <RadzenText TextStyle="TextStyle.H2">
+    <RadzenLayout>
+        <RadzenHeader>
+            <RadzenText TextStyle="TextStyle.H2" TextAlign="TextAlign.Center">
                 <a href="./">Dev Tools</a>
             </RadzenText>
-        </RadzenPanel>
-    </header>
-
-    <RadzenStack Orientation=Orientation.Horizontal>
-        <navbar class="mt-1">
-            <RadzenPanelMenu Multiple=true Style="width:300px;">
+        </RadzenHeader>
+        <RadzenSidebar class="mt-1">
+            <RadzenPanelMenu Multiple=true>
                 <RadzenPanelMenuItem Text="Conversores">
                     <RadzenPanelMenuItem Text="Tempo" Path="/converters/date-time-converters"></RadzenPanelMenuItem>
                 </RadzenPanelMenuItem>
-@*                 <RadzenPanelMenuItem Text="Validadores">
-                    <RadzenPanelMenuItem Text="CPF" Path="/converters/date-time-converters"></RadzenPanelMenuItem>
-                    <RadzenPanelMenuItem Text="CNPJ" Path="/converters/date-time-converters"></RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Text="Validadores">
+                    <RadzenPanelMenuItem Text="CPF" Path="/validators/cpf"></RadzenPanelMenuItem>
+                    <RadzenPanelMenuItem Text="CNPJ" Path="/validators/cnpj"></RadzenPanelMenuItem>
                 </RadzenPanelMenuItem>
-                <RadzenPanelMenuItem Text="Geradores">
-                    <RadzenPanelMenuItem Text="CPF" Path="/converters/date-time-converters"></RadzenPanelMenuItem>
-                    <RadzenPanelMenuItem Text="CNPJ" Path="/converters/date-time-converters"></RadzenPanelMenuItem>
-                    <RadzenPanelMenuItem Text="Senhas" Path="/converters/date-time-converters"></RadzenPanelMenuItem>
+                @*<RadzenPanelMenuItem Text="Geradores">
+                <RadzenPanelMenuItem Text="CPF" Path="/converters/date-time-converters"></RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Text="CNPJ" Path="/converters/date-time-converters"></RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Text="Senhas" Path="/converters/date-time-converters"></RadzenPanelMenuItem>
                 </RadzenPanelMenuItem> *@
             </RadzenPanelMenu>
-        </navbar>
-        <RadzenPanel class="mt-1">
-            <main>
-                @Body
-            </main>
-        </RadzenPanel>
-    </RadzenStack>
+        </RadzenSidebar>
+        <RadzenBody class="pt-1 ps-1 pe-0">
+            @Body
+        </RadzenBody>
+    </RadzenLayout>
 </div>
