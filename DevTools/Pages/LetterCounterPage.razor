@@ -1,5 +1,14 @@
-﻿<h3>LetterCounterPage</h3>
+﻿@page "/utilities/letter-counter"
+@layout MainLayout
+@inherits ComponentBase
 
-@code {
-
-}
+<RadzenPanel>
+    <RadzenText Text="Insira o texto aqui:" TextStyle="TextStyle.Subtitle1" />
+    <RadzenTextArea @bind-Value=@_text class="w-100" Style="height: 500px;" />
+    <RadzenStack AlignItems="AlignItems.Center">
+        <RadzenButton Text="Contar" Click=OnClickButton class="w-25" />
+    </RadzenStack>
+    <RadzenText TextStyle="TextStyle.H6">
+        Quantidade de caracteres: @_letterAmount
+    </RadzenText>
+</RadzenPanel>
