@@ -1,1 +1,2 @@
-﻿global using Microsoft.AspNetCore.Components;
+﻿global using BibliotecaPublica.Core.Extensions;
+global using Microsoft.AspNetCore.Components;
