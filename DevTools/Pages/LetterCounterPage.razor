@@ -5,10 +5,11 @@
 <RadzenPanel>
     <RadzenText Text="Insira o texto aqui:" TextStyle="TextStyle.H6" />
     <RadzenTextArea @oninput=OnInputTextArea class="w-100" Style="height: 450px;" />
-    <RadzenText Text="Informe o valor procurado:" TextStyle="TextStyle.H6" />
-    <RadzenTextBox @oninput=OnInputEspecialCharacter MaxLength="1" />
 
-    <RadzenText TextStyle="TextStyle.H6" class="mt-3">
+    <RadzenText Text="Informe o valor procurado:" TextStyle="TextStyle.H6" class="mt-2" />
+    <RadzenTextBox @oninput=OnInputEspecialCharacter MaxLength="1" class="mb-3" />
+
+    <RadzenText TextStyle="TextStyle.H6">
         Caracteres: @_charactersAmount
     </RadzenText>
     <RadzenText TextStyle="TextStyle.H6">
