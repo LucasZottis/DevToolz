@@ -2,7 +2,7 @@
 
 namespace DevTools.Pages;
 
-public partial class CnpjCpfValidator : ComponentBase
+public partial class CnpjCpfValidator : BasePage
 {
     private bool _isCpf = false;
     private bool? _isValidate;
@@ -15,12 +15,14 @@ public partial class CnpjCpfValidator : ComponentBase
     {
         _textBoxLabel = "CPF";
         _mask = "***.***.***-**";
+        TitlePage = "Validador de CPF";
     }
 
     private async Task InitializeCnpjPage()
     {
         _textBoxLabel = "CNPJ";
         _mask = "**.***.***/****-**";
+        TitlePage = "Validador de CNPJ";
     }
 
     private async Task InitializeProperties()
@@ -46,16 +48,16 @@ public partial class CnpjCpfValidator : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        _navigationManager.LocationChanged += async ( sender, e ) =>
+        NavigationManager.LocationChanged += async ( sender, e ) =>
         {
-            _isCpf = _navigationManager.Uri.Contains( "cpf" );
+            _isCpf = NavigationManager.Uri.Contains( "cpf" );
             await InitializeProperties();
             await InvokeAsync( StateHasChanged );
         };
 
         if ( _textBoxLabel.EstaVazio() )
         {
-            _isCpf = _navigationManager.Uri.Contains( "cpf" );
+            _isCpf = NavigationManager.Uri.Contains( "cpf" );
             await InitializeProperties();
         }
 
