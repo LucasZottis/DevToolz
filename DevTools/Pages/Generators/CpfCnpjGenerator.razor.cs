@@ -1,9 +1,8 @@
-﻿using BibliotecaPublica.Utils.Builders;
-using Microsoft.JSInterop;
+﻿using Microsoft.JSInterop;
 
-namespace DevTools.Pages;
+namespace DevTools.Pages.Generators;
 
-public partial class CpfCnpjGenerator : ComponentBase
+public partial class CpfCnpjGenerator : BasePage
 {
     private bool _isCpf = false;
     private string _textLabel = string.Empty;
@@ -27,12 +26,14 @@ public partial class CpfCnpjGenerator : ComponentBase
     {
         _textLabel = "CPF";
         _mask = "***.***.***-**";
+        TitlePage = "Gerador de CPF";
     }
 
     private async Task InitializeCnpjPage()
     {
         _textLabel = "CNPJ";
         _mask = "**.***.***/****-**";
+        TitlePage = "Gerador de CNPJ";
     }
 
     private async Task InitializeProperties()
@@ -45,16 +46,16 @@ public partial class CpfCnpjGenerator : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        _navigationManager.LocationChanged += async ( sender, e ) =>
+        NavigationManager.LocationChanged += async ( sender, e ) =>
         {
-            _isCpf = _navigationManager.Uri.Contains( "cpf" );
+            _isCpf = NavigationManager.Uri.Contains( "cpf" );
             await InitializeProperties();
             await InvokeAsync( StateHasChanged );
         };
 
         if ( _textLabel.EstaVazio() )
         {
-            _isCpf = _navigationManager.Uri.Contains( "cpf" );
+            _isCpf = NavigationManager.Uri.Contains( "cpf" );
             await InitializeProperties();
         }
 

@@ -1,8 +1,8 @@
 ﻿using BibliotecaPublica.Utils.Validators;
 
-namespace DevTools.Pages;
+namespace DevTools.Pages.Validators;
 
-public partial class CnpjCpfValidator : ComponentBase
+public partial class CnpjCpfValidator : BasePage
 {
     private bool _isCpf = false;
     private bool? _isValidate;
@@ -15,17 +15,19 @@ public partial class CnpjCpfValidator : ComponentBase
     {
         _textBoxLabel = "CPF";
         _mask = "***.***.***-**";
+        TitlePage = "Validador de CPF";
     }
 
     private async Task InitializeCnpjPage()
     {
         _textBoxLabel = "CNPJ";
         _mask = "**.***.***/****-**";
+        TitlePage = "Validador de CNPJ";
     }
 
     private async Task InitializeProperties()
     {
-        if ( _isCpf )
+        if (_isCpf)
             await InitializeCpfPage();
         else
             await InitializeCnpjPage();
@@ -33,29 +35,29 @@ public partial class CnpjCpfValidator : ComponentBase
 
     private async Task OnClickValidateButton()
     {
-        if ( _docValue.EstaVazio() )
+        if (_docValue.EstaVazio())
             return;
 
         _validateDoc = _docValue;
 
-        if ( _isCpf )
-            _isValidate = CpfValidator.Validate( _docValue );
+        if (_isCpf)
+            _isValidate = CpfValidator.Validate(_docValue);
         else
-            _isValidate = CnpjValidator.Validate( _docValue );
+            _isValidate = CnpjValidator.Validate(_docValue);
     }
 
     protected override async Task OnInitializedAsync()
     {
-        _navigationManager.LocationChanged += async ( sender, e ) =>
+        NavigationManager.LocationChanged += async (sender, e) =>
         {
-            _isCpf = _navigationManager.Uri.Contains( "cpf" );
+            _isCpf = NavigationManager.Uri.Contains("cpf");
             await InitializeProperties();
-            await InvokeAsync( StateHasChanged );
+            await InvokeAsync(StateHasChanged);
         };
 
-        if ( _textBoxLabel.EstaVazio() )
+        if (_textBoxLabel.EstaVazio())
         {
-            _isCpf = _navigationManager.Uri.Contains( "cpf" );
+            _isCpf = NavigationManager.Uri.Contains("cpf");
             await InitializeProperties();
         }
 
