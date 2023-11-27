@@ -1,4 +1,4 @@
-﻿namespace DevTools.Pages;
+﻿namespace DevTools.Pages.Generators;
 
 public partial class PasswordGenerator : BasePage
 {

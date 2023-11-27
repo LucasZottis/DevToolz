@@ -1,7 +1,7 @@
 ﻿using Microsoft.JSInterop;
 using SqlFormatter;
 
-namespace DevTools.Pages;
+namespace DevTools.Pages.Tools;
 
 public partial class SqlFormatterPage : BasePage
 {
@@ -15,8 +15,8 @@ public partial class SqlFormatterPage : BasePage
 
     private void OnClickFormatButton()
     {
-        if ( _sql.TemConteudo() )
-            _formattedSql = Formatter.Format( _sql );
+        if (_sql.TemConteudo())
+            _formattedSql = Formatter.Format(_sql);
     }
 
     private void OnClickClearButton()
@@ -27,6 +27,6 @@ public partial class SqlFormatterPage : BasePage
 
     private async Task OnClickCopyButton()
     {
-        await JSRuntime.InvokeVoidAsync( "navigator.clipboard.writeText", _formattedSql );
+        await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", _formattedSql);
     }
 }

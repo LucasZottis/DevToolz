@@ -1,4 +1,4 @@
-﻿namespace DevTools.Pages;
+﻿namespace DevTools.Pages.Converters;
 
 public partial class DateTimeConverters : BasePage
 {
@@ -16,37 +16,37 @@ public partial class DateTimeConverters : BasePage
 
     private void CalculateTimeSpan()
     {
-        _timeSpan = new TimeSpan( _hours ?? 0, _minutes ?? 0, _seconds ?? 0 );
+        _timeSpan = new TimeSpan(_hours ?? 0, _minutes ?? 0, _seconds ?? 0);
         _decimalTimeSpan = _timeSpan.ToDecimal();
     }
 
     private void CalculateDecimal()
     {
-        _timeSpan = ( _decimalTimeSpan ?? 0 ).ToTimeSpan();
+        _timeSpan = (_decimalTimeSpan ?? 0).ToTimeSpan();
         _hours = _timeSpan.Hours;
         _minutes = _timeSpan.Minutes;
         _seconds = _timeSpan.Seconds;
     }
 
-    private async Task OnLeaveHours( int? value )
+    private async Task OnLeaveHours(int? value)
     {
         _hours = value;
         CalculateTimeSpan();
     }
 
-    private async Task OnLeaveMinutes( int? value )
+    private async Task OnLeaveMinutes(int? value)
     {
         _minutes = value;
         CalculateTimeSpan();
     }
 
-    private async Task OnLeaveSeconds( int? value )
+    private async Task OnLeaveSeconds(int? value)
     {
         _seconds = value;
         CalculateTimeSpan();
     }
 
-    private async Task OnLeaveDecimal( decimal? value )
+    private async Task OnLeaveDecimal(decimal? value)
     {
         _decimalTimeSpan = value;
         CalculateDecimal();

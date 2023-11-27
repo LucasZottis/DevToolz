@@ -1,6 +1,6 @@
 ﻿using Microsoft.JSInterop;
 
-namespace DevTools.Pages;
+namespace DevTools.Pages.Generators;
 
 public partial class CpfCnpjGenerator : BasePage
 {

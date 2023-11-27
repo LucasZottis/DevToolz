@@ -1,6 +1,6 @@
 ﻿using BibliotecaPublica.Utils.Validators;
 
-namespace DevTools.Pages;
+namespace DevTools.Pages.Validators;
 
 public partial class CnpjCpfValidator : BasePage
 {
@@ -27,7 +27,7 @@ public partial class CnpjCpfValidator : BasePage
 
     private async Task InitializeProperties()
     {
-        if ( _isCpf )
+        if (_isCpf)
             await InitializeCpfPage();
         else
             await InitializeCnpjPage();
@@ -35,29 +35,29 @@ public partial class CnpjCpfValidator : BasePage
 
     private async Task OnClickValidateButton()
     {
-        if ( _docValue.EstaVazio() )
+        if (_docValue.EstaVazio())
             return;
 
         _validateDoc = _docValue;
 
-        if ( _isCpf )
-            _isValidate = CpfValidator.Validate( _docValue );
+        if (_isCpf)
+            _isValidate = CpfValidator.Validate(_docValue);
         else
-            _isValidate = CnpjValidator.Validate( _docValue );
+            _isValidate = CnpjValidator.Validate(_docValue);
     }
 
     protected override async Task OnInitializedAsync()
     {
-        NavigationManager.LocationChanged += async ( sender, e ) =>
+        NavigationManager.LocationChanged += async (sender, e) =>
         {
-            _isCpf = NavigationManager.Uri.Contains( "cpf" );
+            _isCpf = NavigationManager.Uri.Contains("cpf");
             await InitializeProperties();
-            await InvokeAsync( StateHasChanged );
+            await InvokeAsync(StateHasChanged);
         };
 
-        if ( _textBoxLabel.EstaVazio() )
+        if (_textBoxLabel.EstaVazio())
         {
-            _isCpf = NavigationManager.Uri.Contains( "cpf" );
+            _isCpf = NavigationManager.Uri.Contains("cpf");
             await InitializeProperties();
         }
 
