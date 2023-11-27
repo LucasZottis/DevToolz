@@ -1,6 +1,6 @@
 ﻿namespace DevTools.Pages;
 
-public partial class PasswordGenerator : ComponentBase
+public partial class PasswordGenerator : BasePage
 {
     private bool _includeCapitalLetters;
     private bool _includeLowerCase;
@@ -10,6 +10,11 @@ public partial class PasswordGenerator : ComponentBase
     private int _passwordLength = 10;
 
     private string _password = string.Empty;
+
+    public PasswordGenerator()
+    {
+        TitlePage = "Gerador de Senhas";
+    }
 
     private async Task GeneratePassword()
     {

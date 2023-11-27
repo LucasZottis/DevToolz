@@ -1,8 +1,6 @@
-﻿using BibliotecaPublica.Core.Extensions;
+﻿namespace DevTools.Pages;
 
-namespace DevTools.Pages;
-
-public partial class DateTimeConverters
+public partial class DateTimeConverters : BasePage
 {
     private int? _hours;
     private int? _minutes;
@@ -10,6 +8,11 @@ public partial class DateTimeConverters
 
     private decimal? _decimalTimeSpan;
     private TimeSpan _timeSpan = new TimeSpan();
+
+    public DateTimeConverters()
+    {
+        TitlePage = "Conversor de Tempo";
+    }
 
     private void CalculateTimeSpan()
     {

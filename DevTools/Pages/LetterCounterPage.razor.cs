@@ -2,7 +2,7 @@
 
 namespace DevTools.Pages;
 
-public partial class LetterCounterPage : ComponentBase
+public partial class LetterCounterPage : BasePage
 {
     private int _charactersAmount;
     private int _charactersWithoutSpaceAmount;
@@ -16,6 +16,11 @@ public partial class LetterCounterPage : ComponentBase
 
     private string _inputTextArea = string.Empty;
     private string _especialValue = string.Empty;
+
+    public LetterCounterPage()
+    {
+        TitlePage = "Contador de Caracteres";
+    }
 
     private async Task<int> GetAmount( string text, char separator, bool clearText = true )
     {

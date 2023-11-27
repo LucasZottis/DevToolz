@@ -3,10 +3,15 @@ using SqlFormatter;
 
 namespace DevTools.Pages;
 
-public partial class SqlFormatterPage : ComponentBase
+public partial class SqlFormatterPage : BasePage
 {
     private string _sql = string.Empty;
     private string _formattedSql = string.Empty;
+
+    public SqlFormatterPage()
+    {
+        TitlePage = "Indentador de Script SQL";
+    }
 
     private void OnClickFormatButton()
     {
