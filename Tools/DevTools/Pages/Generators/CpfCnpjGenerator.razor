@@ -1,0 +1,24 @@
+﻿@page "/generators/cpf"
+@page "/generators/cnpj"
+@using global::Tools.Layouts
+@layout MainLayout
+@inherits BasePage
+
+<PageTitle>@TitlePage</PageTitle>
+
+<RadzenPanel>
+    <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.Center">
+        <RadzenStack>
+            <RadzenText TextStyle="TextStyle.DisplayH6" class="m-auto">
+                Gerador de @_textLabel
+            </RadzenText>
+            <RadzenStack Orientation="Orientation.Horizontal">
+                <RadzenMask @bind-Value=@_value Mask="@_mask" Style="width: 200px;" Disabled="true" />
+                <RadzenButton Text="Copiar" Click="OnClickButtonCopy" />
+            </RadzenStack>
+            <RadzenButton Click=OnClickButtonGenerate Style="width: 125px;" class="m-auto">
+                Gerar @_textLabel
+            </RadzenButton>
+        </RadzenStack>
+    </RadzenStack>
+</RadzenPanel>
