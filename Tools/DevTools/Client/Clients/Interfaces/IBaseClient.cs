@@ -2,5 +2,5 @@
 
 public interface IBaseClient : IDisposable
 {
-    public HttpClient Client { get; }
+    HttpClient Client { get; }
 }

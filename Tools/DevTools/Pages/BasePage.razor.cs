@@ -1,4 +1,5 @@
 ﻿using Microsoft.JSInterop;
+using Radzen;
 
 namespace Tools.Pages;
 
@@ -26,4 +27,10 @@ public partial class BasePage : ComponentBase
 
     [Inject]
     public IJSRuntime JSRuntime { get; set; }
+
+    [Inject]
+    public DialogService Dialog { get; set; }
+
+    [Inject]
+    public NotificationService Notification { get; set; }
 }
