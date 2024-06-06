@@ -26,10 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\Repositories\" />
     <Folder Include="Interfaces\UnityOfWork\" />
-    <Folder Include="ModelMappers\" />
-    <Folder Include="Repositories\" />
     <Folder Include="UnitiesOfWork\" />
   </ItemGroup>
 
