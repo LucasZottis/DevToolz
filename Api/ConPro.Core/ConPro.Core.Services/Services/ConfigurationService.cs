@@ -1,28 +1,53 @@
-﻿using BibliotecaPublica.Core.Interfaces;
-using BibliotecaPublica.NegocioPack;
+﻿using AutoMapper;
+using BibliotecaPublica.Core.Interfaces;
+using DevTools.Core.Domain.Entities;
 using DevTools.Core.Domain.Models.ConPro.Configuration;
+using DevTools.Core.Repository.Interfaces.Repositories;
 using DevTools.Core.Service.Interfaces;
 
 namespace DevTools.Core.Service.Services;
 
 public class ConfigurationService : BibliotecaPublica.NegocioPack.Service, IConfigurarionService
 {
-    public ConfigurationService( IBaseNotificationService notificador ) : base( notificador )
+    private readonly IMapper _mapper;
+    private readonly IConfigurarionRepository _configurarionRepository;
+
+    public ConfigurationService( IBaseNotificationService notificador, IMapper mapper, IConfigurarionRepository configurarionRepository ) : base( notificador )
     {
+        _mapper = mapper;
+        _configurarionRepository = configurarionRepository;
     }
 
-    public Task<Guid> Add( NewConfigurarionModel model )
+    public async Task<Guid> Add( NewConfigurarionModel model )
     {
-        throw new NotImplementedException();
+        var entity = _mapper.Map<Configuration>( model );
+
+        await _configurarionRepository.AddAsync( entity );
+
+        _configurarionRepository.Commit();
+
+        return entity.Guid;
     }
 
-    public Task<IEnumerable<ConfigurationReadOnlyModel>> GetAll()
+    public async Task<IEnumerable<ConfigurationReadOnlyModel>> GetAll()
     {
-        throw new NotImplementedException();
+        var list = await _configurarionRepository.GetAllAsync();
+        return _mapper.Map<IEnumerable<ConfigurationReadOnlyModel>>( list );
     }
 
-    public Task Update( UpdatedConfigurarionModel model )
+    public async Task Update( UpdatedConfigurarionModel model )
     {
-        throw new NotImplementedException();
+        var entity  = await _configurarionRepository.GetByGuidAsync( model.Guid );
+
+        if ( entity == null )
+        {
+            throw new Exception( "Configuration not found" );
+        }
+
+        entity = _mapper.Map( model, entity );
+
+        await _configurarionRepository.UpdateAsync( entity );
+
+        _configurarionRepository.Commit();
     }
 }

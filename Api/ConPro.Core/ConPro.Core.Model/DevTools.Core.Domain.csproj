@@ -13,8 +13,4 @@
     <PackageReference Include="Octokit" Version="11.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Profiles\" />
-  </ItemGroup>
-
 </Project>

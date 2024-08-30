@@ -1,6 +1,6 @@
 ﻿namespace DevTools.Core.Repository.Interfaces.Repositories;
 
-public interface IConfigurarionRepository : IRepository<Configuration>
+public interface IConfigurarionRepository : IRepositoryBase<Configuration>
 {
 
 }
