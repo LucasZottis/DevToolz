@@ -1,0 +1,75 @@
+<div class="row gy-3">
+    <div class="col-12">
+        <label for="txt-info" class="form-label">Insira o texto aqui:</label>
+        <textarea id="txt-info" class="form-control" rows="15" (input)="onInput($event)"></textarea>
+    </div>
+
+    <div class="col-4">
+        <label for="txt-search" class="form-label">Buscar por:</label>
+        <input type="text" id="txt-search" class="form-control">
+    </div>
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-4">
+                Caracteres: {{caracteres}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-4">
+                Caracteres sem espaços: {{caracteresWithoutWhiteSpace}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-4">
+                Espaços: {{whiteSpace}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-4">
+                Espaços: {{whiteSpace}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-4">
+                Vogais: {{vowels}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-4">
+                Números: {{numbers}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-4">
+                Palavras: {{words}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-4">
+                Palavras: {{phrases}}
+            </div>
+        </div>
+    </div>
+</div>
