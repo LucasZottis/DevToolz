@@ -1,0 +1,68 @@
+<form class="pt-2">
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mx-auto">
+            <label for="txt-cpf" class="form-label">Digite o CPF</label>
+            <input type="text" class="form-control text-center" id="txt-cpf" maxlength="14" name="txt-cpf"
+                placeholder="000.000.000-00" [(ngModel)]="cpf" (keypress)="onKeypress($event)" (paste)="onPaste($event)">
+            <input type="button" class="btn primary-button mt-2 w-100" value="Validar" (click)="validate()" />
+            @if(result !== undefined) {
+            <p id="lbl-resultado" class="text-center mx-0 mb-0 mt-2 fs-3" [style]="style">
+                {{ result }}
+            </p>
+            }
+        </div>
+    </div>
+</form>
+
+<hr>
+
+<div class="pb-2">
+    <h4 class="fw-bold text-center mb-3">Algoritmo de Validação do CPF</h4>
+    <h5 class="text-center mb-3">Etapa 1 - Cálculo do Primeiro Dígito Verificador</h5>
+    <div class="texto-explicativo">
+        <p>
+            Para calcular o primeiro dígito verificador, multiplicamos cada um dos nove primeiros dígitos do CPF
+            por
+            números crescentes a partir de 2, da direita para a esquerda:
+        </p>
+        <pre>
+            CPF: 111.444.777
+            Peso: 2 3 4 5 6 7 8 9 10
+        </pre>
+        <p>
+            Multiplicamos e somamos os resultados: 1x10 + 1x9 + 1x8 + 4x7 + 4x6 + 4x5 + 7x4 + 7x3 + 7x2 = 162
+        </p>
+        <p>
+            Em seguida, dividimos 162 por 11 e obtemos o resto da divisão. Se o resto for menor que 2, o
+            primeiro
+            dígito é 0; caso contrário, subtraímos o resto de 11. No nosso exemplo, o resto é 8, então o
+            primeiro
+            dígito é 3. O CPF fica como: 111.444.777-3X.
+        </p>
+    </div>
+    <h4 class="text-center mb-3">Etapa 2 - Cálculo do Segundo Dígito Verificador</h4>
+    <div class="texto-explicativo">
+        <p>
+            Para calcular o segundo dígito verificador, usamos o primeiro dígito já calculado. Montamos a mesma
+            tabela de multiplicação, mas desta vez incluímos o primeiro dígito:
+        </p>
+        <pre>
+            CPF: 111.444.777-3X
+            Peso: 2 3 4 5 6 7 8 9 10 11
+        </pre>
+        <p>
+            Multiplicamos e somamos os resultados: 1x11 + 1x10 + 1x9 + 4x8 + 4x7 + 4x6 + 7x5 + 7x4 + 7x3 + 3x2 =
+            204
+        </p>
+        <p>
+            Dividimos 204 por 11 e calculamos o resto da divisão. Da mesma forma que na etapa anterior, se o
+            resto for menor que 2, o segundo dígito é 0; caso contrário, subtraímos o resto de 11. No nosso
+            exemplo, o resto é 6, então o segundo dígito é 5. O CPF válido é: 111.444.777-35.
+        </p>
+        <p>
+            Em resumo, para validar um CPF, calcule a soma dos produtos dos nove primeiros dígitos com pesos
+            crescentes e, em seguida, calcule os dígitos verificadores com base nas regras explicadas acima. Se
+            os dígitos calculados coincidirem com os dois últimos dígitos do CPF, ele é válido.
+        </p>
+    </div>
+</div>

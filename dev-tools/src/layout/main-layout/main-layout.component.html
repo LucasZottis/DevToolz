@@ -1,0 +1,72 @@
+<!-- <header class="p-2 text-center fs-5 text">
+    <h1 class="header-page">
+        <a [routerLink]="['./']">Calculadora Dev</a>
+    </h1>
+</header>
+
+<main class="container py-3">
+    <router-outlet></router-outlet>
+</main> -->
+
+<div class="d-flex container">
+    <nav class="d-flex flex-column flex-shrink-0 p-3 position-sticky top-0 start-0">
+        <a href="/" class="d-flex align-items-center text-decoration-none">
+            <span class="fs-4">SysPret</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li [class]="'nav-item ' + (this.router.url === '/pessoa' ? 'nav-item-active' : '')">
+                <a [routerLink]="['./pessoa']" class="nav-link" aria-expanded="false">
+                    Cliente
+                </a>
+            </li>
+
+            <li [class]="'nav-item ' + (this.router.url === '/exportador' ? 'nav-item-active' : '')">
+                <a [routerLink]="['./exportador']" class="nav-link" aria-expanded="false">
+                    Exportador
+                </a>
+            </li>
+
+            <li [class]="'nav-item ' + (this.router.url === '/agente-de-carga' ? 'nav-item-active' : '')">
+                <a [routerLink]="['./agente-de-carga']" class="nav-link" aria-expanded="false">
+                    Agente de Carga
+                </a>
+            </li>
+
+            <li [class]="'nav-item ' + (this.router.url === '/armador' ? 'nav-item-active' : '')">
+                <a [routerLink]="['./armador']" class="nav-link" aria-expanded="false">
+                    Armador
+                </a>
+            </li>
+
+            <li [class]="'nav-item ' + (this.router.url === '/navio' ? 'nav-item-active' : '')">
+                <a [routerLink]="['./navio']" class="nav-link" aria-expanded="false">
+                    Navio
+                </a>
+            </li>
+
+            <li [class]="'nav-item ' + (this.router.url === '/terminal' ? 'nav-item-active' : '')">
+                <a [routerLink]="['./terminal']" class="nav-link" aria-expanded="false">
+                    Terminal
+                </a>
+            </li>
+
+            <li [class]="'nav-item ' + (this.router.url === '/processos' ? 'nav-item-active' : '')">
+                <a [routerLink]="['./processos']" class="nav-link" aria-expanded="false">
+                    Processos
+                </a>
+            </li>
+
+            
+            <li [class]="'nav-item ' + (this.router.url === '/tipo-de-carga' ? 'nav-item-active' : '')">
+                <a [routerLink]="['./tipo-de-carga']" class="nav-link" aria-expanded="false">
+                    Tipos de Carga
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="container-fluid py-3">
+        <router-outlet></router-outlet>
+    </main>
+</div>

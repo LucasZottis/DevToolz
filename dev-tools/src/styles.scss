@@ -1,0 +1,36 @@
+:root {
+    --primary-color: #8ade87;
+    --secundary-color: var(--bs-secondary-bg);
+    --third-color: #CCCCCC;
+    --primary-background-color: #333333;
+    --second-background-color: #000000;
+
+    /* Sobreescritos */
+    --bs-btn-hover-bg: var(--primary-color) !important;
+    --bs-primary-rgb: var(--primary-color) !important;
+    --bs-primary: var(--primary-color);
+}
+
+a {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+body {
+    font-size: 16px;
+}
+
+.primary-button {
+    background-color: var(--primary-color) !important;
+    color: var(--secundary-color) !important;
+}
+
+.texto-explicativo {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: justify;
+    text-justify: auto;
+    width: 85%;
+}

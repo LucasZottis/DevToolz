@@ -1,0 +1,58 @@
+@import '/node_modules/bootstrap/scss/_mixins.scss';
+@import '/node_modules/bootstrap/scss/_functions.scss';
+@import '/node_modules/bootstrap/scss/variables';
+
+header {
+    background-color: var(--primary-color);
+    color: var(--secundary-color) !important;
+    font-family: "Courier New", monospace;
+    padding: 1.5%;
+}
+
+main {
+    background-color: var(--secundary-color);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-page {
+    font-weight: 700;
+    font-size: 1.2em;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    padding-left: calc(20px * 0.25);
+}
+
+.nav-item:hover {
+    background-color: $blue-500;
+}
+
+.nav-link {
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px calc($nav-link-padding * 0.5) !important;
+    background-color: white;
+}
+
+.nav-link:hover {
+    font-weight: bold;
+}
+
+.nav-item-active {
+    background-color: $blue-500;
+}
+
+.nav-item-active .nav-link {
+    background-color: $blue-100;
+}
+
+.nav-link-2nd-level {
+    padding-left: calc($nav-link-padding * 1.25) !important;
+}
+
+.nav-link-2nd-level:hover {
+    background-color: $blue-100;
+}

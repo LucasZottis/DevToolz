@@ -1,0 +1,98 @@
+<form>
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-2 mx-auto">
+            <div id="formulario">
+                <label for="txt-cnpj" class="form-label">Digite o CNPJ</label>
+                <input type="text" class="form-control text-center" id="txt-cnpj" maxlength="18" name="txt-cnpj"
+                    placeholder="00.000.000/0000-00" [(ngModel)]="cnpj" (keypress)="onKeypress($event)" (paste)="onPaste($event)">
+                <input type="button" class="btn primary-button mt-2 w-100" value="Validar" (click)="validate()" />
+                <p id="lbl-resultado" class="text-center mx-0 mb-0 mt-2 fs-3" [style]="style">
+                    {{result}}
+                </p>
+            </div>
+        </div>
+    </div>
+</form>
+
+<hr>
+
+<div class="texto-explicativo">
+    <h4 class="fw-bold text-center mb-3">Algoritmo para Validação do CNPJ</h4>
+    <p>
+        Para validar um CNPJ, primeiro é importante entender sua estrutura. Um CNPJ é composto por três
+        partes: a inscrição principal, o número de filiais e os dígitos verificadores. A validação oficial
+        do CNPJ envolve também o cálculo de um oitavo dígito, mas algumas empresas possuem números que,
+        quando validados dessa maneira, são considerados inválidos. Portanto, é mais seguro validar apenas
+        os dígitos verificadores, garantindo que nenhum CNPJ seja considerado inválido.
+    </p>
+
+    <h5 class="text-center mb-3">Passo 1: Validando os Dígitos Verificadores</h5>
+    <p>
+        Vamos calcular os dígitos verificadores de um CNPJ hipotético, como por exemplo, 76.071.808/0001-XX.
+        Multiplicamos cada dígito pelo peso correspondente, conforme mostrado abaixo:
+    </p>
+
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 33.3333%;">Dígitos CNPJ</th>
+                <th scope="col" style="width: 33.3333%;">Pesos</th>
+                <th scope="col" style="width: 33.3333%;">Resultado</th>
+            </tr>
+        </thead>
+        <tbody id="corpo-primeiro-digito">
+        </tbody>
+    </table>
+
+    <!-- <p>Em seguida, somamos os resultados: 5 + 4 + 6 + 4 + 18 + 24 + 21 + 18 + 0 + 0 + 0 + 2 = 102</p> -->
+    <p id="resultado-soma-primeiro-digito">
+        <!-- <script>injetarSomaResultados("112223330001", 5, "resultado-soma-primeiro-digito", "Em seguida, somamos os resultados: ")</script> -->
+    </p>
+    <p id="resultado-modulo-primeiro-digito">
+        Agora, dividimos a soma pelo número 11.
+        <!-- <script>injetarResultadoModuloOnze("112223330001", 5, "resultado-modulo-primeiro-digito", " O resto de {S} / 11 é {R}.")</script> -->
+    </p>
+    <p id="primeiro-digito">
+        Se o resto for menor que 2 ou 10, o dígito verificador é 0; caso contrário, subtraímos o resto de 11
+        para
+        obter o dígito. Nesse caso, o primeiro dígito verificador é
+        <!-- <script>injetarDigito(true, "primeiro-digito")</script>. -->
+    </p>
+
+    <h5 class="text-center mb-3">Passo 2: Validando o Segundo Dígito Verificador</h5>
+    <p>
+        Agora, temos o primeiro dígito calculado, e o CNPJ fica como 11.222.333/0001-8X. Para calcular o segundo
+        dígito verificador, repetimos o processo, mas com uma sequência de multiplicadores ligeiramente
+        diferente.
+    </p>
+
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 33.3333%;">Dígitos CNPJ</th>
+                <th scope="col" style="width: 33.3333%;">Pesos</th>
+                <th scope="col" style="width: 33.3333%;">Resultado</th>
+            </tr>
+        </thead>
+        <tbody id="corpo-segundo-digito">
+            <!-- <script>injetarDadosTabela("1122233300019", 6, "corpo-segundo-digito")</script> -->
+        </tbody>
+    </table>
+
+    <p id="resultado-soma-segundo-digito">
+        <!-- <script>injetarSomaResultados("1122233300019", 6, "resultado-soma-segundo-digito", "Em seguida, somamos os resultados: ")</script> -->
+    </p>
+    <p id="resultado-modulo-segundo-digito">
+        Agora, dividimos a soma pelo número 11.
+        <!-- <script>injetarResultadoModuloOnze("1122233300019", 6, "resultado-modulo-segundo-digito", " O resto de {S} / 11 é {R}.")</script> -->
+    </p>
+    <p id="segundo-digito">
+        Se o resto for menor que 2 ou 10, o dígito verificador é 0; caso contrário, subtraímos o resto de 11
+        para
+        obter o dígito. Nesse caso, o primeiro dígito verificador é
+        <script>injetarDigito(false, "segundo-digito")</script>.
+    </p>
+    <p id="cnpj">
+        Assim temos 76.071.808/0001-21
+    </p>
+</div>

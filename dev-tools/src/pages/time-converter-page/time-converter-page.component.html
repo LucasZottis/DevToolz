@@ -1,0 +1,104 @@
+<div class="text-center pt-3">
+    <h1 class="fs-3">
+        Você sabia que é possível transformar um valor de tempo expresso em horas, minutos e segundos em um
+        formato decimal?
+    </h1>
+    <h1 class="fs-5">
+        Esse cálculo é extremamente útil em diversas situações, como em cálculos de pagamento de salário por
+        hora trabalhada ou em cálculos de tempo gasto em atividades.
+        Abaixo nós criamos uma ferramenta que permite que você faça essa conversão de forma simples e rápida.
+    </h1>
+</div>
+<hr>
+<form>
+    <div class="row">
+        <div class="col-12 col-sm-6 col-lg-3 mb-2">
+            <label for="txt-horas" class="form-label">
+                Horas
+            </label>
+            <input type="number" class="form-control" id="txt-horas" name="txt-hours" min="0" step="1"
+                [(ngModel)]="time.hours" (blur)="onBlur()">
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3 mb-2">
+            <label for="txt-minutos" class="form-label">
+                Minutos
+            </label>
+            <input type="number" class="form-control" id="txt-minutos" name="txt-minutes" step="1"
+                [(ngModel)]="time.minutes" (blur)="onBlur()">
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3 mb-2">
+            <label for="txt-segundos" class="form-label">
+                Segundos
+            </label>
+            <input type="number" class="form-control" id="txt-segundos" name="txt-seconds" step="1"
+                [(ngModel)]="time.seconds" (blur)="onBlur()">
+        </div>
+        <div class="col-12 col-sm-6 col-lg-3 mb-2">
+            <label for="txt-decimal" class="form-label">
+                Valor decimal
+            </label>
+            <input type="number" class="form-control" id="txt-decimal" name="txt-decimal" step="1"
+                [(ngModel)]="time.decimal" (blur)="onBlur()">
+        </div>
+    </div>
+</form>
+
+<div class="row">
+    <div class="col-12 col-sm-6 col-lg-3">
+        <div class="row fs-5 text">
+            <span class="col-6">Horas</span>
+            <span class="col-6 text-end" id="lbl-hora-convertida">{{hours.toFixed(4)}}</span>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+        <div class="row fs-5 text">
+            <span class="col-6">Minutos</span>
+            <span class="col-6 text-end" id="lbl-minuto-convertido">{{minutes.toFixed(4)}}</span>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+        <div class="row fs-5 text">
+            <span class="col-6">Segundos</span>
+            <span class="col-6 text-end" id="lbl-segundo-convertido">{{seconds.toFixed(4)}}</span>
+        </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-lg-3">
+        <div class="row fs-5 text">
+            <span class="col-6">Horas</span>
+            <span class="col-6 text-end" id="lbl-valor-decimal">{{formatTime()}}</span>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div>
+    <h1 class="text-center">
+        Como é feito esse cálculo?
+    </h1>
+    <div class="texto-explicativo">
+        <p>
+            O processo é simples: primeiro, transformamos os minutos em fração de hora, dividindo-os por 60.
+            Em seguida, fazemos o mesmo com os segundos, dividindo-os por 3600.
+            Depois, é só somar as frações de hora obtidas para obter a parte fracionária do valor em horas
+            decimais.
+            Por fim, somamos o número inteiro de horas com a parte fracionária para obter o valor em horas
+            decimais.
+        </p>
+        <p>
+            Por exemplo, se quisermos converter 1 hora, 15 minutos e 36 segundos para formato decimal, seguimos
+            essas etapas e obtemos o resultado de 1,26 horas em formato decimal.
+        </p>
+        <p>
+            Agora você já sabe como transformar um valor de tempo em horas decimais!
+            Esse cálculo pode ser uma ferramenta muito útil em diversos cenários e pode facilitar muito seus
+            cálculos matemáticos e financeiros.
+        </p>
+        <p>
+            Que tal experimentar?
+        </p>
+    </div>
+</div>

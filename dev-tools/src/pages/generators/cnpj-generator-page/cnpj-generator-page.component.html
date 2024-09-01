@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-12 col-sm-7 col-md-5 col-lg-3 mx-auto">
+        <label for="txt-cpf" class="form-label">CNPJ</label>
+
+        <div class="input-group input-group-sm mb-2 ">
+            <input type="text" class="form-control text-center" placeholder="00.000.000/0000-00" disabled [value]="cnpj" />
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="onClickCopy()">
+                <span class="material-symbols-outlined">
+                    content_copy
+                </span>
+            </button>
+        </div>
+
+        <input type="button" class="btn primary-button w-100" value="Gerar" (click)="onClickGenerate()" />
+
+        <div class="row mt-2">
+            <div class="col">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="rbt-format" id="rbt-masked" [value]="1" [checked]="(masked == 1)" [(ngModel)]="masked">
+                    <label class="form-check-label" for="rbt-masked">
+                        Com máscara
+                    </label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="rbt-format" id="rbt-naked" [value]="0" [checked]="(masked == 0)" [(ngModel)]="masked">
+                    <label class="form-check-label" for="rbt-naked">
+                        Sem máscara
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
