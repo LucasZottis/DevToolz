@@ -62,12 +62,11 @@ nav {
     }
 }
 
-header {
+.header {
     background-color: var(--primary-color);
     color: var(--secondary-color) !important;
-    font-family: "Courier New", monospace;
-    margin-bottom: 5px;
-    padding: 1.5%;
+    // font-family: "Courier New", monospace;
+    padding: 0.5rem 1rem;
 }
 
 main {

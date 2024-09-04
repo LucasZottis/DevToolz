@@ -1,63 +1,65 @@
-<div class="container">
-    <header class="p-2 text-center fs-5 text">
-        <h1 class="header-page">
-            <a [routerLink]="['./']">Calculadora Dev</a>
-        </h1>
-    </header>
-    
-    <div class="d-flex">
-        <nav class="d-flex flex-column flex-shrink-0 p-3 position-sticky top-0 start-0">
-            <!-- <a href="/" class="d-flex align-items-center text-decoration-none">
-                <span class="fs-4">Calculadora Dev</span>
-            </a>
-            <hr> -->
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li [class]="'nav-item ' + (this.router.url === '/conversores/tempo' ? 'nav-item-active' : '')">
-                    <a [routerLink]="['./conversores/tempo']" class="nav-link" aria-expanded="false">
-                        Conversor de tempo
-                    </a>
-                </li>
-    
-                <hr>
-    
-                <li [class]="'nav-item ' + (this.router.url === '/geradores/cpf' ? 'nav-item-active' : '')">
-                    <a [routerLink]="['./geradores/cpf']" class="nav-link" aria-expanded="false">
-                        Gerador de CPF
-                    </a>
-                </li>
-    
-                <li [class]="'nav-item ' + (this.router.url === '/geradores/cnpj' ? 'nav-item-active' : '')">
-                    <a [routerLink]="['./geradores/cnpj']" class="nav-link" aria-expanded="false">
-                        Gerador de CNPJ
-                    </a>
-                </li>
+<!-- <header class="fs-5">
+    <h1 class="header-page">
+        <a [routerLink]="['./']">Dev Toolz</a>
+    </h1>
+</header> -->
 
-                <hr>
-    
-                <li [class]="'nav-item ' + (this.router.url === '/utilitarios/contador-letras' ? 'nav-item-active' : '')">
-                    <a [routerLink]="['./utilitarios/contador-letras']" class="nav-link" aria-expanded="false">
-                        Contador de letrar
-                    </a>
-                </li>
-    
-                <hr>
-    
-                <li [class]="'nav-item ' + (this.router.url === '/validadores/cpf' ? 'nav-item-active' : '')">
-                    <a [routerLink]="['./validadores/cpf']" class="nav-link" aria-expanded="false">
-                        Validador de CPF
-                    </a>
-                </li>
-    
-                <li [class]="'nav-item ' + (this.router.url === '/validadores/cnpj' ? 'nav-item-active' : '')">
-                    <a [routerLink]="['./validadores/cnpj']" class="nav-link" aria-expanded="false">
-                        Validador de CNPJ
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    
-        <main class="container-fluid py-3">
-            <router-outlet></router-outlet>
-        </main>
-    </div>
+<div class="d-flex">
+    <nav class="d-flex flex-column position-sticky top-0 start-0">
+        <a [routerLink]="['./']" class="link-body-emphasis text-decoration-none header">
+            <h1 class="fs-4 m-0 fw-bold">
+                Dev Toolz
+            </h1>
+        </a>
+
+        <hr class="m-0" style="border: 3px var(--bs-body-bg) solid; opacity: 100%;">
+
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li [class]="'nav-item ' + (this.router.url === '/conversores/tempo' ? 'nav-item-active' : '')">
+                <a [routerLink]="['./conversores/tempo']" class="nav-link" aria-expanded="false">
+                    Conversor de tempo
+                </a>
+            </li>
+
+            <hr>
+
+            <li [class]="'nav-item ' + (this.router.url === '/geradores/cpf' ? 'nav-item-active' : '')">
+                <a [routerLink]="['./geradores/cpf']" class="nav-link" aria-expanded="false">
+                    Gerador de CPF
+                </a>
+            </li>
+
+            <li [class]="'nav-item ' + (this.router.url === '/geradores/cnpj' ? 'nav-item-active' : '')">
+                <a [routerLink]="['./geradores/cnpj']" class="nav-link" aria-expanded="false">
+                    Gerador de CNPJ
+                </a>
+            </li>
+
+            <hr>
+
+            <li [class]="'nav-item ' + (this.router.url === '/utilitarios/contador-letras' ? 'nav-item-active' : '')">
+                <a [routerLink]="['./utilitarios/contador-letras']" class="nav-link" aria-expanded="false">
+                    Contador de letrar
+                </a>
+            </li>
+
+            <hr>
+
+            <li [class]="'nav-item ' + (this.router.url === '/validadores/cpf' ? 'nav-item-active' : '')">
+                <a [routerLink]="['./validadores/cpf']" class="nav-link" aria-expanded="false">
+                    Validador de CPF
+                </a>
+            </li>
+
+            <li [class]="'nav-item ' + (this.router.url === '/validadores/cnpj' ? 'nav-item-active' : '')">
+                <a [routerLink]="['./validadores/cnpj']" class="nav-link" aria-expanded="false">
+                    Validador de CNPJ
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="container-fluid py-3">
+        <router-outlet></router-outlet>
+    </main>
 </div>
