@@ -40,7 +40,14 @@ jobs:
         run: dotnet build ./DevToolz/DevToolz.sln --configuration Release
 
       - name: Publish
-        run: dotnet publish ./DevToolz/DevToolz.sln --configuration Release --output ./publish
+        run: |
+          dotnet publish ./DevToolz/DevToolz.sln --configuration Release --output ./publish
+          if [ ! -d "./publish" ]; then
+            echo "Publish directory does not exist!"
+            exit 1
+          else
+            echo "Publish directory created successfully."
+          fi
 
       - name: Setup Git for Actions
         run: |
@@ -69,7 +76,11 @@ jobs:
 
       - name: Copy files to deploy branch
         run: |
-          cp -r ./publish/* ./
-          git add .
-          git commit -m "Deploy updated build" || echo "No changes to commit"
-          git push origin deploy-branch
+          if [ -d "./publish" ]; then
+            cp -r ./publish/* ./
+            git add .
+            git commit -m "Deploy updated build" || echo "No changes to commit"
+            git push origin deploy-branch
+          else
+            echo "No publish directory found. Skipping deployment."
+          fi
