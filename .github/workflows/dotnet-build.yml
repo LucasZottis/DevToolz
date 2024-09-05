@@ -42,24 +42,27 @@ jobs:
       - name: Publish
         run: dotnet publish ./DevToolz/DevToolz.sln --configuration Release --output ./publish
 
+      - name: Setup Git for Actions
+        run: |
+          git config user.name "Lucas Zottis"
+          git config user.email "zottis.lucas@hotmail.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
       - name: Create deploy branch if it doesn't exist
         run: |
-          git checkout -b deploy-branch || true
-          git push origin deploy-branch
+          if git rev-parse --verify origin/deploy-branch; then
+            echo "Branch exists."
+          else
+            git checkout -b deploy-branch
+            git push origin deploy-branch
+          fi
 
       - name: Checkout deploy branch
-        uses: actions/checkout@v4
-        with:
-          ref: deploy-branch 
-
-      - name: Create publish directory
-        run: mkdir -p ./publish
+        run: git checkout deploy-branch
 
       - name: Copy files to deploy branch
         run: |
           cp -r ./publish/* ./
-          git config user.name "Lucas Zottis"
-          git config user.email "zottis.lucas@hotmail.com"
           git add .
-          git commit -m "Deploy updated build"
+          git commit -m "Deploy updated build" || echo "No changes to commit"
           git push origin deploy-branch
