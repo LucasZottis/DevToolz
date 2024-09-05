@@ -60,6 +60,10 @@ jobs:
       - name: Checkout deploy branch
         run: git checkout deploy-branch
 
+      - name: Pull latest changes from deploy branch
+        run: |
+          git pull origin deploy-branch --rebase
+
       - name: Clean directory for deployment
         run: |
           git rm -rf . || true
