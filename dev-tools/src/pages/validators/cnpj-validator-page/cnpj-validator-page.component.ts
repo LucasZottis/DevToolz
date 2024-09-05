@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PageBase } from '../../pageBase';
+import { CnpjMaskDirective } from '../../../directives/cnpjMaskDirective';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'cnpj-validator-page',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
+    CnpjMaskDirective,
+    NgIf,
   ],
   templateUrl: './cnpj-validator-page.component.html',
   styleUrl: './cnpj-validator-page.component.scss'
 })
 export class CnpjValidatorPageComponent extends PageBase implements OnInit {
 
-  result: string | undefined;
+  result?: string;
   style: string = "";
   cnpj: string = "";
 
@@ -181,7 +185,7 @@ export class CnpjValidatorPageComponent extends PageBase implements OnInit {
     this.injetarDigito(true, "primeiro-digito");
     this.injetarDigito(false, "segundo-digito");
 
-    this.addDescription('Faça a validação de CNPJ.');
+    this.addDescription('Ferramenta para validação de CNPJ.');
     this.setTitle('Validação de CNPJ');
   }
 
@@ -200,60 +204,5 @@ export class CnpjValidatorPageComponent extends PageBase implements OnInit {
       this.result = "Inválido";
       this.style = "color: red";
     }
-  }
-
-  onKeypress(e: KeyboardEvent) {
-    if (Number.isNaN(Number(e.key)))
-      e.preventDefault();
-    else {
-      let cnpj = this.removeMask(this.cnpj);
-
-      switch (cnpj.length) {
-        case 2:
-        case 5:
-          if (this.count(this.cnpj, ".") !== 2)
-            this.cnpj += ".";
-          break;
-        case 8:
-          if (this.count(this.cnpj, ".") !== 1)
-            this.cnpj += "/";
-          break;
-        case 12:
-          if (this.count(this.cnpj, ".") !== 1)
-            this.cnpj += "-";
-          break;
-      }
-    }
-  }
-
-  onPaste(args: ClipboardEvent) {
-    this.cnpj = "";
-    let value = (args.clipboardData?.getData("text") ?? "");
-    for (let index = 0; index < value.length; index++) {
-      if (!Number.isNaN(Number(value[index])) && this.cnpj.length < 18) {
-        let cnpj = this.removeMask(this.cnpj);
-
-        switch (cnpj.length) {
-          case 2:
-          case 5:
-            if (this.count(this.cnpj, ".") !== 2)
-              this.cnpj += ".";
-            break;
-          case 8:
-            if (this.count(this.cnpj, ".") !== 1)
-              this.cnpj += "/";
-            break;
-          case 12:
-            if (this.count(this.cnpj, ".") !== 1)
-              this.cnpj += "-";
-            break;
-        }
-
-        this.cnpj += value[index];
-      }
-
-    }
-
-    args.preventDefault();
   }
 }

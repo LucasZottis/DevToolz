@@ -17,7 +17,7 @@ import { CpfMaskDirective } from '../../../directives/cpfMaskDirective';
 })
 
 export class CpfValidatorPageComponent extends PageBase implements OnInit {
-  result: string | undefined;
+  result?: string;
   style: string = "";
   cpf: string = "";
 

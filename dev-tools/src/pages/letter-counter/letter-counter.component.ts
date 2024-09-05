@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PageBase } from '../pageBase';
 
 @Component({
   selector: 'letter-counter',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './letter-counter.component.scss'
 })
 
-export class LetterCounterComponent {
+export class LetterCounterComponent extends PageBase implements OnInit {
   private _caseSensitive: string = "g";
 
   caracteres: number = 0;
@@ -55,5 +56,10 @@ export class LetterCounterComponent {
       this._caseSensitive = "gi";
 
     this._count();
+  }
+
+  ngOnInit(): void {
+    this.addDescription('Ferramenta para contagem de caracteres.');
+    this.setTitle('Contador de letras');
   }
 }

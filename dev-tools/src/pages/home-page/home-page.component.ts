@@ -12,12 +12,8 @@ import { PageBase } from '../pageBase';
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss'
 })
-export class HomePageComponent extends PageBase {
-  constructor(
-    meta: Meta,
-    title: Title
-  ) { 
-    super(meta, title);
+export class HomePageComponent extends PageBase implements OnInit {
+  ngOnInit(): void {
     this.addDescription('As melhores ferramentas para desenvolvedores estão aqui!');
     this.setTitle('Página Inicial');
   }

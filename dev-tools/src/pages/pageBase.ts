@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { Meta, Title } from "@angular/platform-browser";
 
 @Component({
@@ -9,23 +9,21 @@ import { Meta, Title } from "@angular/platform-browser";
 })
 
 export class PageBase implements OnDestroy {
-    constructor(
-        private _meta: Meta,
-        private _title: Title
-    ) { }
+    protected meta: Meta = inject(Meta);
+    protected title: Title = inject(Title);
 
     protected setTitle(title: string): void {
-        this._title.setTitle("Calculadora Dev - " + title);
+        this.title.setTitle("Dev Toolz - " + title);
     }
 
     protected addDescription(description: string) {
-        this._meta.addTag({
+        this.meta.addTag({
             name: "description",
             content: description,
         });
     }
 
     ngOnDestroy(): void {
-        this._meta.removeTag("name='description'");
+        this.meta.removeTag("name='description'");
     }
 }

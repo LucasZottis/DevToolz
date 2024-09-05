@@ -10,36 +10,34 @@
     </h1>
 </div>
 <hr>
-<form>
-    <div class="row">
-        <div class="col-12 col-sm-6 col-lg-3 mb-2">
-            <label for="txt-horas" class="form-label">
-                Horas
-            </label>
-            <input type="number" class="form-control" id="txt-horas" name="txt-hours" min="0" step="1"
-                [(ngModel)]="time.hours" (blur)="onBlur()">
-        </div>
-        <div class="col-12 col-sm-6 col-lg-3 mb-2">
-            <label for="txt-minutos" class="form-label">
-                Minutos
-            </label>
-            <input type="number" class="form-control" id="txt-minutos" name="txt-minutes" step="1"
-                [(ngModel)]="time.minutes" (blur)="onBlur()">
-        </div>
-        <div class="col-12 col-sm-6 col-lg-3 mb-2">
-            <label for="txt-segundos" class="form-label">
-                Segundos
-            </label>
-            <input type="number" class="form-control" id="txt-segundos" name="txt-seconds" step="1"
-                [(ngModel)]="time.seconds" (blur)="onBlur()">
-        </div>
-        <div class="col-12 col-sm-6 col-lg-3 mb-2">
-            <label for="txt-decimal" class="form-label">
-                Valor decimal
-            </label>
-            <input type="number" class="form-control" id="txt-decimal" name="txt-decimal" step="1"
-                [(ngModel)]="time.decimal" (blur)="onBlur()">
-        </div>
+<form class="row">
+    <div class="col-12 col-sm-6 col-lg-3 mb-2">
+        <label for="txt-horas" class="form-label">
+            Horas
+        </label>
+        <input type="number" class="form-control" id="txt-horas" name="txt-hours" min="0" step="1"
+            [(ngModel)]="time.hours" (input)="onInput()">
+    </div>
+    <div class="col-12 col-sm-6 col-lg-3 mb-2">
+        <label for="txt-minutos" class="form-label">
+            Minutos
+        </label>
+        <input type="number" class="form-control" id="txt-minutos" name="txt-minutes" step="1"
+            [(ngModel)]="time.minutes" (input)="onInput()">
+    </div>
+    <div class="col-12 col-sm-6 col-lg-3 mb-2">
+        <label for="txt-segundos" class="form-label">
+            Segundos
+        </label>
+        <input type="number" class="form-control" id="txt-segundos" name="txt-seconds" step="1"
+            [(ngModel)]="time.seconds" (input)="onInput()">
+    </div>
+    <div class="col-12 col-sm-6 col-lg-3 mb-2">
+        <label for="txt-decimal" class="form-label">
+            Valor decimal
+        </label>
+        <input type="number" class="form-control" id="txt-decimal" name="txt-decimal" step="1"
+            [(ngModel)]="time.decimal" (input)="onInput()">
     </div>
 </form>
 

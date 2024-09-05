@@ -15,7 +15,7 @@ import { PageBase } from '../pageBase';
   styleUrl: './time-converter-page.component.scss'
 })
 
-export class TimeConverterPageComponent extends PageBase implements OnInit{
+export class TimeConverterPageComponent extends PageBase implements OnInit {
   hours: number = 0;
   minutes: number = 0;
   seconds: number = 0;
@@ -28,15 +28,21 @@ export class TimeConverterPageComponent extends PageBase implements OnInit{
     decimal: 0
   };
 
+  private _convert() {
+    this.hours = this.toHours();
+    this.minutes = this.toMinutes();
+    this.seconds = this.toSeconds();
+  }
+
   private formatNumber(value: number): string {
-    return value < 10 ? "0" + value : value.toString();
+    return (value ?? 0) < 10 ? "0" + (value ?? 0) : (value ?? 0).toString();
   }
 
   private toHours(): number {
-    return this.time.hours
-      + this.time.minutes / 60
-      + this.time.seconds / 3600
-      + this.time.decimal;
+    return (this.time.hours ?? 0)
+      + (this.time.minutes ?? 0) / 60
+      + (this.time.seconds ?? 0) / 3600
+      + (this.time.decimal ?? 0);
   }
 
   private toMinutes(): number {
@@ -60,20 +66,18 @@ export class TimeConverterPageComponent extends PageBase implements OnInit{
       + this.time.decimal;
   }
 
-  ngOnInit(): void {
-    this.addDescription('Converta horas, minutos e segundo para diversos formatos.');
-    this.setTitle('Conversor de tempo');
+  onInput() {
+    this._convert();
   }
 
   formatTime(): string {
-      return this.formatNumber(this.time.hours) + ":" 
-        + this.formatNumber(this.time.minutes) + ":" 
-        + this.formatNumber(this.time.seconds);
-    }
+    return this.formatNumber(this.time.hours) + ":"
+      + this.formatNumber(this.time.minutes) + ":"
+      + this.formatNumber(this.time.seconds);
+  }
 
-  onBlur(): void {
-    this.hours = this.toHours();
-    this.minutes = this.toMinutes();
-    this.seconds = this.toSeconds();
+  ngOnInit(): void {
+    this.addDescription('Converta horas, minutos e segundo para diversos formatos.');
+    this.setTitle('Conversor de tempo');
   }
 }

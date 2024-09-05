@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { PageBase } from '../../pageBase';
@@ -14,18 +14,9 @@ import { CnpjMaskDirective } from '../../../directives/cnpjMaskDirective';
   styleUrl: './cnpj-generator-page.component.scss'
 })
 
-export class CnpjGeneratorPageComponent extends PageBase {
+export class CnpjGeneratorPageComponent extends PageBase implements OnInit {
   cnpj: string = "";
   masked: number = 0;
-
-  constructor(
-    meta: Meta,
-    title: Title
-  ) { 
-    super(meta, title);
-    this.addDescription('Ferramenta para geração CNPJ aleatório válido.');
-    this.setTitle('Gerador de CNPJ');
-  }
 
   private randomIntFromInterval(min: number, max: number) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -102,5 +93,10 @@ export class CnpjGeneratorPageComponent extends PageBase {
   onClickCopy(): void {
     if (this.cnpj !== "")
       navigator.clipboard.writeText(this.cnpj)
+  }
+
+  ngOnInit(): void {
+    this.addDescription('Gerador de CNPJ fictício com opções para gerar com ou sem a máscara.');
+    this.setTitle('Gerador de CNPJ');
   }
 }

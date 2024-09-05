@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Meta, Title } from '@angular/platform-browser';
 import { PageBase } from '../../pageBase';
 
 @Component({
@@ -13,18 +12,9 @@ import { PageBase } from '../../pageBase';
   styleUrl: './cpf-generator-page.component.scss'
 })
 
-export class CpfGeneratorPageComponent extends PageBase {
+export class CpfGeneratorPageComponent extends PageBase implements OnInit {
   cpf: string = "";
   masked: number = 0;
-
-  constructor(
-    meta: Meta,
-    title: Title
-  ) { 
-    super(meta, title);
-    this.addDescription('Ferramenta para geração CPF aleatório válido.');
-    this.setTitle('Gerador de CPF');
-  }
 
   private randomIntFromInterval(min: number, max: number) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -92,5 +82,10 @@ export class CpfGeneratorPageComponent extends PageBase {
   onClickCopy(): void {
     if (this.cpf !== "")
       navigator.clipboard.writeText(this.cpf)
+  }
+
+  ngOnInit(): void {
+    this.addDescription('Ferramenta para geração CPF aleatório válido.');
+    this.setTitle('Gerador de CPF');
   }
 }
