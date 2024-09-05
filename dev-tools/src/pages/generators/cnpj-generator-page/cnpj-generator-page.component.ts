@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
 import { PageBase } from '../../pageBase';
+import { CnpjMaskDirective } from '../../../directives/cnpjMaskDirective';
 
 @Component({
   selector: 'cnpj-generator-page',
   standalone: true,
   imports: [
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './cnpj-generator-page.component.html',
   styleUrl: './cnpj-generator-page.component.scss'

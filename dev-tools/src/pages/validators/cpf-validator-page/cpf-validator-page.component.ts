@@ -2,6 +2,7 @@ import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PageBase } from '../../pageBase';
+import { CpfMaskDirective } from '../../../directives/cpfMaskDirective';
 
 @Component({
   selector: 'cpf-validator-page',
@@ -9,6 +10,7 @@ import { PageBase } from '../../pageBase';
   imports: [
     NgIf,
     FormsModule,
+    CpfMaskDirective,
   ],
   templateUrl: './cpf-validator-page.component.html',
   styleUrl: './cpf-validator-page.component.scss'
