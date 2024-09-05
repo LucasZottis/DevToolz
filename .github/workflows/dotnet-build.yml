@@ -42,6 +42,11 @@ jobs:
       - name: Publish
         run: dotnet publish ./DevToolz/DevToolz.sln --configuration Release --output ./publish
 
+      - name: Create deploy branch if it doesn't exist
+        run: |
+          git checkout -b deploy-branch || true
+          git push origin deploy-branch
+
       - name: Checkout deploy branch
         uses: actions/checkout@v4
         with:
