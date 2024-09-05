@@ -1,6 +1,0 @@
-@DevToolz.Api_HostAddress = http://localhost:5073
-
-GET {{DevToolz.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
