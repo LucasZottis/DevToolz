@@ -42,16 +42,15 @@ jobs:
       - name: Publish
         run: |
           echo "Starting publish..."
-          dotnet publish ./DevToolz/DevToolz.sln --configuration Release --output ./publish
-          if [ $? -ne 0 ]; then
-            echo "Error: dotnet publish failed!"
-            exit 1
-          fi
+          dotnet publish ./DevToolz/DevToolz.sln --configuration Release --output ./publish || { echo "Error: dotnet publish failed!"; exit 1; }
+
+      - name: Ensure publish directory exists
+        run: |
           if [ ! -d "./publish" ]; then
-            echo "Publish directory does not exist!"
-            exit 1
+            echo "Publish directory does not exist. Creating it."
+            mkdir -p ./publish
           else
-            echo "Publish directory created successfully."
+            echo "Publish directory already exists."
           fi
 
       - name: Setup Git for Actions
