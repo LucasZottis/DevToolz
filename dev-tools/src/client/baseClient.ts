@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { inject } from "@angular/core";
-import { environment } from "../environments/environment.development";
+import { environment } from "../environments/environment";
 
 export class BaseClient {
     protected _httpClient: HttpClient = inject(HttpClient);
