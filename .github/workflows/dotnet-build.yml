@@ -46,22 +46,18 @@ jobs:
         run: |
           git config user.name "Lucas Zottis"
           git config user.email "zottis.lucas@hotmail.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
-      - name: Create deploy branch if it doesn't exist
+      - name: Fetch deploy branch or create it if it doesn't exist
         run: |
+          git fetch origin deploy-branch || echo "No existing deploy branch"
           if git rev-parse --verify origin/deploy-branch; then
-            echo "Branch exists."
+            git checkout deploy-branch
+            git pull origin deploy-branch --rebase
           else
             git checkout -b deploy-branch
-            git push origin deploy-branch
+            git push -u origin deploy-branch
           fi
-
-      - name: Checkout deploy branch
-        run: git checkout deploy-branch
-
-      - name: Pull latest changes from deploy branch
-        run: |
-          git pull origin deploy-branch --rebase
 
       - name: Clean directory for deployment
         run: |
