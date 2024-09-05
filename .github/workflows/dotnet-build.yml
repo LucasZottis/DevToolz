@@ -24,6 +24,8 @@ jobs:
           if [ ! -f "./DevToolz/DevToolz.sln" ]; then
             echo "Project file not found!"
             exit 1
+          else
+            echo "Project file found."
           fi
 
       - name: Setup .NET
