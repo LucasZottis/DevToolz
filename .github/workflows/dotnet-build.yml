@@ -40,9 +40,7 @@ jobs:
         run: dotnet build ./DevToolz/DevToolz.sln --configuration Release
 
       - name: Publish
-        run: |
-          echo "Starting publish..."
-          dotnet publish ./DevToolz/DevToolz.sln --configuration Release || { echo "Error: dotnet publish failed!"; exit 1; }
+        run: dotnet publish ./DevToolz/DevToolz.sln --configuration Release --output ./publish
 
       - name: Setup Git for Actions
         run: |
@@ -50,38 +48,27 @@ jobs:
           git config user.email "zottis.lucas@hotmail.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
-      - name: Clean untracked files
-        run: git clean -fdx
-
-      - name: Fetch deploy branch or create it if it doesn't exist
+      - name: Create deploy branch if it doesn't exist
         run: |
-          git fetch origin deploy-branch || echo "No existing deploy branch"
           if git rev-parse --verify origin/deploy-branch; then
-            git checkout deploy-branch
-            git pull origin deploy-branch --rebase
+            echo "Branch exists."
           else
             git checkout -b deploy-branch
             git push -u origin deploy-branch
           fi
+
+      - name: Checkout deploy branch
+        run: git checkout deploy-branch
 
       - name: Clean directory for deployment
         run: |
           git rm -rf . || true
           rm -rf ./*
 
-      - name: Ensure publish directory exists
-        run: |
-          if [ ! -d "./publish" ]; then
-            echo "Publish directory does not exist. Creating it."
-            mkdir -p ./publish
-          else
-            echo "Publish directory already exists."
-          fi
-
       - name: Copy files to deploy branch
         run: |
           if [ -d "./publish" ]; then
-            cp -r ./publish ./
+            cp -r ./publish/* ./
             git add .
             git commit -m "Deploy updated build" || echo "No changes to commit"
             git push origin deploy-branch
