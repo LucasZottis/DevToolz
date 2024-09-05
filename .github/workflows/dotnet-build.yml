@@ -1,12 +1,12 @@
-name: Build and Deploy .NET
+name: Deploy to Azure
 
 on:
   push:
     branches:
-      - master
+      - main # Ou a branch que você utiliza para deploy
   pull_request:
     branches:
-      - master
+      - main 
 
 jobs:
   build-and-deploy:
@@ -14,47 +14,43 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.x'
+          dotnet-version: '7.0' # Ou a versão do .NET que você está usando
 
       - name: Restore dependencies
-        run: dotnet restore ./DevToolz/DevToolz.sln
+        run: dotnet restore
 
-      - name: Build
-        run: dotnet build ./DevToolz/DevToolz.sln --configuration Release
+      - name: Build the application
+        run: dotnet build --configuration Release
 
-      - name: Publish
-        run: dotnet publish ./DevToolz/DevToolz.sln --configuration Release --output ./publish
+      - name: Publish the .NET application
+        run: dotnet publish --configuration Release --output ./publish
 
-      - name: Setup Git for Actions
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Ou a versão do Node.js que você está usando
+
+      - name: Install Angular dependencies
+        run: npm install
+        working-directory: ./ClientApp # Caminho para a pasta do Angular
+
+      - name: Build Angular application
+        run: npm run build --prod
+        working-directory: ./ClientApp # Caminho para a pasta do Angular
+
+      - name: Prepare Angular build for .NET
         run: |
-          git config user.name "Lucas Zottis"
-          git config user.email "zottis.lucas@hotmail.com"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          mkdir -p ./publish/wwwroot
+          cp -r ./ClientApp/dist/* ./publish/wwwroot/
 
-      - name: Checkout deploy branch
-        run: |
-          git fetch origin deploy-branch || echo "Branch does not exist"
-          if git rev-parse --verify origin/deploy-branch; then
-            git checkout deploy-branch
-            git pull origin deploy-branch --rebase
-          else
-            git checkout -b deploy-branch
-            git push -u origin deploy-branch
-          fi
-
-      - name: Remove all files from deploy branch
-        run: |
-          git rm -r --cached . || true
-          rm -rf ./*
-
-      - name: Commit and push published files
-        run: |
-          cp -r ./publish/* ./
-          git add .
-          git commit -m "Deploy updated build" || echo "No changes to commit"
-          git push origin deploy-branch
+      - name: Deploy to Azure
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'your-app-service-name' # Nome do serviço na Azure
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: './publish'
