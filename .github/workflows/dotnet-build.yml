@@ -47,11 +47,12 @@ jobs:
             git push -u origin deploy-branch
           fi
 
-      - name: Clean directory for deployment
+      - name: Remove all files from deploy branch
         run: |
+          git rm -r --cached . || true
           rm -rf ./*
-        
-      - name: Copy published files to deploy branch
+
+      - name: Commit and push published files
         run: |
           cp -r ./publish/* ./
           git add .
