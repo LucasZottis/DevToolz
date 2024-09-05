@@ -35,13 +35,18 @@ jobs:
         
       - name: Restore dependencies
         run: dotnet restore ./DevToolz/DevToolz.sln
-      
+
       - name: Build
         run: dotnet build ./DevToolz/DevToolz.sln --configuration Release
 
       - name: Publish
         run: |
+          echo "Starting publish..."
           dotnet publish ./DevToolz/DevToolz.sln --configuration Release --output ./publish
+          if [ $? -ne 0 ]; then
+            echo "Error: dotnet publish failed!"
+            exit 1
+          fi
           if [ ! -d "./publish" ]; then
             echo "Publish directory does not exist!"
             exit 1
