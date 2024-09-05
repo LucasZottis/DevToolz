@@ -6,6 +6,7 @@ import { TimeConverterPageComponent } from './pages/time-converter-page/time-con
 import { CnpjValidatorPageComponent } from './pages/validators/cnpj-validator-page/cnpj-validator-page.component';
 import { CpfValidatorPageComponent } from './pages/validators/cpf-validator-page/cpf-validator-page.component';
 import { LetterCounterComponent } from './pages/letter-counter/letter-counter.component';
+import { CryptoPageComponent } from './pages/crypto-page/crypto-page.component';
 
 export const routes: Routes = [
     { path: '', component: HomePageComponent },
@@ -26,7 +27,7 @@ export const routes: Routes = [
     {
         path: 'utilitarios', children: [
             { path: 'contador-letras', component: LetterCounterComponent },
-            // { path: 'cnpj', component: CnpjGeneratorPageComponent },
+            { path: 'cryptografia', component: CryptoPageComponent },
         ]
     },
 
