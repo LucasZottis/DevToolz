@@ -2,37 +2,25 @@ name: Build and Deploy .NET
 
 on:
   push:
-    branches: 
+    branches:
       - master
   pull_request:
-    branches: 
+    branches:
       - master
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: List files
-        run: ls -R
-
-      - name: Check if project file exists
-        run: |
-          if [ ! -f "./DevToolz/DevToolz.sln" ]; then
-            echo "Project file not found!"
-            exit 1
-          else
-            echo "Project file found."
-          fi
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
-        
+
       - name: Restore dependencies
         run: dotnet restore ./DevToolz/DevToolz.sln
 
@@ -50,7 +38,7 @@ jobs:
 
       - name: Checkout deploy branch
         run: |
-          git fetch origin deploy-branch || echo "No existing deploy branch"
+          git fetch origin deploy-branch || echo "Branch does not exist"
           if git rev-parse --verify origin/deploy-branch; then
             git checkout deploy-branch
             git pull origin deploy-branch --rebase
@@ -61,16 +49,11 @@ jobs:
 
       - name: Clean directory for deployment
         run: |
-          git rm -rf . || true
           rm -rf ./*
-
-      - name: Copy files to deploy branch
+        
+      - name: Copy published files to deploy branch
         run: |
-          if [ -d "./publish" ]; then
-            cp -r ./publish/* ./
-            git add .
-            git commit -m "Deploy updated build" || echo "No changes to commit"
-            git push origin deploy-branch
-          else
-            echo "No publish directory found. Skipping deployment."
-          fi
+          cp -r ./publish/* ./
+          git add .
+          git commit -m "Deploy updated build" || echo "No changes to commit"
+          git push origin deploy-branch
