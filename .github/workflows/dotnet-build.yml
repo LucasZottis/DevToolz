@@ -37,7 +37,7 @@ jobs:
         run: dotnet restore
       
       - name: Build
-        run: cd "./DevToolz/DevToolz.sln" && dotnet build --configuration Release
+        run: dotnet build ./DevToolz/DevToolz.sln --configuration Release
 
       - name: Publish
         run: cd ./DevToolz/DevToolz.sln && dotnet publish --configuration Release --output ./publish
