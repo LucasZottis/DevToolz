@@ -25,10 +25,10 @@ jobs:
         run: dotnet restore
       
       - name: Build
-        run: cd DevToolz && dotnet publish --configuration Release --output ./publish
+        run: cd DevToolz && dotnet build --configuration Release
 
       - name: Publish
-        run: dotnet publish --configuration Release --output ./publish
+        run: cd DevToolz && dotnet publish --configuration Release --output ./publish
 
       - name: Checkout deploy branch
         uses: actions/checkout@v4
