@@ -39,9 +39,6 @@ jobs:
       - name: Build
         run: dotnet build ./DevToolz/DevToolz.sln --configuration Release
 
-      - name: Create publish directory
-        run: mkdir -p ./publish
-
       - name: Publish
         run: dotnet publish ./DevToolz/DevToolz.sln --configuration Release --output ./publish
 
@@ -54,6 +51,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: deploy-branch 
+
+      - name: Create publish directory
+        run: mkdir -p ./publish
 
       - name: Copy files to deploy branch
         run: |
