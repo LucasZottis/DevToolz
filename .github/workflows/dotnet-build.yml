@@ -42,7 +42,7 @@ jobs:
       - name: Publish
         run: |
           echo "Starting publish..."
-          dotnet publish ./DevToolz/DevToolz.sln --configuration Release --output ./publish || { echo "Error: dotnet publish failed!"; exit 1; }
+          dotnet publish ./DevToolz/DevToolz.sln --configuration Release || { echo "Error: dotnet publish failed!"; exit 1; }
 
       - name: Setup Git for Actions
         run: |
