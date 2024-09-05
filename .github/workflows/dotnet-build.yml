@@ -44,15 +44,6 @@ jobs:
           echo "Starting publish..."
           dotnet publish ./DevToolz/DevToolz.sln --configuration Release --output ./publish || { echo "Error: dotnet publish failed!"; exit 1; }
 
-      - name: Ensure publish directory exists
-        run: |
-          if [ ! -d "./publish" ]; then
-            echo "Publish directory does not exist. Creating it."
-            mkdir -p ./publish
-          else
-            echo "Publish directory already exists."
-          fi
-
       - name: Setup Git for Actions
         run: |
           git config user.name "Lucas Zottis"
@@ -77,6 +68,15 @@ jobs:
         run: |
           git rm -rf . || true
           rm -rf ./*
+
+      - name: Ensure publish directory exists
+        run: |
+          if [ ! -d "./publish" ]; then
+            echo "Publish directory does not exist. Creating it."
+            mkdir -p ./publish
+          else
+            echo "Publish directory already exists."
+          fi
 
       - name: Copy files to deploy branch
         run: |
