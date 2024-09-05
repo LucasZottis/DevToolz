@@ -48,6 +48,9 @@ jobs:
           git config user.email "zottis.lucas@hotmail.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
+      - name: Clean untracked files
+        run: git clean -fdx
+
       - name: Fetch deploy branch or create it if it doesn't exist
         run: |
           git fetch origin deploy-branch || echo "No existing deploy branch"
