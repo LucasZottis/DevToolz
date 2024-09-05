@@ -19,6 +19,13 @@ jobs:
       - name: List files
         run: ls -R
 
+      - name: Check if project file exists
+        run: |
+          if [ ! -f "./DevToolz/DevToolz.sln" ]; then
+            echo "Project file not found!"
+            exit 1
+          fi
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
