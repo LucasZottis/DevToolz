@@ -25,7 +25,7 @@ jobs:
         run: dotnet restore
       
       - name: Build
-        run: dotnet build --configuration Release
+        run: cd DevToolz && dotnet publish --configuration Release --output ./publish
 
       - name: Publish
         run: dotnet publish --configuration Release --output ./publish
