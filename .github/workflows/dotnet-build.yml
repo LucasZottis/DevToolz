@@ -39,6 +39,9 @@ jobs:
       - name: Build
         run: dotnet build ./DevToolz/DevToolz.sln --configuration Release
 
+      - name: Create publish directory
+        run: mkdir -p ./publish
+
       - name: Publish
         run: dotnet publish ./DevToolz/DevToolz.sln --configuration Release --output ./publish
 
