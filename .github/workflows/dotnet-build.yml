@@ -34,7 +34,7 @@ jobs:
           dotnet-version: '8.x'
         
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ./DevToolz/DevToolz.sln
       
       - name: Build
         run: dotnet build ./DevToolz/DevToolz.sln --configuration Release
