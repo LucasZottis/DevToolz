@@ -58,8 +58,8 @@ jobs:
       - name: Copy files to deploy branch
         run: |
           cp -r ./publish/* ./
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          git config user.name "Lucas Zottis"
+          git config user.email "zottis.lucas@hotmail.com"
           git add .
           git commit -m "Deploy updated build"
           git push origin deploy-branch
