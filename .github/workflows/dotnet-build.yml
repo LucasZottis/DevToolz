@@ -81,7 +81,7 @@ jobs:
       - name: Copy files to deploy branch
         run: |
           if [ -d "./publish" ]; then
-            cp -r ./publish/* ./
+            cp -r ./publish ./
             git add .
             git commit -m "Deploy updated build" || echo "No changes to commit"
             git push origin deploy-branch
