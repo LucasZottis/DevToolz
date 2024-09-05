@@ -60,6 +60,11 @@ jobs:
       - name: Checkout deploy branch
         run: git checkout deploy-branch
 
+      - name: Clean directory for deployment
+        run: |
+          git rm -rf . || true
+          rm -rf ./*
+
       - name: Copy files to deploy branch
         run: |
           cp -r ./publish/* ./
