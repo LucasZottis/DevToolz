@@ -40,7 +40,7 @@ jobs:
         run: dotnet build ./DevToolz/DevToolz.sln --configuration Release
 
       - name: Publish
-        run: cd ./DevToolz/DevToolz.sln && dotnet publish --configuration Release --output ./publish
+        run: dotnet publish ./DevToolz/DevToolz.sln --configuration Release --output ./publish
 
       - name: Checkout deploy branch
         uses: actions/checkout@v4
