@@ -11,13 +11,13 @@ public class SqlFormatterController : ControllerBase
     [HttpGet( "format" )]
     public IActionResult Format( [FromBody] SqlFormatterModel model )
     {
-        if ( string.IsNullOrWhiteSpace( sql ) )
-        {
-            return BadRequest( "SQL is required." );
+		try
+		{
+            return Ok( SqlFormatter.Formatter.Format( model.Sql ) );
         }
-
-        var formattedSql = sql.Replace( " ", string.Empty );
-
-        return Ok( new { formattedSql } );
+		catch ( Exception ex )
+		{
+            return StatusCode( StatusCodes.Status500InternalServerError, ex.Message );
+        }
     }
 }
