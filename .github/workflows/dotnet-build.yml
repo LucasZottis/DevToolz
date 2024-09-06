@@ -3,7 +3,10 @@ name: Deploy Web API .NET to Deploy Branch
 on:
   push:
     branches:
-      - main  # Mude para o branch que você deseja monitorar para o deploy
+      - main # Mude para o branch que você deseja monitorar para o deploy
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
@@ -11,12 +14,12 @@ jobs:
 
     steps:
       - name: Check out the code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.x' # Especifique a versão do .NET usada
+          dotnet-version: "8.x" # Especifique a versão do .NET usada
 
       - name: Cache .NET packages
         uses: actions/cache@v3
@@ -42,7 +45,7 @@ jobs:
       - name: Checkout deploy branch
         uses: actions/checkout@v3
         with:
-          ref: deploy-branch  # Altere para o nome do branch de destino
+          ref: deploy-branch # Altere para o nome do branch de destino
 
       - name: Copy published files to deploy branch
         run: |
