@@ -1,56 +1,56 @@
-name: Deploy to Azure
+name: Deploy Web API .NET to Deploy Branch
 
 on:
   push:
     branches:
-      - main # Ou a branch que você utiliza para deploy
-  pull_request:
-    branches:
-      - main 
+      - main  # Mude para o branch que você deseja monitorar para o deploy
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
-      - name: Checkout code
+      - name: Check out the code
         uses: actions/checkout@v3
 
-      - name: Setup .NET
+      - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '7.0' # Ou a versão do .NET que você está usando
+          dotnet-version: '8.x' # Especifique a versão do .NET usada
 
-      - name: Restore dependencies
-        run: dotnet restore
-
-      - name: Build the application
-        run: dotnet build --configuration Release
-
-      - name: Publish the .NET application
-        run: dotnet publish --configuration Release --output ./publish
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Cache .NET packages
+        uses: actions/cache@v3
         with:
-          node-version: '16' # Ou a versão do Node.js que você está usando
+          path: C:\Users\runneradmin\.nuget\packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
 
-      - name: Install Angular dependencies
-        run: npm install
-        working-directory: ./ClientApp # Caminho para a pasta do Angular
+      - name: Cache build output
+        uses: actions/cache@v3
+        with:
+          path: |
+            **\bin
+            **\obj
+          key: ${{ runner.os }}-build-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
 
-      - name: Build Angular application
-        run: npm run build --prod
-        working-directory: ./ClientApp # Caminho para a pasta do Angular
+      - name: Publish Web API
+        run: dotnet publish -c Release -o ./output
 
-      - name: Prepare Angular build for .NET
+      - name: Checkout deploy branch
+        uses: actions/checkout@v3
+        with:
+          ref: deploy-branch  # Altere para o nome do branch de destino
+
+      - name: Copy published files to deploy branch
         run: |
-          mkdir -p ./publish/wwwroot
-          cp -r ./ClientApp/dist/* ./publish/wwwroot/
+          robocopy ./output ./ /E /MIR
 
-      - name: Deploy to Azure
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'your-app-service-name' # Nome do serviço na Azure
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: './publish'
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'LucasZottis'
+          git add -A
+          git commit -m "Update published files"
+          git push origin deploy-branch
