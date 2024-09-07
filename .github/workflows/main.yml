@@ -3,9 +3,9 @@ name: Test Workflow
 
 on:
   push:
-    branches: [ "Main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "Main" ]
+    branches: [ "master" ]
 
 jobs:
   test:
