@@ -38,7 +38,7 @@ jobs:
             ${{ runner.os }}-build-
 
       - name: Publish Web API
-        run: dotnet publish -c Release -o ./output
+        run: dotnet publish ./DevToolz/DevToolz.sln -c Release -o ./output
 
       - name: Checkout deploy branch
         uses: actions/checkout@v3
