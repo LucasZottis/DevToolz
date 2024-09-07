@@ -2,11 +2,9 @@ name: Deploy Web API .NET to Deploy Branch
 
 on:
   push:
-    branches:
-      - main # Mude para o branch que você deseja monitorar para o deploy
+    branches: [ "master" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "master" ]
 
 jobs:
   build-and-deploy:
