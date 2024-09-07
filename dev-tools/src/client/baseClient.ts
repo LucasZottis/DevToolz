@@ -23,7 +23,7 @@ export class BaseClient {
         return this._httpClient.post<TReturn>(this.getFullUrl(endPoint), model, { 'headers': this.headers });
     }
 
-    protected post<TModel>(endPoint: string, model: TModel): Observable<string> {
+    protected post<TModel>(endPoint: string, model: TModel): Observable<any> {
         return this._httpClient.post<string>(this.getFullUrl(endPoint), model, { 'headers': this.headers });
     }
 

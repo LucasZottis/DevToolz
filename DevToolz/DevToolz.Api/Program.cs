@@ -8,6 +8,7 @@ namespace DevToolz.Api
         public static void Main( string[] args )
         {
             var builder = WebApplication.CreateBuilder( args );
+            builder.Host.UseWindowsService( opcao => opcao.ServiceName = "DevToolzService" );
 
             // Add services to the container.
 

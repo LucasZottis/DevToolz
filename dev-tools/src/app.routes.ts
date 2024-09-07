@@ -7,6 +7,7 @@ import { CnpjValidatorPageComponent } from './pages/validators/cnpj-validator-pa
 import { CpfValidatorPageComponent } from './pages/validators/cpf-validator-page/cpf-validator-page.component';
 import { LetterCounterComponent } from './pages/letter-counter/letter-counter.component';
 import { CryptoPageComponent } from './pages/crypto-page/crypto-page.component';
+import { SqlFormatterPageComponent } from './pages/sql-formatter-page/sql-formatter-page.component';
 
 export const routes: Routes = [
     { path: '', component: HomePageComponent },
@@ -28,6 +29,7 @@ export const routes: Routes = [
         path: 'utilitarios', children: [
             { path: 'contador-letras', component: LetterCounterComponent },
             { path: 'cryptografia', component: CryptoPageComponent },
+            { path: 'formatador-sql', component: SqlFormatterPageComponent },
         ]
     },
 
