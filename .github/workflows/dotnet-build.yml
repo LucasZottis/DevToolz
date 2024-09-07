@@ -30,8 +30,8 @@ jobs:
       - name: Publish Web API
         run: dotnet publish ./DevToolz/DevToolz.sln -c Release -o ./output
 
-      - name: Cache
-        uses: actions/cache@v4.0.2
+      - name: Cache published files
+        uses: actions/cache@v3
         with:
           # A list of files, directories, and wildcard patterns to cache and restore
           path: ./output
