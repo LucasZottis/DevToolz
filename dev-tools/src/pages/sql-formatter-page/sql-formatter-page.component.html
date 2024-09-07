@@ -1,1 +1,27 @@
-<p>sql-formatter-page works!</p>
+<div class="row gy-3">
+    <div class="col-12">
+        <label for="txt-raw-sql" class="form-label">Origem</label>
+        <textarea name="txt-raw-sql" id="txt-raw-sql" class="form-control" rows="15" [(ngModel)]="rawText"></textarea>
+    </div>
+
+    <div class="col-12">
+        <div class="row justify-content-center">
+            <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <button type="button" class="btn primary-button w-100" (click)="onClickFormat()">
+                    Formatar
+                </button>
+            </div>
+            <!-- <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                <button type="button" class="btn primary-button w-100">
+                    Copiar
+                </button>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="col-12">
+        <label for="txt-formatted-sql" class="form-label">Formatado</label>
+        <textarea name="txt-formatted-sql" id="txt-raw-sql" class="form-control" rows="15" readonly
+            [(ngModel)]="formattedText"></textarea>
+    </div>
+</div>
