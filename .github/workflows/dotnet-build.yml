@@ -27,18 +27,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget-
 
-      - name: Cache build output
-        uses: actions/cache@v3
-        with:
-          path: |
-            **\bin
-            **\obj
-          key: ${{ runner.os }}-build-${{ hashFiles('**/*.csproj') }}
-          restore-keys: |
-            ${{ runner.os }}-build-
-
       - name: Publish Web API
         run: dotnet publish ./DevToolz/DevToolz.sln -c Release -o ./output
+
+      - name: Cache published files
+        uses: actions/cache@v3
+        with:
+          path: ./output
+          key: ${{ runner.os }}-publish-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-publish-
 
       - name: Checkout deploy branch
         uses: actions/checkout@v3
