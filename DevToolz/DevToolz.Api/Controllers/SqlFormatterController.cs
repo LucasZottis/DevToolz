@@ -1,6 +1,6 @@
 ﻿using DevToolz.Api.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SqlFormatter;
 
 namespace DevToolz.Api.Controllers;
 
@@ -8,12 +8,13 @@ namespace DevToolz.Api.Controllers;
 [ApiController]
 public class SqlFormatterController : ControllerBase
 {
-    [HttpGet( "format" )]
+    [HttpPost( "format" )]
     public IActionResult Format( [FromBody] SqlFormatterModel model )
     {
 		try
 		{
-            return Ok( SqlFormatter.Formatter.Format( model.Sql ) );
+            var newModel = new SqlFormatterModel { Sql = Formatter.Format( model.Sql ) };
+            return Ok( newModel );
         }
 		catch ( Exception ex )
 		{

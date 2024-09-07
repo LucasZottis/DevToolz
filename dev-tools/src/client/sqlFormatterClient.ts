@@ -1,20 +1,18 @@
 import { BaseClient } from "./baseClient";
-import { CryptProvider } from '../enums/cryptProvider';
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
-import { HttpParams } from "@angular/common/http";
 import { SqlFormatterModel } from "../models/sqlFormatterModel";
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class SqlFormatter extends BaseClient {
+export class SqlFormatterClient extends BaseClient {
     constructor() {
         super("/sql-formatter");
     }
 
-    format(sql: SqlFormatterModel): Observable<string> {
-        return this.get("format", )
+    format(sql: SqlFormatterModel): Observable<any> {
+        return this.post("/format", sql);
     }
 }
