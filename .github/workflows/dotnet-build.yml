@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  publish-web-api-to-service:
+  publish-web-api:
     name: Publicação da Web API
     runs-on: windows-latest
 
@@ -21,7 +21,7 @@ jobs:
           dotnet-version: "8.x" # Especifique a versão do .NET usada
 
       - name: Publicar Web API
-        run: dotnet publish ./DevToolz/DevToolz.sln -c Release -o ./output
+        run: dotnet publish ./DevToolz/DevToolz.sln -c Release -o ./output --self-contained
 
       - name: Guardar arquivos
         uses: actions/upload-artifact@v4
@@ -33,12 +33,17 @@ jobs:
             !./output/appsettings.Development.json
           retention-days: 5
           
-  deploy-to-service:
-    name: Deploy para Serviço
-    needs: publish-web-api-to-service
+  deploy-to-local:
+    name: Deploy para local
+    needs: publish-web-api
     runs-on: ubuntu-latest
 
     steps:
+      - name: Trocar para o branch local-deploy-branch
+        uses: actions/checkout@v4
+        with:
+          ref: local-deploy-branch
+          
       - name: Download dos arquivos publicados
         uses: actions/download-artifact@v4
         with:
