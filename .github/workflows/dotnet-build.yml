@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  publish-web-api:
+  publish-web-api-to-service:
     name: Publicação da Web API
     runs-on: windows-latest
 
@@ -31,12 +31,18 @@ jobs:
             ./output
             !./output/*.pdb
             !./output/appsettings.Development.json
+          retention-days: 5
           
   deploy-to-service:
     name: Deploy para Serviço
-    needs: publish-web-api
+    needs: publish-web-api-to-service
     runs-on: ubuntu-latest
 
     steps:
+      - name: Download dos arquivos publicados
+        uses: actions/download-artifact@v4
+        with:
+          name: web-api-artifacts
+          
       - name: Avisar que funcionou
         run: echo 'Deu certo!'
