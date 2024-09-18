@@ -8,6 +8,7 @@ on:
 
 jobs:
   publish-web-api:
+    name: Publicação da Web API
     runs-on: windows-latest
 
     steps:
@@ -22,6 +23,15 @@ jobs:
       - name: Publicar Web API
         run: dotnet publish ./DevToolz/DevToolz.sln -c Release -o ./output
 
+      - name: Guardar arquivos
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-api-artifacts
+          path: |
+            ./output
+            !./output/*.pdb
+            !./output/appsettings.Development.json
+          
   deploy-to-service:
     name: Deploy para Serviço
     needs: publish-web-api
