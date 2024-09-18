@@ -7,61 +7,26 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build-and-deploy:
+  publish-web-api:
     runs-on: windows-latest
 
     steps:
-      - name: Check out the code
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup .NET Core
+      - name: Configurar o .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: "8.x" # Especifique a versão do .NET usada
 
-      - name: Cache .NET packages
-        uses: actions/cache@v3
-        with:
-          path: C:\Users\runneradmin\.nuget\packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget-
-
-      - name: Publish Web API
+      - name: Publicar Web API
         run: dotnet publish ./DevToolz/DevToolz.sln -c Release -o ./output
 
-      - name: Cache published files
-        uses: actions/cache@v3
-        with:
-          # A list of files, directories, and wildcard patterns to cache and restore
-          path: ./output
-          # An explicit key for restoring and saving the cache
-          key: published-files-DevToolz
-          # An ordered list of keys to use for restoring stale cache if no cache hit occurred for key. Note `cache-hit` returns false in this case.
-          restore-keys: published-files-DevToolz
-          # The chunk size used to split up large files during upload, in bytes
-          #upload-chunk-size: # optional
-          # An optional boolean when enabled, allows windows runners to save or restore caches that can be restored or saved respectively on other platforms
-          #enableCrossOsArchive: # optional, default is false
-          # Fail the workflow if cache entry is not found
-          #fail-on-cache-miss: # optional, default is false
-          # Check if a cache entry exists for the given input(s) (key, restore-keys) without downloading the cache
-          #lookup-only: # optional, default is false
-          # Run the post step to save the cache even if another step before fails
-          #save-always: # optional, default is false
+  deploy-to-service:
+    name: Deploy para Serviço
+    needs: publish-web-api
+    runs-on: ubuntu-latest
 
-      - name: Checkout deploy branch
-        uses: actions/checkout@v3
-        with:
-          ref: deploy-branch # Altere para o nome do branch de destino
-
-      - name: Copy published files to deploy branch
-        run: |
-          robocopy ./output ./ /E /MIR
-
-      - name: Commit and push changes
-        run: |
-          git config --global user.name 'LucasZottis'
-          git add -A
-          git commit -m "Update published files"
-          git push origin deploy-branch
+    steps:
+      - name: Avisar que funcionou
+        run: echo 'Deu certo!'
