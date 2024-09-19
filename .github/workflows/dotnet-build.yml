@@ -58,12 +58,12 @@ jobs:
             echo "Arquivo não existe!"
           fi
 
-#      - name: Realizando Commit
-#        uses: EndBug/add-and-commit@v9
-#        with: 
-#          add: 'web-api-artifacts.zip'
-#          author_name: "Lucas Zottis"
-#          message: "Local Deploy"
-        
-#      - name: Avisar que funcionou
-#        run: echo 'Deu certo!'
+      - name: Realizando Commit
+        uses: EndBug/add-and-commit@v9
+        with: 
+          add: 'web-api-artifacts.zip'
+          author_name: "Lucas Zottis"
+          message: "Local Deploy"
+       
+      - name: Avisar que funcionou
+        run: echo 'Deu certo!'
