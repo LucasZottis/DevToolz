@@ -51,6 +51,7 @@ jobs:
 
       - name: Run build
         run: npm run build -- --configuration production
+        working-directory: ./dev-tools
     
   deploy-to-local:
     name: Commitar os arquivos para deploy local
