@@ -52,7 +52,7 @@ jobs:
       - name: Check file existence
         shell: bash
         run: |
-          if [[ -f /home/runner/work/DevToolz/DevToolz/web-api-artifacts.zip ]]; then
+          if [[ -f "$GITHUB_WORKSPACE/output/DevToolz.Api.dll" ]]; then
             echo "web-api-artifacts exists!"
           else
             echo "web-api-artifacts does not exist!"
