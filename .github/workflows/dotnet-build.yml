@@ -8,7 +8,7 @@ on:
 
 jobs:
   publish-web-api-self-contained:
-    name: Publicação da Web API
+    name: Publicação da Web API Self Contained
     runs-on: windows-latest
 
     steps:
@@ -27,6 +27,32 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: web-api-self-contained
+          path: |
+            ./output
+            !./output/*.pdb
+            !./output/appsettings.Development.json
+          retention-days: 1
+
+  publish-web-api:
+    name: Publicação da Web API
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar o .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.x" # Especifique a versão do .NET usada
+
+      - name: Publicar Web API
+        run: dotnet publish ./DevToolz/DevToolz.sln -c Release -o ./output 
+
+      - name: Guardar arquivos
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-api
           path: |
             ./output
             !./output/*.pdb
@@ -87,6 +113,62 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: web-api-self-contained
+
+      - name: Criar pasta wwwroot
+        run: mkdir -p ./wwwroot
+
+      - name: Download dos arquivos Angular
+        uses: actions/download-artifact@v4
+        with:
+          name: angular-artifacts
+          path: ./wwwroot
+
+      - name: Listar arquivos baixados
+        shell: bash
+        run: ls -alh
+          
+#      - name: Check file existence
+#        shell: bash
+#        run: |
+#          if [[ -f "$GITHUB_WORKSPACE/DevToolz.Api.dll" ]]; then
+#            echo "Arquivo existe!"
+#          else
+#            echo "Arquivo não existe!"
+#          fi
+
+      - name: Realizando Commit
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: './*'
+          author_name: 'GitHub Actions'
+          author_email: 'github_actions@github_actions.com'
+          message: 'Deploy'
+
+  deploy:
+    name: Commitar os arquivos para deploy na Azure
+    needs: [publish-web-api, angular-build]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trocando o branch para deploy-branch
+        uses: actions/checkout@v4
+        with:
+          ref: deploy-branch
+          fetch-depth: 0  # Certifique-se de buscar todo o histórico de commits
+
+      #- name: Excluir arquivos deixando apenas o .gitignore
+        #shell: bash
+        #run: find . -type f ! -name '.gitignore' -exec rm -f {} +
+        #run: find . -path ./.git -prune -o -type f ! -name '.gitignore' -exec rm -f {} +
+
+      #- name: Verificar se os arquivos foram excluídos
+      #  shell: bash
+      #  run: ls -alh
+
+      - name: Download dos arquivos Web API
+        uses: actions/download-artifact@v4
+        with:
+          name: web-api
 
       - name: Criar pasta wwwroot
         run: mkdir -p ./wwwroot
