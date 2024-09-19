@@ -32,10 +32,29 @@ jobs:
             !./output/*.pdb
             !./output/appsettings.Development.json
           retention-days: 1
-          
+
+  angular-build:
+    name: Publicação do Angular
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'  # Versão do Node.js recomendada para Angular 18
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Run build
+        run: npm run build -- --configuration production
+    
   deploy-to-local:
     name: Commitar os arquivos para deploy local
-    needs: publish-web-api
+    needs: [publish-web-api, angular-build]
     runs-on: ubuntu-latest
 
     steps:
