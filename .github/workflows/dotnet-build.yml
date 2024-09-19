@@ -46,7 +46,7 @@ jobs:
 
       - name: Listar arquivos
         shell: bash
-        run: ls -R
+        run: ls -alh
           
 #      - name: Check file existence
 #        shell: bash
