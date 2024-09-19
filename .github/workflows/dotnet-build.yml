@@ -46,8 +46,7 @@ jobs:
 
       - name: Listar arquivos
         shell: bash
-        run: |
-          ls ~/DevToolz/*
+        run: ls -R
           
 #      - name: Check file existence
 #        shell: bash
