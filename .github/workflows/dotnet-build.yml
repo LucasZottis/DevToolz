@@ -43,6 +43,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: local-deploy-branch
+
+      - name: Limpar arquivos residuais
+        run: |
+          git rm -r *
+          git clean -fdX
           
       - name: Download dos arquivos publicados
         uses: actions/download-artifact@v4
