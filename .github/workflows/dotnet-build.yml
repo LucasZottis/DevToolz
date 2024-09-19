@@ -100,15 +100,6 @@ jobs:
           ref: local-deploy-branch
           fetch-depth: 0  # Certifique-se de buscar todo o histórico de commits
 
-      #- name: Excluir arquivos deixando apenas o .gitignore
-        #shell: bash
-        #run: find . -type f ! -name '.gitignore' -exec rm -f {} +
-        #run: find . -path ./.git -prune -o -type f ! -name '.gitignore' -exec rm -f {} +
-
-      #- name: Verificar se os arquivos foram excluídos
-      #  shell: bash
-      #  run: ls -alh
-
       - name: Download dos arquivos Web API Self Contained
         uses: actions/download-artifact@v4
         with:
@@ -126,15 +117,6 @@ jobs:
       - name: Listar arquivos baixados
         shell: bash
         run: ls -alh
-          
-#      - name: Check file existence
-#        shell: bash
-#        run: |
-#          if [[ -f "$GITHUB_WORKSPACE/DevToolz.Api.dll" ]]; then
-#            echo "Arquivo existe!"
-#          else
-#            echo "Arquivo não existe!"
-#          fi
 
       - name: Realizando Commit
         uses: EndBug/add-and-commit@v9
@@ -156,15 +138,6 @@ jobs:
           ref: deploy-branch
           fetch-depth: 0  # Certifique-se de buscar todo o histórico de commits
 
-      #- name: Excluir arquivos deixando apenas o .gitignore
-        #shell: bash
-        #run: find . -type f ! -name '.gitignore' -exec rm -f {} +
-        #run: find . -path ./.git -prune -o -type f ! -name '.gitignore' -exec rm -f {} +
-
-      #- name: Verificar se os arquivos foram excluídos
-      #  shell: bash
-      #  run: ls -alh
-
       - name: Download dos arquivos Web API
         uses: actions/download-artifact@v4
         with:
@@ -182,15 +155,6 @@ jobs:
       - name: Listar arquivos baixados
         shell: bash
         run: ls -alh
-          
-#      - name: Check file existence
-#        shell: bash
-#        run: |
-#          if [[ -f "$GITHUB_WORKSPACE/DevToolz.Api.dll" ]]; then
-#            echo "Arquivo existe!"
-#          else
-#            echo "Arquivo não existe!"
-#          fi
 
       - name: Realizando Commit
         uses: EndBug/add-and-commit@v9
