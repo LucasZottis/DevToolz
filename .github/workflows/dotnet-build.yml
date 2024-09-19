@@ -49,6 +49,15 @@ jobs:
         with:
           name: web-api-artifacts
 
+      - name: Check file existence
+        shell: bash
+        run: |
+          if [[ -f web-api-artifacts.zip ]]; then
+            echo "web-api-artifacts exists!"
+          else
+            echo "web-api-artifacts does not exist!"
+          fi
+
       - name: Realizando Commit
         uses: EndBug/add-and-commit@v9
         with: 
