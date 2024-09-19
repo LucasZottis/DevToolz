@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  publish-web-api:
+  publish-web-api-self-contained:
     name: Publicação da Web API
     runs-on: windows-latest
 
@@ -26,7 +26,7 @@ jobs:
       - name: Guardar arquivos
         uses: actions/upload-artifact@v4
         with:
-          name: web-api-artifacts
+          name: web-api-self-contained
           path: |
             ./output
             !./output/*.pdb
@@ -64,7 +64,7 @@ jobs:
           
   deploy-to-local:
     name: Commitar os arquivos para deploy local
-    needs: [publish-web-api, angular-build]
+    needs: [publish-web-api-self-contained, angular-build]
     runs-on: ubuntu-latest
 
     steps:
@@ -83,10 +83,19 @@ jobs:
       #  shell: bash
       #  run: ls -alh
 
-      - name: Download dos arquivos publicados
+      - name: Download dos arquivos Web API Self Contained
         uses: actions/download-artifact@v4
         with:
-          name: web-api-artifacts
+          name: web-api-self-contained
+
+      - name: Criar pasta wwwroot
+        run: mkdir -p ./wwwroot
+
+      - name: Download dos arquivos Angular
+        uses: actions/download-artifact@v4
+        with:
+          name: angular-artifacts
+          path: ./wwwroot
 
       - name: Listar arquivos baixados
         shell: bash
