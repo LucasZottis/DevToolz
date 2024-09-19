@@ -75,7 +75,7 @@ jobs:
       - name: Realizando Commit
         uses: EndBug/add-and-commit@v9
         with:
-          add: $GITHUB_WORKSPACE
+          add: './*'
           author_name: 'GitHub Actions'
           author_email: 'github_actions@github_actions.com'
           message: 'Deploy'
