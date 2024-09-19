@@ -44,7 +44,20 @@ jobs:
         with:
           ref: local-deploy-branch
 
-      - name: Listar arquivos
+      - name: Excluir arquivos deixando apenas o .gitignore
+        shell: bash
+        run: find . -type f ! -name '.gitignore' -exec rm -f {} +
+
+      - name: Verificar se os arquivos foram excluídos
+        shell: bash
+        run: ls -alh
+
+      - name: Download dos arquivos publicados
+        uses: actions/download-artifact@v4
+        with:
+          name: web-api-artifacts
+
+      - name: Listar arquivos baixados
         shell: bash
         run: ls -alh
           
@@ -56,11 +69,6 @@ jobs:
 #          else
 #            echo "Arquivo não existe!"
 #          fi
-          
-#      - name: Download dos arquivos publicados
-#        uses: actions/download-artifact@v4
-#        with:
-#          name: web-api-artifacts
 
 #      - name: Realizando Commit
 #        run: |
