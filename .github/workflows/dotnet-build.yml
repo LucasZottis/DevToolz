@@ -71,7 +71,7 @@ jobs:
 #          fi
 
       - name: Realizando Commit
-      - uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@v9
         with:
           add: '~/*'
           author_name: 'GitHub Actions'
