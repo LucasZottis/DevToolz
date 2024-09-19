@@ -43,6 +43,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: local-deploy-branch
+          fetch-depth: 0  # Certifique-se de buscar todo o histórico de commits
 
       - name: Excluir arquivos deixando apenas o .gitignore
         shell: bash
