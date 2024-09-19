@@ -45,14 +45,14 @@ jobs:
           ref: local-deploy-branch
           fetch-depth: 0  # Certifique-se de buscar todo o histórico de commits
 
-      - name: Excluir arquivos deixando apenas o .gitignore
-        shell: bash
+      #- name: Excluir arquivos deixando apenas o .gitignore
+        #shell: bash
         #run: find . -type f ! -name '.gitignore' -exec rm -f {} +
-        run: find . -path ./.git -prune -o -type f ! -name '.gitignore' -exec rm -f {} +
+        #run: find . -path ./.git -prune -o -type f ! -name '.gitignore' -exec rm -f {} +
 
-      - name: Verificar se os arquivos foram excluídos
-        shell: bash
-        run: ls -alh
+      #- name: Verificar se os arquivos foram excluídos
+      #  shell: bash
+      #  run: ls -alh
 
       - name: Download dos arquivos publicados
         uses: actions/download-artifact@v4
@@ -75,7 +75,7 @@ jobs:
       - name: Realizando Commit
         uses: EndBug/add-and-commit@v9
         with:
-          add: '~/*'
+          add: '$GITHUB_WORKSPACE/*'
           author_name: 'GitHub Actions'
           author_email: 'github_actions@github_actions.com'
           message: 'Deploy'
