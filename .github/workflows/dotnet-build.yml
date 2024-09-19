@@ -59,7 +59,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: angular-artifacts
-          path: ./dev-tools/dist/browser
+          path: ./dev-tools/dist
           retention-days: 1
           
   deploy-to-local:
