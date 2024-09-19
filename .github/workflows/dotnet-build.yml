@@ -70,11 +70,11 @@ jobs:
 #            echo "Arquivo não existe!"
 #          fi
 
-#      - name: Realizando Commit
-#        run: |
-#          git config --local user.name "github-actions[bot]"
-#          git add .
-#          git commit -m "Add changes" -a
+      - name: Realizando Commit
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit -m "Deploy" -a
        
 #      - name: Avisar que funcionou
 #        run: echo 'Deu certo!'
