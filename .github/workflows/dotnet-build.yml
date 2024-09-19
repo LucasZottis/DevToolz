@@ -44,30 +44,30 @@ jobs:
         with:
           ref: local-deploy-branch
 
-      - name: Limpar arquivos residuais
-        run: |
-          git rm -r *
-          git clean -fdX
-      
-      - name: Check file existence
+      - name: Listar arquivos
         shell: bash
         run: |
-          if [[ -f "$GITHUB_WORKSPACE/DevToolz.Api.dll" ]]; then
-            echo "Arquivo existe!"
-          else
-            echo "Arquivo não existe!"
-          fi
+          ls ~/data/
           
-      - name: Download dos arquivos publicados
-        uses: actions/download-artifact@v4
-        with:
-          name: web-api-artifacts
+#      - name: Check file existence
+#        shell: bash
+#        run: |
+#          if [[ -f "$GITHUB_WORKSPACE/DevToolz.Api.dll" ]]; then
+#            echo "Arquivo existe!"
+#          else
+#            echo "Arquivo não existe!"
+#          fi
+          
+#      - name: Download dos arquivos publicados
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: web-api-artifacts
 
-      - name: Realizando Commit
-        run: |
-          git config --local user.name "github-actions[bot]"
-          git add .
-          git commit -m "Add changes" -a
+#      - name: Realizando Commit
+#        run: |
+#          git config --local user.name "github-actions[bot]"
+#          git add .
+#          git commit -m "Add changes" -a
        
 #      - name: Avisar que funcionou
 #        run: echo 'Deu certo!'
