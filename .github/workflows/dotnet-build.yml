@@ -77,6 +77,3 @@ jobs:
           author_name: 'GitHub Actions'
           author_email: 'github_actions@github_actions.com'
           message: 'Deploy'
-       
-#      - name: Avisar que funcionou
-#        run: echo 'Deu certo!'
