@@ -47,7 +47,7 @@ jobs:
       - name: Listar arquivos
         shell: bash
         run: |
-          ls ~/data/
+          ls ~/$GITHUB_WORKSPACE/
           
 #      - name: Check file existence
 #        shell: bash
