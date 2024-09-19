@@ -52,10 +52,10 @@ jobs:
       - name: Check file existence
         shell: bash
         run: |
-          if [[ -f "$GITHUB_WORKSPACE/output/DevToolz.Api.dll" ]]; then
-            echo "web-api-artifacts exists!"
+          if [[ -f "$GITHUB_WORKSPACE/DevToolz.Api.dll" ]]; then
+            echo "Arquivo existe!"
           else
-            echo "web-api-artifacts does not exist!"
+            echo "Arquivo não existe!"
           fi
 
 #      - name: Realizando Commit
