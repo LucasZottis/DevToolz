@@ -53,7 +53,15 @@ jobs:
       - name: Run build
         run: npm run build -- --configuration production
         working-directory: ./dev-tools
-    
+
+      
+      - name: Guardar arquivos
+        uses: actions/upload-artifact@v4
+        with:
+          name: angular-artifacts
+          path: ./dev-tools/dist
+          retention-days: 1
+          
   deploy-to-local:
     name: Commitar os arquivos para deploy local
     needs: [publish-web-api, angular-build]
