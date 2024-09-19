@@ -73,6 +73,7 @@ jobs:
       - name: Realizando Commit
         run: |
           git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "Deploy" -a
        
