@@ -47,7 +47,8 @@ jobs:
 
       - name: Excluir arquivos deixando apenas o .gitignore
         shell: bash
-        run: find . -type f ! -name '.gitignore' -exec rm -f {} +
+        #run: find . -type f ! -name '.gitignore' -exec rm -f {} +
+        run: find . -path ./.git -prune -o -type f ! -name '.gitignore' -exec rm -f {} +
 
       - name: Verificar se os arquivos foram excluídos
         shell: bash
