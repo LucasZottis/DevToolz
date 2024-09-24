@@ -25,6 +25,14 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="Dockerfile" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="Dockerfile" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BibliotecaPublica.Core" Version="7.3.6.1" />
