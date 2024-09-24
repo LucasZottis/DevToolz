@@ -13,10 +13,12 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /App
 
 # # Expose the port
-EXPOSE 5000 5001
+# EXPOSE 5000 5001
+EXPOSE 5000
 
 # # Set the environment variable for the URL to bind
-ENV ASPNETCORE_URLS=http://+:5000;https://+:5001
+# ENV ASPNETCORE_URLS=http://+:5000;https://+:5001
+ENV ASPNETCORE_URLS=http://+:5000
 
 COPY --from=build-env /App/out .
 ENTRYPOINT ["dotnet", "DevToolz.Api.dll"]
