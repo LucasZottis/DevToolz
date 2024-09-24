@@ -42,4 +42,4 @@ ENV ASPNETCORE_URLS=http://+:5000
 COPY --from=build-env /App/out .
 
 # Run the application
-ENTRYPOINT ["dotnet", "DotNet.Docker.dll"]
+ENTRYPOINT ["dotnet", "DevToolz.Api.dll"]
