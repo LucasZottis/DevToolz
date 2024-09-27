@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PageBase } from '../../pageBase';
-
+import { Cpf } from 'dev-toolz.library/dist';
 @Component({
   selector: 'cpf-generator-page',
   standalone: true,
@@ -55,24 +55,27 @@ export class CpfGeneratorPageComponent extends PageBase implements OnInit {
   private generate(): void {
     this.cpf = "";
 
-    do {
-      switch (this.cpf.length) {
-        case 3:
-        case 7:
-          if (this.count(this.cpf, ".") < 2 && this.masked)
-            this.cpf += ".";
-          break;
-      }
+    // do {
+    //   switch (this.cpf.length) {
+    //     case 3:
+    //     case 7:
+    //       if (this.count(this.cpf, ".") < 2 && this.masked)
+    //         this.cpf += ".";
+    //       break;
+    //   }
 
-      this.cpf += this.randomIntFromInterval(0, 9);
+    //   this.cpf += this.randomIntFromInterval(0, 9);
 
-    } while (this.removeMask(this.cpf).length < 9)
+    // } while (this.removeMask(this.cpf).length < 9)
 
-    if (this.masked)
-      this.cpf += "-";
+    // if (this.masked)
+    //   this.cpf += "-";
 
-    this.cpf += this.generateDigit(this.removeMask(this.cpf), 10);
-    this.cpf += this.generateDigit(this.removeMask(this.cpf), 11);
+    // this.cpf += this.generateDigit(this.removeMask(this.cpf), 10);
+    // this.cpf += this.generateDigit(this.removeMask(this.cpf), 11);
+
+    let cpf = new Cpf();
+    this.cpf = cpf.generate(this.masked === 1);
   }
 
   onClickGenerate(): void {

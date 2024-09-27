@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CpfGeneratorPageComponent } from './cpf-generator-page.component';
+import { CpfGeneratorPageComponent } from './CpfGeneratorPageComponent';
 
 describe('CpfGeneratorPageComponent', () => {
   let component: CpfGeneratorPageComponent;
@@ -10,8 +10,8 @@ describe('CpfGeneratorPageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [CpfGeneratorPageComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(CpfGeneratorPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
