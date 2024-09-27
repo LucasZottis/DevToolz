@@ -1,10 +1,7 @@
 name: Deploy Web API .NET to Deploy Branch
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+  workflow_dispatch:
 
 jobs:
   publish-web-api-self-contained:
