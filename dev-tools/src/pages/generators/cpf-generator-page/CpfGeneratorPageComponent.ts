@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { PageBase } from "../../pageBase";
+import { Cpf } from "dev-toolz.library/dist/cpf";
 
 // import { Cpf } from '../../../../node_modules/dev-toolz.library/dist/cpf';
 @Component({

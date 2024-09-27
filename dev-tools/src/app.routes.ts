@@ -8,6 +8,7 @@ import { CpfValidatorPageComponent } from './pages/validators/cpf-validator-page
 import { LetterCounterComponent } from './pages/letter-counter/letter-counter.component';
 import { CryptoPageComponent } from './pages/crypto-page/crypto-page.component';
 import { SqlFormatterPageComponent } from './pages/sql-formatter-page/sql-formatter-page.component';
+import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 
 export const routes: Routes = [
     { path: '', component: HomePageComponent },
@@ -39,4 +40,6 @@ export const routes: Routes = [
             { path: 'cnpj', component: CnpjValidatorPageComponent },
         ]
     },
+
+    { path: '**', component: NotFoundPageComponent },
 ];
