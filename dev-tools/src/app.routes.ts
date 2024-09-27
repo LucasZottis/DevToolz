@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { CnpjGeneratorPageComponent } from './pages/generators/cnpj-generator-page/cnpj-generator-page.component';
-import { CpfGeneratorPageComponent } from './pages/generators/cpf-generator-page/cpf-generator-page.component';
+import { CpfGeneratorPageComponent } from './pages/generators/cpf-generator-page/CpfGeneratorPageComponent';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { TimeConverterPageComponent } from './pages/time-converter-page/time-converter-page.component';
 import { CnpjValidatorPageComponent } from './pages/validators/cnpj-validator-page/cnpj-validator-page.component';
