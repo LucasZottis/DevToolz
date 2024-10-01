@@ -8,6 +8,7 @@ import { CpfValidatorPageComponent } from './pages/validators/cpf-validator-page
 import { LetterCounterComponent } from './pages/letter-counter/letter-counter.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { Csv2JsonPageComponent } from './pages/csv2-json-page/csv2-json-page.component';
+import { RemoverAcentoTextoPageComponent } from './pages/remover-acento-texto-page/remover-acento-texto-page.component';
 
 export const routes: Routes = [
     { path: '', component: HomePageComponent },
@@ -29,6 +30,7 @@ export const routes: Routes = [
         path: 'utilitarios', children: [
             { path: 'contador-letras', component: LetterCounterComponent },
             { path: 'csv-2-json', component: Csv2JsonPageComponent },
+            { path: 'remover-acentuacao', component: RemoverAcentoTextoPageComponent },
             // { path: 'cryptografia', component: CryptoPageComponent },
             // { path: 'formatador-sql', component: SqlFormatterPageComponent },
         ]

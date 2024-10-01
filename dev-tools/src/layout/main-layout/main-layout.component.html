@@ -24,6 +24,12 @@
                     </a>
                 </li>
 
+                <li [class]="'nav-item ' + (this.router.url === '/utilitarios/csv-2-json' ? 'nav-item-active' : '')">
+                    <a [routerLink]="['./utilitarios/csv-2-json']" class="nav-link" aria-expanded="false">
+                        Converter CSV para JSON
+                    </a>
+                </li>
+
                 <hr>
 
                 <li [class]="'nav-item ' + (this.router.url === '/geradores/cpf' ? 'nav-item-active' : '')">
@@ -48,9 +54,9 @@
                 </li>
 
                 <li
-                    [class]="'nav-item ' + (this.router.url === '/utilitarios/contador-letras' ? 'nav-item-active' : '')">
-                    <a [routerLink]="['./utilitarios/csv-2-json']" class="nav-link" aria-expanded="false">
-                        Converter CSV para JSON
+                    [class]="'nav-item ' + (this.router.url === '/utilitarios/remover-acentuacao' ? 'nav-item-active' : '')">
+                    <a [routerLink]="['./utilitarios/remover-acentuacao']" class="nav-link" aria-expanded="false">
+                        Remover acentuação de texto
                     </a>
                 </li>
 
