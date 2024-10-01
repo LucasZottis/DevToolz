@@ -1,19 +1,72 @@
-<form class="row gy-2">
+<form class="row gy-2 justify-content-center">
     <div class="col-12">
         <input type="file" class="file-upload" (change)="onChangeFileInput($event)" accept=".csv">
-
-    </div>
-    <div class="col-12">
-        <textarea name="txt-csv-content" class="w-100" [(ngModel)]="csvContent"></textarea>
     </div>
 
     <div class="col-12">
-        <button type="button" (click)="onClickConvert()">Converter</button>
+        <label for="txt-csv-content" class="form-label">CSV</label>
+        <textarea name="txt-csv-content" class="form-control" rows="20" [(ngModel)]="csvContent"></textarea>
+    </div>
+
+    <hr style="width: 98%;" />
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-3">
+                <label for="txt-breaker" class="form-label">Caractere de quebra</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option value=";" selected>Ponte e vírgula</option>
+                    <option value="\t">Tab</option>
+                    <option value=".">Ponto</option>
+                    <option value=",">Vírgula</option>
+                </select>
+            </div>
+        </div>
     </div>
 
     <div class="col-12">
-        <textarea name="txt-json-content" class="w-100" [(ngModel)]="jsonContent"></textarea>
+        <fieldset>
+            <legend>Opções de saída</legend>
+            <div class="d-flex">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" name="chk-convert-numbers"
+                        id="chk-convert-numbers" [(ngModel)]="convertNumber">
+                    <label class="form-check-label" for="chk-convert-numbers">
+                        Converter números
+                    </label>
+                </div>
+            </div>
+        </fieldset>
     </div>
 
+    @if (columns && columns.length > 0) {
+    <div class="col-12">
+        <fieldset>
+            <legend>Colunas</legend>
+            @for(column of columns; track column) {
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" class="form-control" [name]="'txt-column-' + $index"
+                        [(ngModel)]="columns[$index]">
+                </div>
+            </div>
+            }
+        </fieldset>
+    </div>
+    }
 
+    <div class="col-12">
+        <button type="button" class="btn primary-button" (click)="onClickConvert()">Converter</button>
+    </div>
+
+    <hr style="width: 98%;" />
+
+    <div class="col-12">
+        <label for="txt-json-content" class="form-label">JSON</label>
+        <textarea name="txt-json-content" class="form-control w-100" rows="20" [(ngModel)]="jsonContent"></textarea>
+    </div>
+
+    <div class="col-12">
+        <button type="button" class="btn primary-button">Download JSON</button>
+    </div>
 </form>
