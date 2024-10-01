@@ -97,6 +97,5 @@ export class CnpjGeneratorPageComponent extends PageBase implements OnInit {
 
   ngOnInit(): void {
     this.addDescription('Gerador de CNPJ fictício com opções para gerar com ou sem a máscara.');
-    this.setTitle('Gerador de CNPJ');
   }
 }

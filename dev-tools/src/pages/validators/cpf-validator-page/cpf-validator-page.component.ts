@@ -75,7 +75,6 @@ export class CpfValidatorPageComponent extends PageBase implements OnInit {
 
   ngOnInit(): void {
     this.addDescription('Faça a validação de CPF.');
-    this.setTitle('Validação de CPF');
   }
 
   validate(): void {

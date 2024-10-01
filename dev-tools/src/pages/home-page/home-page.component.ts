@@ -15,6 +15,5 @@ import { PageBase } from '../pageBase';
 export class HomePageComponent extends PageBase implements OnInit {
   ngOnInit(): void {
     this.addDescription('As melhores ferramentas para desenvolvedores estão aqui!');
-    this.setTitle('Página Inicial');
   }
 }

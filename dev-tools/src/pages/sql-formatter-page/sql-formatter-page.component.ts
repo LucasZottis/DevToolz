@@ -32,7 +32,6 @@ export class SqlFormatterPageComponent extends PageBase implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setTitle("Formatador de SQL");
     this.addDescription("Ferramenta para formatar seus scripts SQL.");
   }
 }
