@@ -1,0 +1,18 @@
+<form class="row gy-2">
+    <div class="col-12">
+        <label for="txt-text" class="form-label">Texto</label>
+        <textarea name="txt-text" id="txt-text" class="form-control" rows="20" [(ngModel)]="text"></textarea>
+    </div>
+
+    <div class="col-12">
+        <button class="btn primary-button" (click)="onClick()">
+            Remover
+        </button>
+    </div>
+
+    <div class="col-12">
+        <label for="txt-text" class="form-label">Resultado</label>
+        <textarea name="txt-treated-text" id="txt-treated-text" class="form-control" rows="20"
+            [(ngModel)]="treatedText"></textarea>
+    </div>
+</form>
