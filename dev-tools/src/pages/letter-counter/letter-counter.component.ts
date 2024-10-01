@@ -67,6 +67,5 @@ export class LetterCounterComponent extends PageBase implements OnInit {
 
   ngOnInit(): void {
     this.addDescription('Ferramenta para contagem de caracteres.');
-    this.setTitle('Contador de letras');
   }
 }

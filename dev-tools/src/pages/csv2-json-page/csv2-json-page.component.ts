@@ -1,6 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { PageBase } from '../pageBase';
 
 @Component({
   selector: 'csv2-json-page',
@@ -14,7 +15,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './csv2-json-page.component.scss'
 })
 
-export class Csv2JsonPageComponent {
+export class Csv2JsonPageComponent extends PageBase implements OnInit {
   convertNumber: boolean = false;
   csvContent: string = "";
   jsonContent: string = "";
@@ -26,7 +27,7 @@ export class Csv2JsonPageComponent {
     this.columns = contentList[0].replaceAll(" ", "_").split(";");
 
     for (let i = 0; i < this.columns.length; i++) {
-      if (this.columns[i].isNotEmpty()) {
+      if (this.columns[i] === undefined || this.columns[i] === "") {
         continue;
       }
 
@@ -78,5 +79,9 @@ export class Csv2JsonPageComponent {
     }
 
     this.jsonContent = JSON.stringify(list, null, 4);
+  }
+
+  ngOnInit(): void {
+    this.addDescription("Conversor de formato CSV para formato JSON");
   }
 }
