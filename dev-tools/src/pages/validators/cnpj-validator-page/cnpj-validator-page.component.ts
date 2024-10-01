@@ -186,7 +186,6 @@ export class CnpjValidatorPageComponent extends PageBase implements OnInit {
     this.injetarDigito(false, "segundo-digito");
 
     this.addDescription('Ferramenta para validação de CNPJ.');
-    this.setTitle('Validação de CNPJ');
   }
 
   validate(): void {

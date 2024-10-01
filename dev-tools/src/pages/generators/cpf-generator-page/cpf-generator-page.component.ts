@@ -89,6 +89,5 @@ export class CpfGeneratorPageComponent extends PageBase implements OnInit {
 
   ngOnInit(): void {
     this.addDescription('Ferramenta para geração CPF aleatório válido.');
-    this.setTitle('Gerador de CPF');
   }
 }

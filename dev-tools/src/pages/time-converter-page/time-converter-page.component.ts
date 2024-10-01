@@ -78,6 +78,5 @@ export class TimeConverterPageComponent extends PageBase implements OnInit {
 
   ngOnInit(): void {
     this.addDescription('Converta horas, minutos e segundo para diversos formatos.');
-    this.setTitle('Conversor de tempo');
   }
 }

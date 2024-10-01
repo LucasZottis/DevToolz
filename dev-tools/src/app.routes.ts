@@ -15,22 +15,22 @@ export const routes: Routes = [
 
     {
         path: 'conversores', children: [
-            { path: 'tempo', component: TimeConverterPageComponent },
+            { path: 'tempo', component: TimeConverterPageComponent, title: "Conversor de Tempo" },
         ]
     },
 
     {
         path: 'geradores', children: [
-            { path: 'cpf', component: CpfGeneratorPageComponent },
-            { path: 'cnpj', component: CnpjGeneratorPageComponent },
+            { path: 'cpf', component: CpfGeneratorPageComponent, title: "Gerador de CPF" },
+            { path: 'cnpj', component: CnpjGeneratorPageComponent, title: "Gerador de CNPJ" },
         ]
     },
 
     {
         path: 'utilitarios', children: [
-            { path: 'contador-letras', component: LetterCounterComponent },
-            { path: 'csv-2-json', component: Csv2JsonPageComponent },
-            { path: 'remover-acentuacao', component: RemoverAcentoTextoPageComponent },
+            { path: 'contador-letras', component: LetterCounterComponent, title: "Contador de letras" },
+            { path: 'csv-2-json', component: Csv2JsonPageComponent, title: "Conversor de CSV para JSON" },
+            { path: 'remover-acentuacao', component: RemoverAcentoTextoPageComponent, title: "Remover Acentuação" },
             // { path: 'cryptografia', component: CryptoPageComponent },
             // { path: 'formatador-sql', component: SqlFormatterPageComponent },
         ]
@@ -38,10 +38,10 @@ export const routes: Routes = [
 
     {
         path: 'validadores', children: [
-            { path: 'cpf', component: CpfValidatorPageComponent },
-            { path: 'cnpj', component: CnpjValidatorPageComponent },
+            { path: 'cpf', component: CpfValidatorPageComponent, title: "Validador de CPF" },
+            { path: 'cnpj', component: CnpjValidatorPageComponent, title: "Validador de CNPJ" },
         ]
     },
 
-    { path: '**', component: NotFoundPageComponent },
+    { path: '**', component: NotFoundPageComponent, title: "Página não existe" },
 ];
