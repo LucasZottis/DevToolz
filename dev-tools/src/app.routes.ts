@@ -6,9 +6,8 @@ import { TimeConverterPageComponent } from './pages/time-converter-page/time-con
 import { CnpjValidatorPageComponent } from './pages/validators/cnpj-validator-page/cnpj-validator-page.component';
 import { CpfValidatorPageComponent } from './pages/validators/cpf-validator-page/cpf-validator-page.component';
 import { LetterCounterComponent } from './pages/letter-counter/letter-counter.component';
-import { CryptoPageComponent } from './pages/crypto-page/crypto-page.component';
-import { SqlFormatterPageComponent } from './pages/sql-formatter-page/sql-formatter-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { Csv2JsonPageComponent } from './pages/csv2-json-page/csv2-json-page.component';
 
 export const routes: Routes = [
     { path: '', component: HomePageComponent },
@@ -29,8 +28,9 @@ export const routes: Routes = [
     {
         path: 'utilitarios', children: [
             { path: 'contador-letras', component: LetterCounterComponent },
-            { path: 'cryptografia', component: CryptoPageComponent },
-            { path: 'formatador-sql', component: SqlFormatterPageComponent },
+            { path: 'csv-2-json', component: Csv2JsonPageComponent },
+            // { path: 'cryptografia', component: CryptoPageComponent },
+            // { path: 'formatador-sql', component: SqlFormatterPageComponent },
         ]
     },
 
