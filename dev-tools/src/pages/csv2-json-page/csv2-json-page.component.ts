@@ -30,7 +30,7 @@ export class Csv2JsonPageComponent {
         continue;
       }
 
-      this.columns = contentList[1].replaceAll(" ", "_").replaceAll("\r", "").split(";");
+      this.columns = contentList[1].replaceAll("\"", "").replaceAll(" ", "_").replaceAll("\r", "").split(";");
       break;
     }
   }
@@ -54,7 +54,6 @@ export class Csv2JsonPageComponent {
   onClickConvert(): void {
     let contentList = this.csvContent.split("\n");
     let list: { [key: string]: any }[] = [];
-    let columns = contentList[0].split(";");
 
     for (let i = 0; i < contentList.length; i++) {
       let data = contentList[i].replace(" ", "_").split(";");
@@ -64,12 +63,12 @@ export class Csv2JsonPageComponent {
         continue;
 
       for (let j = 0; j < data.length; j++) {
-        item[columns[j].replace("\"", "").replace("\"", "")] = data[j].replace("\"", "").replace("\"", "");
-        let column = this.columns[j].replaceAll("\"", "").replaceAll("\"", "").replaceAll(" ", "_").replaceAll("\r", "");
+        let column = this.columns[j];
         let info = data[j].replaceAll("\"", "").replaceAll("\r", "");
+        let numberValue = Number(info);
 
-        if (this.convertNumber && info.isNumber()) {
-          item[column] = Number(info);
+        if (this.convertNumber && !isNaN(numberValue)) {
+          item[column] = numberValue;
         } else {
           item[column] = info;
         }
