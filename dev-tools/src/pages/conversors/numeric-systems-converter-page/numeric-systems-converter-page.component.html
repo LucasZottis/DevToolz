@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-12">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-lg-6">
+                <h1 class="fs-4 text-center">Conversor de Sistemas Numéricos</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-lg-6">
+                <p>
+                    Para usar basta selecionar o sistema numérico de origem, o sistema numérico de destino e o valor a
+                    ser
+                    convertido na primeira caixa de texto.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-lg-6">
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-lg-6">
+        <div class="row gy-3 justify-content-center">
+            <div class="col-12 col-sm-6">
+                <label for="txt-value-source">De</label>
+                <select class="form-select" id="cbo-from" name="cbo-from" [(ngModel)]="from"
+                    (change)="onChangeSource()">
+                    <option [value]="1">Binário</option>
+                    <option [value]="2">Octal</option>
+                    <option [value]="3">Decimal</option>
+                    <option [value]="4">Hexadecimal</option>
+                    <!-- <option [value]="5">Sexagesimal</option> -->
+                    <option [value]="6">Romanos</option>
+                </select>
+            </div>
+
+            <div class="col-12 col-sm-6">
+                <label for="txt-value-destination">Para</label>
+                <select class="form-select" id="cbo-to" name="cbo-to" [(ngModel)]="to" (change)="onChangeDestination()">
+                    <option [value]="1">Binário</option>
+                    <option [value]="2">Octal</option>
+                    <option [value]="3">Decimal</option>
+                    <option [value]="4">Hexadecimal</option>
+                    <!-- <option [value]="5">Sexagesimal</option> -->
+                    <option [value]="6">Romanos</option>
+                </select>
+            </div>
+
+            <div class="col-12">
+                <label for="txt-source-value" class="form-label">{{sourceLabel}}</label>
+                <input type="text" class="form-control" name="txt-source-value" id="txt-source-value"
+                    [(ngModel)]="sourceValue">
+            </div>
+
+            <div class="col-12 col-sm-8 col-lg-6">
+                <button class="btn primary-button w-100" (click)="onClickConvert()">
+                    Converter
+                </button>
+            </div>
+
+            <div class="col-12">
+                <label for="txt-destination-value" class="form-label">{{destinationLabel}}</label>
+                <input type="text" class="form-control" name="txt-destination-value" id="txt-destination-value" readonly
+                    [(ngModel)]="destinationValue">
+            </div>
+        </div>
+    </div>
+</form>

@@ -9,6 +9,7 @@ import { LetterCounterComponent } from './pages/letter-counter/letter-counter.co
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { Csv2JsonPageComponent } from './pages/csv2-json-page/csv2-json-page.component';
 import { RemoverAcentoTextoPageComponent } from './pages/remover-acento-texto-page/remover-acento-texto-page.component';
+import { NumericSystemsConverterPageComponent } from './pages/conversors/numeric-systems-converter-page/numeric-systems-converter-page.component';
 
 export const routes: Routes = [
     { path: '', component: HomePageComponent },
@@ -16,6 +17,8 @@ export const routes: Routes = [
     {
         path: 'conversores', children: [
             { path: 'tempo', component: TimeConverterPageComponent, title: "Conversor de Tempo" },
+            { path: 'csv-2-json', component: Csv2JsonPageComponent, title: "Conversor de CSV para JSON" },
+            { path: 'sistemas-numericos', component: NumericSystemsConverterPageComponent, title: "Conversor de Sistemas Numéricos" },
         ]
     },
 
@@ -29,7 +32,6 @@ export const routes: Routes = [
     {
         path: 'utilitarios', children: [
             { path: 'contador-letras', component: LetterCounterComponent, title: "Contador de letras" },
-            { path: 'csv-2-json', component: Csv2JsonPageComponent, title: "Conversor de CSV para JSON" },
             { path: 'remover-acentuacao', component: RemoverAcentoTextoPageComponent, title: "Remover Acentuação" },
             // { path: 'cryptografia', component: CryptoPageComponent },
             // { path: 'formatador-sql', component: SqlFormatterPageComponent },
