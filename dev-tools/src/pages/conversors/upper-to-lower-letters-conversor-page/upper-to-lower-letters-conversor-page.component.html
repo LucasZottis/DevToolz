@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-12">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <h1 class="fs-4 text-center">
+                    Converter Maiúsculas e Minúsculas
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <p>
+                    Transformar textos para maiúsculas ou para minúsculas? Basta usar nossa ferramenta.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<form class="row justify-content-center">
+    <div class="col-12">
+        <select class="form-select">
+            <option [value]="1" selected>Maiúsculo</option>
+            <option [value]="2">Minúsculo</option>
+            <option [value]="3">aLtErNaDo</option>
+            <option [value]="4">Inverter texto</option>
+            <option [value]="5">Primeira letra da palavra</option>
+            <option [value]="6">Primeira letra frase</option>
+        </select>
+    </div>
+    <div class="col-12">
+        <textarea name="txt-text" id="txt-text" class="form-control" rows="15"></textarea>
+    </div>
+
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12 col-sm-4">
+                <button type="button" class="btn primary-button">
+                    Converter
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
