@@ -23,7 +23,7 @@
 
 <form class="row justify-content-center">
     <div class="col-12">
-        <select class="form-select" name="cbo-to">
+        <select class="form-select" name="cbo-to" [(ngModel)]="to">
             <option [value]="1" selected>Maiúsculo</option>
             <option [value]="2">Minúsculo</option>
             <option [value]="3">aLtErNaDo</option>
@@ -33,13 +33,13 @@
         </select>
     </div>
     <div class="col-12">
-        <textarea name="txt-text" id="txt-text" class="form-control" rows="15"></textarea>
+        <textarea name="txt-text" id="txt-text" class="form-control" rows="15" [(ngModel)]="text"></textarea>
     </div>
 
     <div class="col-12">
         <div class="row">
             <div class="col-12 col-sm-4">
-                <button type="button" class="btn primary-button">
+                <button type="button" class="btn primary-button" (click)="onClickConvert()">
                     Converter
                 </button>
             </div>

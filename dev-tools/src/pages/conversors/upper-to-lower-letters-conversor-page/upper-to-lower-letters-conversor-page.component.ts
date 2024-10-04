@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { PageBase } from '../../pageBase';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'upper-to-lower-letters-conversor-page',
   standalone: true,
-  imports: [],
+  imports: [
+    FormsModule
+  ],
   templateUrl: './upper-to-lower-letters-conversor-page.component.html',
   styleUrl: './upper-to-lower-letters-conversor-page.component.scss'
 })
