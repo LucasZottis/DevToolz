@@ -11,6 +11,7 @@ import { PageBase } from '../../pageBase';
 
 export class UpperToLowerLettersConversorPageComponent extends PageBase implements OnInit {
   text: string = "";
+  to: number = 0;
 
   private _convertToUpper(text: string): string {
     return text.toUpperCase();
@@ -42,6 +43,25 @@ export class UpperToLowerLettersConversorPageComponent extends PageBase implemen
     }
 
     return convertedText;
+  }
+
+  private _convertTo(text: string, to: number): string {
+    switch(to) {
+      case 1:
+        return this._convertToUpper(text);
+      case 2:
+        return this._convertToLower(text);
+      case 3:
+        return this._convertToAlternated(text);
+      case 4:
+        return this._convertInvertedText(text);
+    }
+    
+    return "";
+  }
+
+  onClickConvert(): void {
+    this.text = this._convertTo(this.text, this.to);
   }
   
   ngOnInit(): void {
