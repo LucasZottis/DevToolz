@@ -1,6 +1,6 @@
 <header class="header">
     <div class="container">
-        <h1 class="fs-3 header-page">
+        <h1 class="fs-2 header-page text-center">
             <a [routerLink]="['./']">Dev Toolz</a>
         </h1>
     </div>
@@ -9,14 +9,6 @@
 <div class="container">
     <div class="d-flex">
         <nav class="d-flex flex-column position-sticky top-0 start-0">
-            <!-- <a [routerLink]="['./']" class="link-body-emphasis text-decoration-none header">
-                <h1 class="fs-4 m-0 fw-bold">
-                    Dev Toolz
-                </h1>
-            </a> -->
-
-            <!-- <hr class="m-0" style="border: 3px var(--bs-body-bg) solid; opacity: 100%;"> -->
-
             <ul class="nav nav-pills flex-column mb-auto px-2">
                 <li [class]="'nav-item ' + (this.router.url === '/conversores/tempo' ? 'nav-item-active' : '')">
                     <a [routerLink]="['./conversores/tempo']" class="nav-link" aria-expanded="false">
@@ -41,6 +33,12 @@
                     [class]="'nav-item ' + (this.router.url === '/conversores/maiusculas-e-minusculas' ? 'nav-item-active' : '')">
                     <a [routerLink]="['./conversores/maiusculas-e-minusculas']" class="nav-link" aria-expanded="false">
                         Converter Maiúsculas e Minúsculas
+                    </a>
+                </li>
+
+                <li [class]="'nav-item ' + (this.router.url === '/conversores/dados' ? 'nav-item-active' : '')">
+                    <a [routerLink]="['./conversores/dados']" class="nav-link" aria-expanded="false">
+                        Converter de sistemas de dados
                     </a>
                 </li>
 

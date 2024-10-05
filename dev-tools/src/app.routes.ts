@@ -11,6 +11,7 @@ import { Csv2JsonPageComponent } from './pages/csv2-json-page/csv2-json-page.com
 import { RemoverAcentoTextoPageComponent } from './pages/remover-acento-texto-page/remover-acento-texto-page.component';
 import { NumericSystemsConverterPageComponent } from './pages/conversors/numeric-systems-converter-page/numeric-systems-converter-page.component';
 import { UpperToLowerLettersConversorPageComponent } from './pages/conversors/upper-to-lower-letters-conversor-page/upper-to-lower-letters-conversor-page.component';
+import { DataConversorPageComponent } from './pages/conversors/data-conversor-page/data-conversor-page.component';
 
 export const routes: Routes = [
     { path: '', component: HomePageComponent },
@@ -21,6 +22,7 @@ export const routes: Routes = [
             { path: 'csv-2-json', component: Csv2JsonPageComponent, title: "Conversor de CSV para JSON" },
             { path: 'sistemas-numericos', component: NumericSystemsConverterPageComponent, title: "Conversor de Sistemas Numéricos" },
             { path: 'maiusculas-e-minusculas', component: UpperToLowerLettersConversorPageComponent, title: "Conversor de Maiúscula e MInúsculas" },
+            { path: 'dados', component: DataConversorPageComponent, title: "Conversor de sistemas de dados" },
         ]
     },
 
