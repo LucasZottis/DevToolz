@@ -44,94 +44,7 @@ export class DataConversorPageComponent extends PageBase implements OnInit {
     { label: "Yottabytes (YB)", measure: 8, convertToByte: true },
   ]
 
-  //#region Bits
-
-  // private _bitsToBytes(value: number): number {
-  //   return value / 8;
-  // }
-
-  // private _bitsToKilobits(value: number): number {
-  //   return value / 1000;
-  // }
-
-  // private _bitsToKilobytes(value: number): number {
-  //   return this._bitsToBytes(value) / 1000;
-  // }
-
-  // private _bitsToMegabits(value: number): number {
-  //   return this._bitsToKilobits(value) / 1000;
-  // }
-
-  // private _bitsToMegabytes(value: number): number {
-  //   return this._bitsToKilobytes(value) / 1000;
-  // }
-
-  // private _bitsToGigabits(value: number): number {
-  //   return this._bitsToMegabits(value) / 1000;
-  // }
-
-  // private _bitsToGigabytes(value: number): number {
-  //   return this._bitsToMegabits(value) / 1000;
-  // }
-
-  // private _bitsTo(value: number, to: number): number {
-  //   switch (to) {
-  //     case 1:
-  //       return Number(value);
-  //     case 2:
-  //       return this._bitsToBytes(value);
-  //     case 3:
-  //       return this._bitsToKilobits(value);
-  //     case 4:
-  //       return this._bitsToKilobytes(value);
-  //     case 5:
-  //       return this._bitsToMegabits(value);
-  //     case 6:
-  //       return this._bitsToMegabytes(value);
-  //     case 7:
-  //       return this._bitsToGigabits(value);
-  //     case 8:
-  //       return this._bitsToGigabytes(value);
-  //     case 9:
-  //       return this._bitsToGigabits(value);
-  //     case 10:
-  //       return this._bitsToGigabits(value);
-  //     case 11:
-  //       return this._bitsToGigabits(value);
-  //     case 12:
-  //       return this._bitsToGigabits(value);
-  //     case 13:
-  //       return this._bitsToGigabits(value);
-  //     case 14:
-  //       return this._bitsToGigabits(value);
-  //     case 15:
-  //       return this._bitsToGigabits(value);
-  //     case 16:
-  //       return this._bitsToGigabits(value);
-  //     case 17:
-  //       return this._bitsToGigabits(value);
-  //     case 18:
-  //       return this._bitsToGigabits(value);
-  //   }
-
-  //   return 0;
-  // }
-
-  //#endregion Bits
-
   private convert(value: number, from: number, to: number): string {
-    // switch (from) {
-    //   case 1:
-    //     return this._bitsTo(value, to).toFixed(20);
-    //   // case 2:
-    //   //   return this._octalTo(value, to);
-    //   // case 3:
-    //   //   return this._decimalTo(value, to);
-    //   // case 4:
-    //   //   return this._hexTo(value, to);
-    //   // case 6:
-    //   //   return this._romanTo(value, to);
-    // }
     let result = 0;
     let data = this.datas[to - 1];
 
@@ -177,6 +90,6 @@ export class DataConversorPageComponent extends PageBase implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addDescription("")
+    this.addDescription("Converter entre medidas de dados.");
   }
 }
