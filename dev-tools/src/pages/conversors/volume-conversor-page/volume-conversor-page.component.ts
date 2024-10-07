@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { PageBase } from '../../pageBase';
 import { FormsModule } from '@angular/forms';
 import { DecimalPipe } from '@angular/common';
+import { MililiterConversorService } from '../../../services/conversors/mililiterConversor/mililiter-conversor.service';
+import { CentiliterConversorService } from '../../../services/conversors/centiliterConversor/centiliter-conversor.service';
+import { DeciliterConversorService } from '../../../services/conversors/deciliterConversor/deciliter-conversor.service';
+import { LiterConversorService } from '../../../services/conversors/literConversor/liter-conversor.service';
+import { HectoliterConversorService } from '../../../services/conversors/hectoliterConversor/hectoliter-conversor.service';
 
 @Component({
   selector: 'volume-conversor-page',
@@ -27,59 +32,20 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
     { label: "Centilitro (cl)", value: 1 },
     { label: "Decilitro (dl)", value: 2 },
     { label: "Litro (l)", value: 3 },
-    { label: "Hectalitro (hl)", value: 4 },
+    { label: "Hectolitro (hl)", value: 4 },
   ];
 
-  private _convertLiterSystem(value: number, from: number, to: number): number {
-    let result = 0;
-    let defaultValue = 10;
-    let measuse = this.measures[to];
-    switch (to) {
-      case 0:
-      case 1:
-      case 2:
-      case 3: {
-        if (from === to)
-          result = Number(value);
-        else if (from < to) {
-          result = (value / Math.pow(defaultValue, measuse.value));
-        } else if (from > to) {
-          result = (value * Math.pow(defaultValue, measuse.value));
-        }
-
-        break;
-      }
-
-      case 4: {
-        if (from === to)
-          result = Number(value);
-        else if (from < to) {
-          result = (value / Math.pow(defaultValue, measuse.value - 1)) / 100;
-        } else if (from > to) {
-          result = (value * Math.pow(defaultValue, measuse.value - 1)) * 100;
-        }
-
-        break;
-      }
-    }
-
-    return result;
-  }
-
-  private convert(value: number, from: number, to: number): string {
-    let result = 0;
-
-    switch (from) {
-      case 0:
-      case 1:
-      case 2:
-      case 3:
-      case 4:
-        result = this._convertLiterSystem(value, from, to);
-        break;
-    }
-
-    return result.toPrecision(100);
+  /**
+   *
+   */
+  constructor(
+    private _mililiterConversorService: MililiterConversorService,
+    private _centiliterConversorService: CentiliterConversorService,
+    private _deciliterConversor: DeciliterConversorService,
+    private _literConversor: LiterConversorService,
+    private _hectoliterConversor: HectoliterConversorService
+  ) {
+    super();
   }
 
   onChangeSource(): void {
@@ -93,7 +59,27 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
   }
 
   onClickConvert(): void {
-    this.destinationValue = this.convert(this.sourceValue, Number(this.from), Number(this.to));
+    let result = 0;
+
+    switch (Number(this.from)) {
+      case 0:
+        result = this._mililiterConversorService.convertToLiterSystem(this.sourceValue, Number(this.to));
+        break;
+      case 1:
+        result = this._centiliterConversorService.convertToLiterSystem(this.sourceValue, Number(this.to));
+        break;
+      case 2:
+        result = this._deciliterConversor.convertToLiterSystem(this.sourceValue, Number(this.to));
+        break;
+      case 3:
+        result = this._literConversor.convertToLiterSystem(this.sourceValue, Number(this.to));
+        break;
+      case 4:
+        result = this._hectoliterConversor.convertToLiterSystem(this.sourceValue, Number(this.to));
+        break;
+    }
+
+    this.destinationValue = result.toPrecision(100);
   }
 
   ngOnInit(): void {
