@@ -3,15 +3,15 @@
         <div class="row justify-content-center">
             <div class="col-12 col-sm-8 col-lg-6">
                 <h1 class="fs-3 text-center">
-                    Conversor de Sistemas de Dados
+                    Conversor de Medidas de Volume
                 </h1>
             </div>
         </div>
     </div>
     <div class="col-12 text-center">
         <p>
-            Essa ferramenta permite fazer a conversão entre esses sistemas, bytes para kilobytes,
-            kilobytes para megabytes e assim por diante.
+            Essa ferramenta permite fazer a conversão entre esses medidas de volumes.
+            Mililitros para litros, litros para metros cúbicos, metros cúbicos para onças fluídas e assim por diante.
         </p>
     </div>
 </div>
@@ -23,9 +23,8 @@
         <div class="row gy-3 justify-content-center">
             <div class="col-12">
                 <p>
-                    Para usar basta selecionar o sistema de dados de origem, o sistema de dados de destino e o valor a
-                    ser
-                    convertido na primeira caixa de texto.
+                    Para usar basta selecionar uma medida de voluma de origem, a medida de volume de destino e informar
+                    o valor a ser convertido na primeira caixa de texto.
                 </p>
             </div>
             <div class="col-12 col-md-6">
@@ -34,9 +33,9 @@
                         <label for="txt-value-source">De</label>
                         <select class="form-select" id="cbo-from" name="cbo-from" [(ngModel)]="from"
                             (change)="onChangeSource()">
-                            @for(data of datas; track $index) {
-                            <option [value]="$index + 1">
-                                {{data.label}}
+                            @for(measure of measures; track $index) {
+                            <option [value]="$index">
+                                {{measure.label}}
                             </option>
                             }
                         </select>
@@ -56,17 +55,14 @@
                         <label for="txt-value-destination">Para</label>
                         <select class="form-select" id="cbo-to" name="cbo-to" [(ngModel)]="to"
                             (change)="onChangeDestination()">
-                            @for(data of datas; track $index) {
-                            <option [value]="$index + 1">
-                                {{data.label}}
+                            @for(measure of measures; track $index) {
+                            <option [value]="$index">
+                                {{measure.label}}
                             </option>
                             }
                         </select>
                     </div>
 
-                    <!-- <div class="col-12">
-                        <label class="form-label">{{destinationLabel}}</label>
-                    </div> -->
                     <div class="col-12 text-end">
                         <label class="form-label">{{destinationValue | number: '1.0-40'}}</label>
                     </div>
@@ -82,7 +78,7 @@
     </div>
 </form>
 
-<hr>
+<!-- <hr>
 
 <div class="row">
     <div class="col-12">
@@ -121,4 +117,4 @@
             a internet, por exemplo.
         </p>
     </div>
-</div>
+</div> -->
