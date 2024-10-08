@@ -7,6 +7,7 @@ import { CentiliterConversorService } from '../../../services/conversors/centili
 import { DeciliterConversorService } from '../../../services/conversors/deciliterConversor/deciliter-conversor.service';
 import { LiterConversorService } from '../../../services/conversors/literConversor/liter-conversor.service';
 import { HectoliterConversorService } from '../../../services/conversors/hectoliterConversor/hectoliter-conversor.service';
+import { CubicCentimeterConversorService } from '../../../services/conversors/cubicCentimeterConversor/cubic-centimeter-conversor.service';
 
 @Component({
   selector: 'volume-conversor-page',
@@ -33,19 +34,34 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
     { label: "Decilitro (dl)", value: 2 },
     { label: "Litro (l)", value: 3 },
     { label: "Hectolitro (hl)", value: 4 },
+    { label: "Centímetro Cúbico (cm³)", value: 5 },
   ];
 
-  /**
-   *
-   */
   constructor(
     private _mililiterConversorService: MililiterConversorService,
     private _centiliterConversorService: CentiliterConversorService,
     private _deciliterConversor: DeciliterConversorService,
     private _literConversor: LiterConversorService,
-    private _hectoliterConversor: HectoliterConversorService
+    private _hectoliterConversor: HectoliterConversorService,
+    private _cubicCentimeterConversor: CubicCentimeterConversorService,
   ) {
     super();
+  }
+
+  private _cubicCentimeterTo(value: number, to: number): number {
+    let result = 0;
+
+    switch (to) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        result = this._cubicCentimeterConversor.convertToLiterSystem(value, to);
+        break;
+    }
+
+    return result;
   }
 
   onChangeSource(): void {
@@ -63,19 +79,14 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
 
     switch (Number(this.from)) {
       case 0:
-        result = this._mililiterConversorService.convertToLiterSystem(this.sourceValue, Number(this.to));
-        break;
       case 1:
-        result = this._centiliterConversorService.convertToLiterSystem(this.sourceValue, Number(this.to));
-        break;
       case 2:
-        result = this._deciliterConversor.convertToLiterSystem(this.sourceValue, Number(this.to));
-        break;
       case 3:
-        result = this._literConversor.convertToLiterSystem(this.sourceValue, Number(this.to));
-        break;
       case 4:
         result = this._hectoliterConversor.convertToLiterSystem(this.sourceValue, Number(this.to));
+        break;
+      case 5:
+        result = this._cubicCentimeterTo(this.sourceValue, Number(this.to));
         break;
     }
 
