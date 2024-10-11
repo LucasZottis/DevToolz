@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { PageBase } from '../../pageBase';
 import { FormsModule } from '@angular/forms';
 import { DecimalPipe } from '@angular/common';
-import { MililiterConversorService } from '../../../services/conversors/mililiterConversor/mililiter-conversor.service';
-import { CentiliterConversorService } from '../../../services/conversors/centiliterConversor/centiliter-conversor.service';
-import { DeciliterConversorService } from '../../../services/conversors/deciliterConversor/deciliter-conversor.service';
-import { LiterConversorService } from '../../../services/conversors/literConversor/liter-conversor.service';
-import { HectoliterConversorService } from '../../../services/conversors/hectoliterConversor/hectoliter-conversor.service';
-import { CubicCentimeterConversorService } from '../../../services/conversors/cubicCentimeterConversor/cubic-centimeter-conversor.service';
+import { MililiterConversorService } from '../../../services/conversors/volume/mililiterConversor/mililiter-conversor.service';
+import { CentiliterConversorService } from '../../../services/conversors/volume/centiliterConversor/centiliter-conversor.service';
+import { DeciliterConversorService } from '../../../services/conversors/volume/deciliterConversor/deciliter-conversor.service';
+import { LiterConversorService } from '../../../services/conversors/volume/literConversor/liter-conversor.service';
+import { HectoliterConversorService } from '../../../services/conversors/volume/hectoliterConversor/hectoliter-conversor.service';
+import { CubicCentimeterConversorService } from '../../../services/conversors/volume/cubicCentimeterConversor/cubic-centimeter-conversor.service';
 
 @Component({
   selector: 'volume-conversor-page',
