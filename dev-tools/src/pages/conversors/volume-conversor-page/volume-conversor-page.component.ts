@@ -48,6 +48,86 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
     super();
   }
 
+  private _mililiterTo(value: number, to: number): number {
+    let result = 0;
+
+    switch (to) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        result = this._mililiterConversorService.convertToLiterSystem(value, to);
+        break;
+    }
+
+    return result;
+  }
+
+  private _centiliterTo(value: number, to: number): number {
+    let result = 0;
+
+    switch (to) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        result = this._centiliterConversorService.convertToLiterSystem(value, to);
+        break;
+    }
+
+    return result;
+  }
+
+  private _deciliterTo(value: number, to: number): number {
+    let result = 0;
+
+    switch (to) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        result = this._deciliterConversor.convertToLiterSystem(value, to);
+        break;
+    }
+
+    return result;
+  }
+
+  private _literTo(value: number, to: number): number {
+    let result = 0;
+
+    switch (to) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        result = this._literConversor.convertToLiterSystem(value, to);
+        break;
+    }
+
+    return result;
+  }
+
+  private _hectoliterTo(value: number, to: number): number {
+    let result = 0;
+
+    switch (to) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        result = this._hectoliterConversor.convertToLiterSystem(value, to);
+        break;
+    }
+
+    return result;
+  }
+
   private _cubicCentimeterTo(value: number, to: number): number {
     let result = 0;
 
@@ -79,11 +159,19 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
 
     switch (Number(this.from)) {
       case 0:
+        result = this._mililiterTo(this.sourceValue, Number(this.to));
+        break;
       case 1:
+        result = this._centiliterTo(this.sourceValue, Number(this.to));
+        break;
       case 2:
+        result = this._deciliterTo(this.sourceValue, Number(this.to));
+        break;
       case 3:
+        result = this._literTo(this.sourceValue, Number(this.to));
+        break;
       case 4:
-        result = this._hectoliterConversor.convertToLiterSystem(this.sourceValue, Number(this.to));
+        result = this._hectoliterTo(this.sourceValue, Number(this.to));
         break;
       case 5:
         result = this._cubicCentimeterTo(this.sourceValue, Number(this.to));
