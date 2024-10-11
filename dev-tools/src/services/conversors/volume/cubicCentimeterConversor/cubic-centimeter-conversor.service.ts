@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LiterSystem } from '../../../../enums/literSystem';
+import { MetricSystem } from '../../../../enums/metricSystem';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,8 @@ import { LiterSystem } from '../../../../enums/literSystem';
 export class CubicCentimeterConversorService {
 
   constructor() { }
+
+  //#region Liter System
 
   private _cubicCentimeterToMililiter(value: number): number {
     return value;
@@ -29,7 +32,33 @@ export class CubicCentimeterConversorService {
     return value / 100000;
   }
 
-  public convertToLiterSystem(value: number, to: LiterSystem): number {
+  //#endregion Liter System
+
+  //#region Metric System
+
+  private _toCubicMilimeter(value: number): number {
+    return value * 1000;
+  }
+
+  private _toCubicCentimeter(value: number): number {
+    return value;
+  }
+
+  private _toCubicDecimeter(value: number): number {
+    return value / 1000;
+  }
+
+  private _toCubicMeter(value: number): number {
+    return value / 1000000;
+  }
+
+  private _toCubicKilometer(value: number): number {
+    return value / Math.pow(10, 15);
+  }
+
+  //#endregion Metric System
+
+  convertToLiterSystem(value: number, to: LiterSystem): number {
     let result = 0;
 
     switch (to) {
@@ -47,6 +76,30 @@ export class CubicCentimeterConversorService {
         break;
       case LiterSystem.Hectoliter:
         result = this._cubicCentimeterToHectoliter(value);
+        break;
+    }
+
+    return result;
+  }
+
+  convertToMetricSystem(value: number, to: MetricSystem) {
+    let result = 0;
+
+    switch (to) {
+      case MetricSystem.milimiter:
+        result = this._toCubicMilimeter(value);
+        break;
+      case MetricSystem.decimeter:
+        result = this._toCubicDecimeter(value);
+        break;
+      case MetricSystem.centimeter:
+        result = this._toCubicCentimeter(value);
+        break;
+      case MetricSystem.meters:
+        result = this._toCubicMeter(value);
+        break;
+      case MetricSystem.kilometers:
+        result = this._toCubicKilometer(value);
         break;
     }
 

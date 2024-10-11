@@ -128,6 +128,7 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
 
   private _literTo(value: number, to: number): number {
     let result = 0;
+    let data = this.measures[to];
 
     switch (to) {
       case 0:
@@ -137,6 +138,13 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 4:
         result = this._literConversor.convertToLiterSystem(value, to);
         break;
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+        result = this._literConversor.convertToMetricSystem(value, data.enum);
+        break;
     }
 
     return result;
@@ -144,6 +152,7 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
 
   private _hectoliterTo(value: number, to: number): number {
     let result = 0;
+    let data = this.measures[to];
 
     switch (to) {
       case 0:
@@ -153,13 +162,21 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 4:
         result = this._hectoliterConversor.convertToLiterSystem(value, to);
         break;
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+        result = this._hectoliterConversor.convertToMetricSystem(value, data.enum);
+        break;
     }
 
     return result;
   }
 
-  private _cubicCentimeterTo(value: number, to: number): number {
+  private _cubicMilimiterTo(value: number, to: number): number {
     let result = 0;
+    let data = this.measures[to];
 
     switch (to) {
       case 0:
@@ -168,6 +185,37 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 3:
       case 4:
         result = this._cubicCentimeterConversor.convertToLiterSystem(value, to);
+        break;
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+        result = this._cubicCentimeterConversor.convertToMetricSystem(value, data.enum);
+        break;
+    }
+
+    return result;
+  }
+
+  private _cubicCentimeterTo(value: number, to: number): number {
+    let result = 0;
+    let data = this.measures[to];
+
+    switch (to) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        result = this._cubicCentimeterConversor.convertToLiterSystem(value, to);
+        break;
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+        result = this._cubicCentimeterConversor.convertToMetricSystem(value, data.enum);
         break;
     }
 
@@ -203,7 +251,10 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 4:
         result = this._hectoliterTo(this.sourceValue, Number(this.to));
         break;
-      case 5:
+      case 6:
+        result = this._cubicMilimiterTo(this.sourceValue, Number(this.to));
+        break;
+      case 6:
         result = this._cubicCentimeterTo(this.sourceValue, Number(this.to));
         break;
     }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LiterSystem } from '../../../../enums/literSystem';
+import { MetricSystem } from '../../../../enums/metricSystem';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,8 @@ import { LiterSystem } from '../../../../enums/literSystem';
 export class HectoliterConversorService {
 
   constructor() { }
+
+  //#region Liter System
 
   private _toMililiter(value: number): number {
     return value * 1000;
@@ -28,6 +31,32 @@ export class HectoliterConversorService {
     return value;
   }
 
+  //#endregion Liter System
+
+  //#region Metric System
+
+  private _toCubicMilimeter(value: number): number {
+    return value * Math.pow(10, 8);
+  }
+
+  private _toCubicCentimeter(value: number): number {
+    return value * 100000;
+  }
+
+  private _toCubicDecimeter(value: number): number {
+    return value * 100;
+  }
+
+  private _toCubicMeter(value: number): number {
+    return value / 10;
+  }
+
+  private _toCubicKilometer(value: number): number {
+    return value * Math.pow(10, -10);
+  }
+
+  //#endregion Metric System
+
   convertToLiterSystem(value: number, to: LiterSystem): number {
     let result = 0;
 
@@ -46,6 +75,30 @@ export class HectoliterConversorService {
         break;
       case LiterSystem.Hectoliter:
         result = this._toHectoliter(value);
+        break;
+    }
+
+    return result;
+  }
+
+  convertToMetricSystem(value: number, to: MetricSystem) {
+    let result = 0;
+
+    switch (to) {
+      case MetricSystem.milimiter:
+        result = this._toCubicMilimeter(value);
+        break;
+      case MetricSystem.decimeter:
+        result = this._toCubicDecimeter(value);
+        break;
+      case MetricSystem.centimeter:
+        result = this._toCubicCentimeter(value);
+        break;
+      case MetricSystem.meters:
+        result = this._toCubicMeter(value);
+        break;
+      case MetricSystem.kilometers:
+        result = this._toCubicKilometer(value);
         break;
     }
 
