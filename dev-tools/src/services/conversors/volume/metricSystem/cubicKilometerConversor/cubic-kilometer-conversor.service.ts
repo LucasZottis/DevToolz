@@ -5,30 +5,30 @@ import { MetricSystem } from '../../../../../enums/metricSystem';
 @Injectable({
   providedIn: 'root'
 })
-export class CubicMeterConversorService {
+export class CubicKilometerConversorService {
 
   constructor() { }
 
   //#region Liter System
 
   private _toMililiter(value: number): number {
-    return value * 1000000;
+    return value * 1000000000000000;
   }
 
   private _toCentiliter(value: number): number {
-    return value * 100000;
+    return value * 100000000000000;
   }
 
   private _toDeciliter(value: number): number {
-    return value * 10000;
+    return value * 10000000000000;
   }
 
   private _toLiter(value: number): number {
-    return value * 1000;
+    return value * 1000000000000;
   }
 
   private _toHectoliter(value: number): number {
-    return value * 10;
+    return value * 10000000000;
   }
 
   //#endregion Liter System
@@ -36,23 +36,23 @@ export class CubicMeterConversorService {
   //#region Metric System
 
   private _toCubicMilimeter(value: number): number {
-    return value * 1000000000;
+    return value * 1000000000000000000;
   }
 
   private _toCubicCentimeter(value: number): number {
-    return value * 1000000;
+    return value * 1000000000000000;
   }
 
   private _toCubicDecimeter(value: number): number {
-    return value * 1000;
+    return value * 1000000000000;
   }
 
   private _toCubicMeter(value: number): number {
-    return value;
+    return value * 1000000000;
   }
 
   private _toCubicKilometer(value: number): number {
-    return value / 1000000000;
+    return value;
   }
 
   //#endregion Metric System
