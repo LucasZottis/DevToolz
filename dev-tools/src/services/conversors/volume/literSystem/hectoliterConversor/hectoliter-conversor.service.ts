@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { LiterSystem } from '../../../../enums/literSystem';
-import { MetricSystem } from '../../../../enums/metricSystem';
+import { LiterSystem } from '../../../../../enums/literSystem';
+import { MetricSystem } from '../../../../../enums/metricSystem';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LiterConversorService {
+export class HectoliterConversorService {
 
   constructor() { }
 
@@ -24,11 +24,11 @@ export class LiterConversorService {
   }
 
   private _toLiter(value: number): number {
-    return value;
+    return value * 100;
   }
 
   private _toHectoliter(value: number): number {
-    return value / 100;
+    return value;
   }
 
   //#endregion Liter System
@@ -36,23 +36,23 @@ export class LiterConversorService {
   //#region Metric System
 
   private _toCubicMilimeter(value: number): number {
-    return value * Math.pow(10, 6);
+    return value * Math.pow(10, 8);
   }
 
   private _toCubicCentimeter(value: number): number {
-    return value * 1000;
+    return value * 100000;
   }
 
   private _toCubicDecimeter(value: number): number {
-    return value;
+    return value * 100;
   }
 
   private _toCubicMeter(value: number): number {
-    return value / 1000;
+    return value / 10;
   }
 
   private _toCubicKilometer(value: number): number {
-    return value * Math.pow(10, -12);
+    return value * Math.pow(10, -10);
   }
 
   //#endregion Metric System

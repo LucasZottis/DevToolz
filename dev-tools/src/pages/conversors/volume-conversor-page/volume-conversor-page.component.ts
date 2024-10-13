@@ -2,14 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { PageBase } from '../../pageBase';
 import { FormsModule } from '@angular/forms';
 import { DecimalPipe } from '@angular/common';
-import { MililiterConversorService } from '../../../services/conversors/volume/mililiterConversor/mililiter-conversor.service';
-import { CentiliterConversorService } from '../../../services/conversors/volume/centiliterConversor/centiliter-conversor.service';
-import { DeciliterConversorService } from '../../../services/conversors/volume/deciliterConversor/deciliter-conversor.service';
-import { LiterConversorService } from '../../../services/conversors/volume/literConversor/liter-conversor.service';
-import { HectoliterConversorService } from '../../../services/conversors/volume/hectoliterConversor/hectoliter-conversor.service';
-import { CubicCentimeterConversorService } from '../../../services/conversors/volume/cubicCentimeterConversor/cubic-centimeter-conversor.service';
+import { MililiterConversorService } from '../../../services/conversors/volume/literSystem/mililiterConversor/mililiter-conversor.service';
+import { CentiliterConversorService } from '../../../services/conversors/volume/literSystem/centiliterConversor/centiliter-conversor.service';
+import { DeciliterConversorService } from '../../../services/conversors/volume/literSystem/deciliterConversor/deciliter-conversor.service';
+import { LiterConversorService } from '../../../services/conversors/volume/literSystem/literConversor/liter-conversor.service';
+import { HectoliterConversorService } from '../../../services/conversors/volume/literSystem/hectoliterConversor/hectoliter-conversor.service';
+import { CubicCentimeterConversorService } from '../../../services/conversors/volume/metricSystem/cubicCentimeterConversor/cubic-centimeter-conversor.service';
 import { LiterSystem } from '../../../enums/literSystem';
 import { MetricSystem } from '../../../enums/metricSystem';
+import { CubicMilimeterConveresorService } from '../../../services/conversors/volume/metricSystem/cubicMilimeterConveresor/cubic-milimeter-converesor.service';
+import { CubicDecimeterConversorService } from '../../../services/conversors/volume/metricSystem/cubicDecimeterConversor/cubic-decimeter-conversor.service';
 
 @Component({
   selector: 'volume-conversor-page',
@@ -49,7 +51,9 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
     private _deciliterConversor: DeciliterConversorService,
     private _literConversor: LiterConversorService,
     private _hectoliterConversor: HectoliterConversorService,
+    private _cubicMilimeterConversor: CubicMilimeterConveresorService,
     private _cubicCentimeterConversor: CubicCentimeterConversorService,
+    private _cubicDecimeterConversor: CubicDecimeterConversorService,
   ) {
     super();
   }
@@ -184,14 +188,14 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 2:
       case 3:
       case 4:
-        result = this._cubicCentimeterConversor.convertToLiterSystem(value, to);
+        result = this._cubicMilimeterConversor.convertToLiterSystem(value, to);
         break;
       case 5:
       case 6:
       case 7:
       case 8:
       case 9:
-        result = this._cubicCentimeterConversor.convertToMetricSystem(value, data.enum);
+        result = this._cubicMilimeterConversor.convertToMetricSystem(value, data.enum);
         break;
     }
 
@@ -216,6 +220,30 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 8:
       case 9:
         result = this._cubicCentimeterConversor.convertToMetricSystem(value, data.enum);
+        break;
+    }
+
+    return result;
+  }
+
+  private _cubicDecimeterTo(value: number, to: number): number {
+    let result = 0;
+    let data = this.measures[to];
+
+    switch (to) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        result = this._cubicDecimeterConversor.convertToLiterSystem(value, to);
+        break;
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+        result = this._cubicDecimeterConversor.convertToMetricSystem(value, data.enum);
         break;
     }
 
@@ -251,11 +279,14 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 4:
         result = this._hectoliterTo(this.sourceValue, Number(this.to));
         break;
-      case 6:
+      case 5:
         result = this._cubicMilimiterTo(this.sourceValue, Number(this.to));
         break;
       case 6:
         result = this._cubicCentimeterTo(this.sourceValue, Number(this.to));
+        break;
+      case 7:
+        result = this._cubicDecimeterTo(this.sourceValue, Number(this.to));
         break;
     }
 

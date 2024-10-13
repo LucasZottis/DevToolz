@@ -1,33 +1,34 @@
 import { Injectable } from '@angular/core';
-import { LiterSystem } from '../../../../enums/literSystem';
-import { MetricSystem } from '../../../../enums/metricSystem';
+import { LiterSystem } from '../../../../../enums/literSystem';
+import { MetricSystem } from '../../../../../enums/metricSystem';
 
-@Injectable({ providedIn: 'root' })
-
-export class MililiterConversorService {
+@Injectable({
+  providedIn: 'root'
+})
+export class LiterConversorService {
 
   constructor() { }
 
   //#region Liter System
 
   private _toMililiter(value: number): number {
-    return value;
+    return value * 1000;
   }
 
   private _toCentiliter(value: number): number {
-    return value / 10;
+    return value * 100;
   }
 
   private _toDeciliter(value: number): number {
-    return value / 100;
+    return value * 10;
   }
 
   private _toLiter(value: number): number {
-    return value / 1000;
+    return value;
   }
 
   private _toHectoliter(value: number): number {
-    return value / 100000;
+    return value / 100;
   }
 
   //#endregion Liter System
@@ -35,23 +36,23 @@ export class MililiterConversorService {
   //#region Metric System
 
   private _toCubicMilimeter(value: number): number {
+    return value * Math.pow(10, 6);
+  }
+
+  private _toCubicCentimeter(value: number): number {
     return value * 1000;
   }
 
   private _toCubicDecimeter(value: number): number {
-    return value / 1000;
-  }
-
-  private _toCubicCentimeter(value: number): number {
     return value;
   }
 
   private _toCubicMeter(value: number): number {
-    return value * Math.pow(10, -6);
+    return value / 1000;
   }
 
   private _toCubicKilometer(value: number): number {
-    return value * Math.pow(10, -15);
+    return value * Math.pow(10, -12);
   }
 
   //#endregion Metric System
