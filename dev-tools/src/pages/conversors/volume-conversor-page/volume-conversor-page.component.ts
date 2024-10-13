@@ -12,6 +12,7 @@ import { LiterSystem } from '../../../enums/literSystem';
 import { MetricSystem } from '../../../enums/metricSystem';
 import { CubicMilimeterConveresorService } from '../../../services/conversors/volume/metricSystem/cubicMilimeterConveresor/cubic-milimeter-converesor.service';
 import { CubicDecimeterConversorService } from '../../../services/conversors/volume/metricSystem/cubicDecimeterConversor/cubic-decimeter-conversor.service';
+import { CubicMeterConversorService } from '../../../services/conversors/volume/metricSystem/cubicMeterConversor/cubic-meter-conversor.service';
 
 @Component({
   selector: 'volume-conversor-page',
@@ -54,6 +55,7 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
     private _cubicMilimeterConversor: CubicMilimeterConveresorService,
     private _cubicCentimeterConversor: CubicCentimeterConversorService,
     private _cubicDecimeterConversor: CubicDecimeterConversorService,
+    private _cubicMeterConversor: CubicMeterConversorService
   ) {
     super();
   }
@@ -250,6 +252,30 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
     return result;
   }
 
+  private _cubicMeterTo(value: number, to: number): number {
+    let result = 0;
+    let data = this.measures[to];
+
+    switch (to) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        result = this._cubicMeterConversor.convertToLiterSystem(value, to);
+        break;
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+        result = this._cubicMeterConversor.convertToMetricSystem(value, data.enum);
+        break;
+    }
+
+    return result;
+  }
+
   onChangeSource(): void {
     let data = this.measures[Number(this.from)];
     this.sourceLabel = data.label;
@@ -288,6 +314,9 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 7:
         result = this._cubicDecimeterTo(this.sourceValue, Number(this.to));
         break;
+      case 8:
+        result = this._cubicMeterTo(this.sourceValue, Number(this.to));
+        break
     }
 
     this.destinationValue = result.toPrecision(100);
