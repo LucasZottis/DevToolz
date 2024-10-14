@@ -105,4 +105,8 @@ export class CubicCentimeterConversorService {
 
     return result;
   }
+
+  toOuceFluid(value: number): number {
+    return value * 0.033814022701843;
+  }
 }

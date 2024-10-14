@@ -246,6 +246,9 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 9:
         result = this._cubicCentimeterConversor.convertToMetricSystem(value, data.enum);
         break;
+      case 10:
+        result = this._cubicCentimeterConversor.toOuceFluid(value);
+        break;
     }
 
     return result;
