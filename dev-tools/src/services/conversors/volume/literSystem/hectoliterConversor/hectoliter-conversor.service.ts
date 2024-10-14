@@ -104,4 +104,8 @@ export class HectoliterConversorService {
 
     return result;
   }
+
+  toOuceFluid(value: number): number {
+    return value * 3381.4022701843;
+  }
 }

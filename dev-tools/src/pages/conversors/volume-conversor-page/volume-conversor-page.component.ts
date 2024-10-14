@@ -14,6 +14,7 @@ import { CubicMilimeterConveresorService } from '../../../services/conversors/vo
 import { CubicDecimeterConversorService } from '../../../services/conversors/volume/metricSystem/cubicDecimeterConversor/cubic-decimeter-conversor.service';
 import { CubicMeterConversorService } from '../../../services/conversors/volume/metricSystem/cubicMeterConversor/cubic-meter-conversor.service';
 import { CubicKilometerConversorService } from '../../../services/conversors/volume/metricSystem/cubicKilometerConversor/cubic-kilometer-conversor.service';
+import { OunceFluidConversorService } from '../../../services/conversors/volume/ounceFluidConversor/ounce-fluid-conversor.service';
 
 @Component({
   selector: 'volume-conversor-page',
@@ -45,6 +46,7 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
     { label: "Decímetro Cúbico (cm³)", value: 7, enum: MetricSystem.decimeter },
     { label: "Metro Cúbico (cm³)", value: 8, enum: MetricSystem.meters },
     { label: "Quilometro Cúbico (cm³)", value: 9, enum: MetricSystem.kilometers },
+    { label: "Onças Fluídas (fl oz)", value: 10 },
   ];
 
   constructor(
@@ -57,7 +59,8 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
     private _cubicCentimeterConversor: CubicCentimeterConversorService,
     private _cubicDecimeterConversor: CubicDecimeterConversorService,
     private _cubicMeterConversor: CubicMeterConversorService,
-    private _cubicKilometerConversor: CubicKilometerConversorService
+    private _cubicKilometerConversor: CubicKilometerConversorService,
+    private _ounceFluidConversor: OunceFluidConversorService,
   ) {
     super();
   }
@@ -80,6 +83,9 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 8:
       case 9:
         result = this._mililiterConversorService.convertToMetricSystem(value, data.enum);
+        break;
+      case 10:
+        result = this._mililiterConversorService.toOuceFluid(value);
         break;
     }
 
@@ -105,6 +111,9 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 9:
         result = this._centiliterConversorService.convertToMetricSystem(value, data.enum);
         break;
+      case 10:
+        result = this._centiliterConversorService.toOuceFluid(value);
+        break;
     }
 
     return result;
@@ -128,6 +137,9 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 8:
       case 9:
         result = this._deciliterConversor.convertToMetricSystem(value, data.enum);
+        break;
+      case 10:
+        result = this._deciliterConversor.toOuceFluid(value);
         break;
     }
 
@@ -153,6 +165,9 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 9:
         result = this._literConversor.convertToMetricSystem(value, data.enum);
         break;
+      case 10:
+        result = this._literConversor.toOuceFluid(value);
+        break;
     }
 
     return result;
@@ -177,6 +192,9 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 9:
         result = this._hectoliterConversor.convertToMetricSystem(value, data.enum);
         break;
+      case 10:
+        result = this._hectoliterConversor.toOuceFluid(value);
+        break;
     }
 
     return result;
@@ -200,6 +218,9 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 8:
       case 9:
         result = this._cubicMilimeterConversor.convertToMetricSystem(value, data.enum);
+        break;
+      case 10:
+        result = this._cubicMilimeterConversor.toOuceFluid(value);
         break;
     }
 
@@ -302,6 +323,33 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
     return result
   }
 
+  private _ounceFluidTo(value: number, to: number): number {
+    let result = 0;
+    let data = this.measures[to];
+
+    switch (to) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        result = this._ounceFluidConversor.convertToLiterSystem(value, to);
+        break;
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+        result = this._ounceFluidConversor.convertToMetricSystem(value, data.enum);
+        break;
+      case 10:
+        result = value;
+        break;
+    }
+
+    return result
+  }
+
   onChangeSource(): void {
     let data = this.measures[Number(this.from)];
     this.sourceLabel = data.label;
@@ -345,6 +393,9 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
         break;
       case 9:
         result = this._cubicKilometerTo(this.sourceValue, Number(this.to));
+        break;
+      case 10:
+        result = this._ounceFluidTo(this.sourceValue, Number(this.to));
         break;
     }
 

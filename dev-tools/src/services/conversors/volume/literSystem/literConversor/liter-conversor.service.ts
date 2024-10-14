@@ -104,4 +104,8 @@ export class LiterConversorService {
 
     return result;
   }
+
+  toOuceFluid(value: number): number {
+    return value * 33.814022701843;
+  }
 }

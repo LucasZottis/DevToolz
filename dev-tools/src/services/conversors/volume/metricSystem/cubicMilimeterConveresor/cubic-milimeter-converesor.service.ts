@@ -105,4 +105,8 @@ export class CubicMilimeterConveresorService {
 
     return result;
   }
+
+  toOuceFluid(value: number): number {
+    return value * 0.000033814022701843;
+  }
 }

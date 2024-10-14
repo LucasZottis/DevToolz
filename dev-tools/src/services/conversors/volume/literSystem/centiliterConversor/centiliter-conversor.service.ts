@@ -104,4 +104,8 @@ export class CentiliterConversorService {
 
     return result;
   }
+
+  toOuceFluid(value: number): number {
+    return value * 0.33814022701843;
+  }
 }

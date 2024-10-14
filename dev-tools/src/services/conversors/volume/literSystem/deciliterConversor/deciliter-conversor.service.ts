@@ -104,4 +104,8 @@ export class DeciliterConversorService {
 
     return result;
   }
+
+  toOuceFluid(value: number): number {
+    return value * 3.3814022701843;
+  }
 }
