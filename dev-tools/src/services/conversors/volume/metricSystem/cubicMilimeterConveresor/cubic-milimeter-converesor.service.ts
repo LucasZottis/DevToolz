@@ -106,7 +106,11 @@ export class CubicMilimeterConveresorService {
     return result;
   }
 
-  toOuceFluid(value: number): number {
+  toOunceFluid(value: number): number {
     return value * 0.000033814022701843;
+  }
+
+  toImperialOunceFluid(value: number): number {
+    return value * 0.000035195079727854;
   }
 }

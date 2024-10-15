@@ -45,19 +45,19 @@ export class OunceFluidConversorService {
   }
 
   private _toCubicCentimeter(value: number): number {
-    return this._mililiterConversor.convertToMetricSystem(this._toMililiter(value), MetricSystem.centimeter);
+    return this._mililiterConversor.convertToMetricSystem(this._toCubicMilimeter(value), MetricSystem.centimeter);
   }
 
   private _toCubicDecimeter(value: number): number {
-    return this._mililiterConversor.convertToMetricSystem(this._toMililiter(value), MetricSystem.decimeter);
+    return this._mililiterConversor.convertToMetricSystem(this._toCubicMilimeter(value), MetricSystem.decimeter);
   }
 
   private _toCubicMeter(value: number): number {
-    return this._mililiterConversor.convertToMetricSystem(this._toMililiter(value), MetricSystem.meters);
+    return this._mililiterConversor.convertToMetricSystem(this._toCubicMilimeter(value), MetricSystem.meters);
   }
 
   private _toCubicKilometer(value: number): number {
-    return this._mililiterConversor.convertToMetricSystem(this._toMililiter(value), MetricSystem.kilometers);
+    return this._mililiterConversor.convertToMetricSystem(this._toCubicMilimeter(value), MetricSystem.kilometers);
   }
 
   //#endregion Metric System
@@ -108,5 +108,9 @@ export class OunceFluidConversorService {
     }
 
     return result;
+  }
+
+  toImperialOunceFluid(value: number): number {
+    return value * 1.0408427307862;
   }
 }

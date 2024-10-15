@@ -105,7 +105,11 @@ export class DeciliterConversorService {
     return result;
   }
 
-  toOuceFluid(value: number): number {
+  toOunceFluid(value: number): number {
     return value * 3.3814022701843;
+  }
+
+  toImperialOunceFluid(value: number): number {
+    return value * 3.5195079727854;
   }
 }

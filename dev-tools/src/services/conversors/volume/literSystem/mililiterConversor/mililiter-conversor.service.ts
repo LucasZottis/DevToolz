@@ -38,20 +38,20 @@ export class MililiterConversorService {
     return value * 1000;
   }
 
-  private _toCubicDecimeter(value: number): number {
+  private _toCubicCentimeter(value: number): number {
     return value / 1000;
   }
 
-  private _toCubicCentimeter(value: number): number {
-    return value;
-  }
-
-  private _toCubicMeter(value: number): number {
+  private _toCubicDecimeter(value: number): number {
     return value * Math.pow(10, -6);
   }
 
+  private _toCubicMeter(value: number): number {
+    return value * Math.pow(10, -9);
+  }
+
   private _toCubicKilometer(value: number): number {
-    return value * Math.pow(10, -15);
+    return value * Math.pow(10, -18);
   }
 
   //#endregion Metric System
@@ -104,7 +104,11 @@ export class MililiterConversorService {
     return result;
   }
 
-  toOuceFluid(value: number): number {
+  toOunceFluid(value: number): number {
     return value * 0.033814022701843;
+  }
+
+  toImperialOunceFluid(value: number): number {
+    return value * 0.035195079727854;
   }
 }

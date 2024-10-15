@@ -106,7 +106,11 @@ export class CubicCentimeterConversorService {
     return result;
   }
 
-  toOuceFluid(value: number): number {
+  toOunceFluid(value: number): number {
     return value * 0.033814022701843;
+  }
+
+  toImperialOunceFluid(value: number): number {
+    return value * 0.035195079727854;
   }
 }

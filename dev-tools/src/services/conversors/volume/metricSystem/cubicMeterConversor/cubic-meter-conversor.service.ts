@@ -104,4 +104,12 @@ export class CubicMeterConversorService {
 
     return result;
   }
+
+  toOunceFluid(value: number): number {
+    return value * 33814.022701843;
+  }
+
+  toImperialOunceFluid(value: number): number {
+    return value * 35195.079727854;
+  }
 }

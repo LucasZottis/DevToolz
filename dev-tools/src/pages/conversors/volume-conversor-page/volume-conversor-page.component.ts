@@ -15,6 +15,7 @@ import { CubicDecimeterConversorService } from '../../../services/conversors/vol
 import { CubicMeterConversorService } from '../../../services/conversors/volume/metricSystem/cubicMeterConversor/cubic-meter-conversor.service';
 import { CubicKilometerConversorService } from '../../../services/conversors/volume/metricSystem/cubicKilometerConversor/cubic-kilometer-conversor.service';
 import { OunceFluidConversorService } from '../../../services/conversors/volume/ounceFluidConversor/ounce-fluid-conversor.service';
+import { ImperialOunceFluidConversorService } from '../../../services/conversors/volume/imperialOunceFluidConversor/imperial-ounce-fluid-conversor.service';
 
 @Component({
   selector: 'volume-conversor-page',
@@ -26,6 +27,7 @@ import { OunceFluidConversorService } from '../../../services/conversors/volume/
   templateUrl: './volume-conversor-page.component.html',
   styleUrl: './volume-conversor-page.component.scss'
 })
+
 export class VolumeConversorPageComponent extends PageBase implements OnInit {
   from: number = 0;
   to: number = 0;
@@ -43,10 +45,11 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
     { label: "Hectolitro (hl)", value: 4, enum: LiterSystem.Hectoliter },
     { label: "Milímetro Cúbico (cm³)", value: 5, enum: MetricSystem.milimiter },
     { label: "Centímetro Cúbico (cm³)", value: 6, enum: MetricSystem.centimeter },
-    { label: "Decímetro Cúbico (cm³)", value: 7, enum: MetricSystem.decimeter },
-    { label: "Metro Cúbico (cm³)", value: 8, enum: MetricSystem.meters },
-    { label: "Quilometro Cúbico (cm³)", value: 9, enum: MetricSystem.kilometers },
-    { label: "Onças Fluídas (fl oz)", value: 10 },
+    { label: "Decímetro Cúbico (dm³)", value: 7, enum: MetricSystem.decimeter },
+    { label: "Metro Cúbico (m³)", value: 8, enum: MetricSystem.meters },
+    { label: "Quilometro Cúbico (km³)", value: 9, enum: MetricSystem.kilometers },
+    { label: "Onças Fluídas US", value: 10 },
+    { label: "Onça Fluída Imperial (fl oz)", value: 10 },
   ];
 
   constructor(
@@ -61,6 +64,7 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
     private _cubicMeterConversor: CubicMeterConversorService,
     private _cubicKilometerConversor: CubicKilometerConversorService,
     private _ounceFluidConversor: OunceFluidConversorService,
+    private _imperialOunceFluidConversor: ImperialOunceFluidConversorService,
   ) {
     super();
   }
@@ -85,7 +89,10 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
         result = this._mililiterConversorService.convertToMetricSystem(value, data.enum);
         break;
       case 10:
-        result = this._mililiterConversorService.toOuceFluid(value);
+        result = this._mililiterConversorService.toOunceFluid(value);
+        break;
+      case 11:
+        result = this._mililiterConversorService.toImperialOunceFluid(value);
         break;
     }
 
@@ -112,7 +119,10 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
         result = this._centiliterConversorService.convertToMetricSystem(value, data.enum);
         break;
       case 10:
-        result = this._centiliterConversorService.toOuceFluid(value);
+        result = this._centiliterConversorService.toOunceFluid(value);
+        break;
+      case 11:
+        result = this._centiliterConversorService.toImperialOunceFluid(value);
         break;
     }
 
@@ -139,7 +149,10 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
         result = this._deciliterConversor.convertToMetricSystem(value, data.enum);
         break;
       case 10:
-        result = this._deciliterConversor.toOuceFluid(value);
+        result = this._deciliterConversor.toOunceFluid(value);
+        break;
+      case 11:
+        result = this._deciliterConversor.toImperialOunceFluid(value);
         break;
     }
 
@@ -166,7 +179,10 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
         result = this._literConversor.convertToMetricSystem(value, data.enum);
         break;
       case 10:
-        result = this._literConversor.toOuceFluid(value);
+        result = this._literConversor.toOunceFluid(value);
+        break;
+      case 11:
+        result = this._literConversor.toImperialOunceFluid(value);
         break;
     }
 
@@ -193,7 +209,10 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
         result = this._hectoliterConversor.convertToMetricSystem(value, data.enum);
         break;
       case 10:
-        result = this._hectoliterConversor.toOuceFluid(value);
+        result = this._hectoliterConversor.toOunceFluid(value);
+        break;
+      case 11:
+        result = this._hectoliterConversor.toImperialOunceFluid(value);
         break;
     }
 
@@ -220,7 +239,10 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
         result = this._cubicMilimeterConversor.convertToMetricSystem(value, data.enum);
         break;
       case 10:
-        result = this._cubicMilimeterConversor.toOuceFluid(value);
+        result = this._cubicMilimeterConversor.toOunceFluid(value);
+        break;
+      case 11:
+        result = this._cubicMilimeterConversor.toImperialOunceFluid(value);
         break;
     }
 
@@ -247,7 +269,10 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
         result = this._cubicCentimeterConversor.convertToMetricSystem(value, data.enum);
         break;
       case 10:
-        result = this._cubicCentimeterConversor.toOuceFluid(value);
+        result = this._cubicCentimeterConversor.toOunceFluid(value);
+        break;
+      case 11:
+        result = this._cubicCentimeterConversor.toImperialOunceFluid(value);
         break;
     }
 
@@ -273,6 +298,12 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 9:
         result = this._cubicDecimeterConversor.convertToMetricSystem(value, data.enum);
         break;
+      case 10:
+        result = this._cubicDecimeterConversor.toOunceFluid(value);
+        break;
+      case 11:
+        result = this._cubicCentimeterConversor.toImperialOunceFluid(value);
+        break;
     }
 
     return result;
@@ -297,6 +328,12 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 9:
         result = this._cubicMeterConversor.convertToMetricSystem(value, data.enum);
         break;
+      case 10:
+        result = this._cubicMeterConversor.toOunceFluid(value);
+        break;
+      case 11:
+        result = this._cubicMeterConversor.toImperialOunceFluid(value);
+        break;
     }
 
     return result;
@@ -320,6 +357,12 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 8:
       case 9:
         result = this._cubicKilometerConversor.convertToMetricSystem(value, data.enum);
+        break;
+      case 10:
+        result = this._cubicKilometerConversor.toOunceFluid(value);
+        break;
+      case 11:
+        result = this._cubicKilometerConversor.toImperialOunceFluid(value);
         break;
     }
 
@@ -346,6 +389,39 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
         result = this._ounceFluidConversor.convertToMetricSystem(value, data.enum);
         break;
       case 10:
+        result = value;
+        break;
+      case 11:
+        result = this._ounceFluidConversor.toImperialOunceFluid(value);
+        break;
+    }
+
+    return result
+  }
+
+  private _imperialOunceFluidTo(value: number, to: number): number {
+    let result = 0;
+    let data = this.measures[to];
+
+    switch (to) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        result = this._imperialOunceFluidConversor.convertToLiterSystem(value, to);
+        break;
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+      case 9:
+        result = this._imperialOunceFluidConversor.convertToMetricSystem(value, data.enum);
+        break;
+      case 10:
+        result = this._imperialOunceFluidConversor.toOunceFluid(value);;
+        break;
+      case 11:
         result = value;
         break;
     }
@@ -400,6 +476,8 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
       case 10:
         result = this._ounceFluidTo(this.sourceValue, Number(this.to));
         break;
+      case 11:
+        result = this._imperialOunceFluidTo(this.sourceValue, Number(this.to));
     }
 
     this.destinationValue = result.toPrecision(100);

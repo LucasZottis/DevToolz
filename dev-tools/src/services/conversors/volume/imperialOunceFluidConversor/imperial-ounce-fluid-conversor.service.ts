@@ -1,34 +1,39 @@
 import { Injectable } from '@angular/core';
-import { LiterSystem } from '../../../../../enums/literSystem';
-import { MetricSystem } from '../../../../../enums/metricSystem';
+import { LiterSystem } from '../../../../enums/literSystem';
+import { MetricSystem } from '../../../../enums/metricSystem';
+import { CentiliterConversorService } from '../literSystem/centiliterConversor/centiliter-conversor.service';
+import { MililiterConversorService } from '../literSystem/mililiterConversor/mililiter-conversor.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HectoliterConversorService {
+export class ImperialOunceFluidConversorService {
 
-  constructor() { }
+  constructor(
+    private _milimiterConversor: MililiterConversorService,
+    private _mililiterConversor: MililiterConversorService,
+  ) { }
 
   //#region Liter System
 
   private _toMililiter(value: number): number {
-    return value * 1000;
+    return value * 28.4130625;
   }
 
   private _toCentiliter(value: number): number {
-    return value * 100;
+    return this._mililiterConversor.convertToLiterSystem(this._toMililiter(value), LiterSystem.Centiliter);
   }
 
   private _toDeciliter(value: number): number {
-    return value * 10;
+    return this._mililiterConversor.convertToLiterSystem(this._toMililiter(value), LiterSystem.Deciliter);
   }
 
   private _toLiter(value: number): number {
-    return value * 100;
+    return this._mililiterConversor.convertToLiterSystem(this._toMililiter(value), LiterSystem.Liter);
   }
 
   private _toHectoliter(value: number): number {
-    return value;
+    return this._mililiterConversor.convertToLiterSystem(this._toMililiter(value), LiterSystem.Hectoliter);
   }
 
   //#endregion Liter System
@@ -36,23 +41,23 @@ export class HectoliterConversorService {
   //#region Metric System
 
   private _toCubicMilimeter(value: number): number {
-    return value * Math.pow(10, 8);
+    return value * 28413.0625;
   }
 
   private _toCubicCentimeter(value: number): number {
-    return value * 100000;
+    return this._milimiterConversor.convertToMetricSystem(this._toCubicMilimeter(value), MetricSystem.centimeter);
   }
 
   private _toCubicDecimeter(value: number): number {
-    return value * 100;
+    return this._milimiterConversor.convertToMetricSystem(this._toCubicMilimeter(value), MetricSystem.decimeter);
   }
 
   private _toCubicMeter(value: number): number {
-    return value / 10;
+    return this._milimiterConversor.convertToMetricSystem(this._toCubicMilimeter(value), MetricSystem.meters);
   }
 
   private _toCubicKilometer(value: number): number {
-    return value * Math.pow(10, -10);
+    return this._milimiterConversor.convertToMetricSystem(this._toCubicMilimeter(value), MetricSystem.kilometers);
   }
 
   //#endregion Metric System
@@ -81,7 +86,7 @@ export class HectoliterConversorService {
     return result;
   }
 
-  convertToMetricSystem(value: number, to: MetricSystem) {
+  convertToMetricSystem(value: number, to: MetricSystem): number {
     let result = 0;
 
     switch (to) {
@@ -106,10 +111,6 @@ export class HectoliterConversorService {
   }
 
   toOunceFluid(value: number): number {
-    return value * 3381.4022701843;
-  }
-
-  toImperialOunceFluid(value: number): number {
-    return value * 3519.5079727854;
+    return value * 0.96075994040388;
   }
 }

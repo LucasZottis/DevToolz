@@ -105,7 +105,11 @@ export class LiterConversorService {
     return result;
   }
 
-  toOuceFluid(value: number): number {
+  toOunceFluid(value: number): number {
     return value * 33.814022701843;
+  }
+
+  toImperialOunceFluid(value: number): number {
+    return value * 35.195079727854;
   }
 }
