@@ -36,9 +36,17 @@
                     </a>
                 </li>
 
-                <li [class]="'nav-item ' + (this.router.url === '/conversores/dados' ? 'nav-item-active' : '')">
-                    <a [routerLink]="['./conversores/dados']" class="nav-link" aria-expanded="false">
-                        Converter de sistemas de dados
+                <li
+                    [class]="'nav-item ' + (this.router.url === '/conversores/sistemas-de-dados' ? 'nav-item-active' : '')">
+                    <a [routerLink]="['./conversores/sistemas-de-dados']" class="nav-link" aria-expanded="false">
+                        Converter de Sistemas de Dados
+                    </a>
+                </li>
+
+                <li
+                    [class]="'nav-item ' + (this.router.url === '/conversores/medidas-de-volume' ? 'nav-item-active' : '')">
+                    <a [routerLink]="['./conversores/medidas-de-volume']" class="nav-link" aria-expanded="false">
+                        Converter de Medidas de Volume
                     </a>
                 </li>
 
