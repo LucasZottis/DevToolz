@@ -53,11 +53,11 @@ export class OunceFluidConversorService {
   }
 
   private _toCubicMeter(value: number): number {
-    return this._mililiterConversor.convertToMetricSystem(this._toCubicMilimeter(value), MetricSystem.meters);
+    return this._mililiterConversor.convertToMetricSystem(this._toCubicMilimeter(value), MetricSystem.meter);
   }
 
   private _toCubicKilometer(value: number): number {
-    return this._mililiterConversor.convertToMetricSystem(this._toCubicMilimeter(value), MetricSystem.kilometers);
+    return this._mililiterConversor.convertToMetricSystem(this._toCubicMilimeter(value), MetricSystem.kilometer);
   }
 
   //#endregion Metric System
@@ -99,10 +99,10 @@ export class OunceFluidConversorService {
       case MetricSystem.centimeter:
         result = this._toCubicCentimeter(value);
         break;
-      case MetricSystem.meters:
+      case MetricSystem.meter:
         result = this._toCubicMeter(value);
         break;
-      case MetricSystem.kilometers:
+      case MetricSystem.kilometer:
         result = this._toCubicKilometer(value);
         break;
     }

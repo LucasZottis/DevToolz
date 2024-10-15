@@ -13,6 +13,7 @@ import { NumericSystemsConverterPageComponent } from './pages/conversors/numeric
 import { UpperToLowerLettersConversorPageComponent } from './pages/conversors/upper-to-lower-letters-conversor-page/upper-to-lower-letters-conversor-page.component';
 import { DataConversorPageComponent } from './pages/conversors/data-conversor-page/data-conversor-page.component';
 import { VolumeConversorPageComponent } from './pages/conversors/volume-conversor-page/volume-conversor-page.component';
+import { LengthConversorPageComponent } from './pages/conversors/length-conversor-page/length-conversor-page.component';
 
 export const routes: Routes = [
     { path: '', component: HomePageComponent },
@@ -23,8 +24,9 @@ export const routes: Routes = [
             { path: 'csv-2-json', component: Csv2JsonPageComponent, title: "Conversor de CSV para JSON" },
             { path: 'sistemas-numericos', component: NumericSystemsConverterPageComponent, title: "Conversor de Sistemas Numéricos" },
             { path: 'maiusculas-e-minusculas', component: UpperToLowerLettersConversorPageComponent, title: "Conversor de Maiúscula e MInúsculas" },
-            { path: 'sistemas-de-dados', component: DataConversorPageComponent, title: "Conversor de sistemas de dados" },
-            { path: 'medidas-de-volume', component: VolumeConversorPageComponent, title: "Conversor de Medidas de dados" },
+            { path: 'sistemas-de-dados', component: DataConversorPageComponent, title: "Conversor de sistemas de Dados" },
+            { path: 'medidas-de-volume', component: VolumeConversorPageComponent, title: "Conversor de Medidas de Volumne" },
+            { path: 'medidas-de-comprimento', component: LengthConversorPageComponent, title: "Conversor de Medidas de Comprimento" },
         ]
     },
 

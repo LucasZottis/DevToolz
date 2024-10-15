@@ -50,6 +50,13 @@
                     </a>
                 </li>
 
+                <li
+                    [class]="'nav-item ' + (this.router.url === '/conversores/medidas-de-comprimento' ? 'nav-item-active' : '')">
+                    <a [routerLink]="['./conversores/medidas-de-comprimento']" class="nav-link" aria-expanded="false">
+                        Converter de Medidas de Comprimento
+                    </a>
+                </li>
+
                 <hr>
 
                 <li [class]="'nav-item ' + (this.router.url === '/geradores/cpf' ? 'nav-item-active' : '')">

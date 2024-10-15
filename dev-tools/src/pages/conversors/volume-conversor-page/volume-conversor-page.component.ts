@@ -46,8 +46,8 @@ export class VolumeConversorPageComponent extends PageBase implements OnInit {
     { label: "Milímetro Cúbico (cm³)", value: 5, enum: MetricSystem.milimiter },
     { label: "Centímetro Cúbico (cm³)", value: 6, enum: MetricSystem.centimeter },
     { label: "Decímetro Cúbico (dm³)", value: 7, enum: MetricSystem.decimeter },
-    { label: "Metro Cúbico (m³)", value: 8, enum: MetricSystem.meters },
-    { label: "Quilometro Cúbico (km³)", value: 9, enum: MetricSystem.kilometers },
+    { label: "Metro Cúbico (m³)", value: 8, enum: MetricSystem.meter },
+    { label: "Quilometro Cúbico (km³)", value: 9, enum: MetricSystem.kilometer },
     { label: "Onças Fluídas US", value: 10 },
     { label: "Onça Fluída Imperial (fl oz)", value: 10 },
   ];

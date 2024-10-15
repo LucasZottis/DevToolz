@@ -1,7 +1,10 @@
 export enum MetricSystem {
+    picometer,
+    nanometer,
+    micrometer,
     milimiter,
     decimeter,
     centimeter,
-    meters,
-    kilometers,
+    meter,
+    kilometer,
 }

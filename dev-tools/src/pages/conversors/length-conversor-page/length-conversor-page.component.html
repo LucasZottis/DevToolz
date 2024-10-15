@@ -1,0 +1,120 @@
+<div class="row">
+    <div class="col-12">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-lg-6">
+                <h1 class="fs-3 text-center">
+                    Conversor de Medidas de Comprimento
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 text-center">
+        <p>
+            Essa ferramenta permite fazer a conversão entre esses medidas de comprimento.
+            Picômetros para metros, metros para milhas, milhas para milhas nâuticas e assim por diante.
+        </p>
+    </div>
+</div>
+
+<hr>
+
+<form class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+        <div class="row gy-3 justify-content-center">
+            <div class="col-12">
+                <p>
+                    Para usar basta selecionar uma medida de comprimento de origem, a medida de comprimento de destino e informar
+                    o valor a ser convertido na primeira caixa de texto.
+                </p>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="row gy-2">
+                    <div class="col-12">
+                        <label for="txt-value-source">De</label>
+                        <select class="form-select" id="cbo-from" name="cbo-from" [(ngModel)]="from"
+                            (change)="onChangeSource()">
+                            @for(measure of measures; track $index) {
+                            <option [value]="$index">
+                                {{measure.label}}
+                            </option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <!-- <label for="txt-source-value" class="form-label">{{sourceLabel}}</label> -->
+                        <input type="text" class="form-control" name="txt-source-value" id="txt-source-value"
+                            [(ngModel)]="sourceValue">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="row gy-2">
+                    <div class="col-12">
+                        <label for="txt-value-destination">Para</label>
+                        <select class="form-select" id="cbo-to" name="cbo-to" [(ngModel)]="to"
+                            (change)="onChangeDestination()">
+                            @for(measure of measures; track $index) {
+                            <option [value]="$index">
+                                {{measure.label}}
+                            </option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="col-12 text-end">
+                        <label class="form-label">{{destinationValue | number: '1.0-40'}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <button class="btn primary-button w-100" (click)="onClickConvert()">
+                    Converter
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- <hr>
+
+<div class="row">
+    <div class="col-12">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-lg-6">
+                <h1 class="fs-5 text-center">
+                    O que são sistemas de dados?
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <p class="texto-explicativo">
+            Sistemas de dados são unidades de medida de informação, que podem ser representadas em diferentes
+            formatos, como bits, bytes, kilobytes, megabytes, gigabytes, terabytes, petabytes, exabytes, zettabytes e
+            yottabytes.
+        </p>
+    </div>
+
+    <div class="col-12">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-lg-6">
+                <h1 class="fs-5 text-center">
+                    Em que os sistemas de dados são usados?
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <p class="texto-explicativo">
+            Os sistemas de dados são usados para medir a quantidade de informação que pode ser armazenada em um
+            dispositivo de armazenamento, como um HD, SSD, pendrive, cartão de memória, entre outros.
+            Podem ser usados para medir a velocidade de transmissão de dados em uma rede de computadores, como
+            a internet, por exemplo.
+        </p>
+    </div>
+</div> -->

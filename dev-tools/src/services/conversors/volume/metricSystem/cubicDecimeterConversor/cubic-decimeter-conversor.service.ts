@@ -94,10 +94,10 @@ export class CubicDecimeterConversorService {
       case MetricSystem.centimeter:
         result = this._toCubicCentimeter(value);
         break;
-      case MetricSystem.meters:
+      case MetricSystem.meter:
         result = this._toCubicMeter(value);
         break;
-      case MetricSystem.kilometers:
+      case MetricSystem.kilometer:
         result = this._toCubicKilometer(value);
         break;
     }
