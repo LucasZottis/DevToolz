@@ -23,23 +23,23 @@ export class PicometerConversorService {
   }
 
   private _picometerToMilimeter(value: number): number {
-    return value / 1000;
+    return value / 1000000000;
   }
 
   private _picometerToCentimeter(value: number): number {
-    return value / 10000;
+    return value / 10000000000;
   }
 
   private _picometerToDecimeter(value: number): number {
-    return value / 100000;
+    return value / 100000000000;
   }
 
   private _picometerToMeters(value: number): number {
-    return value / 1000000;
+    return value / 1000000000000;
   }
 
   private _picometerToKilometers(value: number): number {
-    return value / 1000000000;
+    return value / Math.pow(10, 15);
   }
 
   //#endregion Metric System
