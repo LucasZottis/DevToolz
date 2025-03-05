@@ -23,23 +23,23 @@ export class NanometerConversorService {
   }
 
   private _nanometerToMilimeter(value: number): number {
-    return value / 1000000000;
+    return value / 1000000;
   }
 
   private _nanometerToCentimeter(value: number): number {
-    return value / 10000000000;
+    return value / 10000000;
   }
 
   private _nanometerToDecimeter(value: number): number {
-    return value / 100000000000;
+    return value / 100000000;
   }
 
   private _nanometerToMeters(value: number): number {
-    return value / 1000000000000;
+    return value / 1000000000;
   }
 
   private _nanometerToKilometers(value: number): number {
-    return value / Math.pow(10, 15);
+    return value / Math.pow(10, 12);
   }
 
   //#endregion Metric System

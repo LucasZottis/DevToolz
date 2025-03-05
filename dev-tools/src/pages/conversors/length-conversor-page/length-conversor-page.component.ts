@@ -4,6 +4,7 @@ import { MetricSystem } from '../../../enums/metricSystem';
 import { PageBase } from '../../pageBase';
 import { DecimalPipe } from '@angular/common';
 import { PicometerConversorService } from '../../../services/conversors/length/metricSystemConversor/picometerConversor/picometer-conversor.service';
+import { NanometerConversorService } from '../../../services/conversors/length/metricSystemConversor/nanometerConversor/nanometer-conversor.service';
 
 @Component({
   selector: 'length-conversor-page',
@@ -38,6 +39,7 @@ export class LengthConversorPageComponent extends PageBase implements OnInit {
 
   constructor(
     private _picometerConversor: PicometerConversorService,
+    private _nanometerConversor: NanometerConversorService,
   ) {
     super();
   }
@@ -62,6 +64,26 @@ export class LengthConversorPageComponent extends PageBase implements OnInit {
     return result;
   }
 
+  private _nanometerTo(value: number, to: number) {
+    let result: number = 0;
+    let data: any = this.measures[to];
+
+    switch (to) {
+      case 0:
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+        result = this._nanometerConversor.toMetricSystem(value, data.enum);
+        break;
+    }
+
+    return result;
+  }
+
   onChangeSource(): void {
     let data = this.measures[Number(this.from)];
     this.sourceLabel = data.label;
@@ -79,9 +101,9 @@ export class LengthConversorPageComponent extends PageBase implements OnInit {
       case 0:
         result = this._picometerTo(this.sourceValue, Number(this.to));
         break;
-      // case 6:
-      //   result = this._cubicCentimeterTo(this.sourceValue, Number(this.to));
-      //   break;
+      case 1:
+        result = this._nanometerTo(this.sourceValue, Number(this.to));
+        break;
       // case 7:
       //   result = this._cubicDecimeterTo(this.sourceValue, Number(this.to));
       //   break;
