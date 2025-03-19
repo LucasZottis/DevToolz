@@ -88,6 +88,10 @@ export class CpfGeneratorPageComponent extends PageBase implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addDescription('Ferramenta para geração CPF aleatório válido.');
+    // this.addDescription('Ferramenta para geração CPF aleatório válido.');
+    this.title = 'Gerador de CPF - Crie Números de CPF Válidos Online';
+    this.description = 'Gere números de CPF válidos de forma rápida e segura. Nossa ferramenta cria CPFs aleatórios que seguem as regras da Receita Federal.';
+    this.robots = 'index, follow';
+    this.keywords = 'gerador de CPF, gerar CPF válido, CPF aleatório, criar CPF, número de CPF';
   }
 }
