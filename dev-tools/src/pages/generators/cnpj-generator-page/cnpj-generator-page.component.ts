@@ -96,6 +96,10 @@ export class CnpjGeneratorPageComponent extends PageBase implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addDescription('Gerador de CNPJ fictício com opções para gerar com ou sem a máscara.');
+    // this.addDescription('Gerador de CNPJ fictício com opções para gerar com ou sem a máscara.');
+    this.title = 'Gerador de CNPJ - Crie Números de CNPJ Válidos Online';
+    this.description = 'Gere números de CNPJ válidos de forma rápida e segura. Nossa ferramenta cria CNPJs aleatórios seguindo as regras da Receita Federal.';
+    this.robots = 'index, follow';
+    this.keywords = 'gerador de CNPJ, gerar CNPJ válido, CNPJ aleatório, criar CNPJ, número de CNPJ';
   }
 }
