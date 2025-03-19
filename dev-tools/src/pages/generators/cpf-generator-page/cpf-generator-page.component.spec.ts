@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CpfGeneratorPageComponent } from './CpfGeneratorPageComponent';
+import { CpfGeneratorPageComponent } from './cpf-generator-page-component';
 
 describe('CpfGeneratorPageComponent', () => {
   let component: CpfGeneratorPageComponent;

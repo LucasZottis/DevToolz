@@ -77,6 +77,10 @@ export class TimeConverterPageComponent extends PageBase implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addDescription('Converta horas, minutos e segundo para diversos formatos.');
+    // this.addDescription('Converta horas, minutos e segundo para diversos formatos.');
+    this.title = 'Conversor de Tempo - Converta horas, minutos e segundos para decimal';
+    this.description = 'Converta facilmente valores de tempo entre horas, minutos e segundos para formato decimal com nossa ferramenta online gratuita.';
+    this.robots = 'index, follow';
+    this.keywords = 'conversor de tempo, converter horas para decimal, cálculo de tempo, horas decimais, minutos decimais, segundos decimais';
   }
 }

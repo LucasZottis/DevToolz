@@ -13,7 +13,7 @@ export class PageBase implements OnDestroy {
     protected pageTitle: Title = inject(Title);
 
     protected set title(value: string) {
-        this.pageTitle.setTitle("Dev Toolz - " + value);
+        this.pageTitle.setTitle(value + " | Dev Toolz");
     }
 
     protected set description(value: string) {

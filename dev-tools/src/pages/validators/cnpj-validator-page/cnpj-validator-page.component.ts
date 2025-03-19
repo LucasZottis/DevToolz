@@ -76,7 +76,7 @@ export class CnpjValidatorPageComponent extends PageBase implements OnInit {
 
     return count;
   }
-  
+
   private injetarDadosTabela(digitos: string, valorInicialContador: number, identificacao: string) {
     let corpoTabela = document.getElementById(identificacao);
 
@@ -185,7 +185,11 @@ export class CnpjValidatorPageComponent extends PageBase implements OnInit {
     this.injetarDigito(true, "primeiro-digito");
     this.injetarDigito(false, "segundo-digito");
 
-    this.addDescription('Ferramenta para validação de CNPJ.');
+    // this.addDescription('Ferramenta para validação de CNPJ.');
+    this.title = 'Validador de CNPJ - Verifique a validade do seu CNPJ';
+    this.description = 'Valide o número do CNPJ online de forma rápida e segura. Confira se um CNPJ é válido conforme as regras da Receita Federal.';
+    this.robots = 'index, follow';
+    this.keywords = 'validar CNPJ, verificação CNPJ, consulta CNPJ, número CNPJ, CNPJ válido';
   }
 
   validate(): void {
