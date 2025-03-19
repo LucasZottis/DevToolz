@@ -74,7 +74,10 @@ export class CpfValidatorPageComponent extends PageBase implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addDescription('Faça a validação de CPF.');
+    this.title = 'Validador de CPF - Verifique a validade do seu CPF';
+    this.description = 'Valide o número do CPF online de forma rápida e segura. Confira se um CPF é válido seguindo as regras da Receita Federal.';
+    this.robots = 'index, follow';
+    this.keywords = 'validar CPF, verificação CPF, consulta CPF, número CPF, CPF válido';
   }
 
   validate(): void {

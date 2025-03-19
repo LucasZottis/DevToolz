@@ -10,10 +10,35 @@ import { Meta, Title } from "@angular/platform-browser";
 
 export class PageBase implements OnDestroy {
     protected meta: Meta = inject(Meta);
-    protected title: Title = inject(Title);
+    protected pageTitle: Title = inject(Title);
+
+    protected set title(value: string) {
+        this.pageTitle.setTitle("Dev Toolz - " + value);
+    }
+
+    protected set description(value: string) {
+        this.meta.addTag({
+            name: "description",
+            content: value,
+        });
+    }
+
+    protected set robots(value: string) {
+        this.meta.addTag({
+            name: "robots",
+            content: value,
+        });
+    }
+
+    protected set keywords(value: string) {
+        this.meta.addTag({
+            name: "keywords",
+            content: value,
+        });
+    }
 
     protected setTitle(title: string): void {
-        this.title.setTitle("Dev Toolz - " + title);
+        this.pageTitle.setTitle("Dev Toolz - " + title);
     }
 
     protected addDescription(description: string) {
@@ -25,5 +50,7 @@ export class PageBase implements OnDestroy {
 
     ngOnDestroy(): void {
         this.meta.removeTag("name='description'");
+        this.meta.removeTag("name='robots'");
+        this.meta.removeTag("name='keywords'");
     }
 }
