@@ -82,6 +82,10 @@ export class Csv2JsonPageComponent extends PageBase implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addDescription("Conversor de formato CSV para formato JSON");
+    // this.addDescription("Conversor de formato CSV para formato JSON");
+    this.title = 'Conversor de CSV para JSON Online';
+    this.description = 'Converta arquivos CSV para JSON de forma rápida e fácil. Basta importar um arquivo CSV ou colar os dados e gerar um JSON estruturado em segundos.';
+    this.robots = 'index, follow';
+    this.keywords = 'conversor CSV para JSON, converter CSV em JSON, CSV para JSON online, transformação de CSV para JSON';
   }
 }
