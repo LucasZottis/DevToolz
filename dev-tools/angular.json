@@ -23,7 +23,7 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/assets", "src/netlify.toml"],
+            "assets": ["src/assets", "src/netlify.toml", "src/robots.txt"],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap/scss/bootstrap.scss",
