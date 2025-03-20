@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { CnpjGeneratorPageComponent } from './pages/generators/cnpj-generator-page/cnpj-generator-page.component';
-import { CpfGeneratorPageComponent } from './pages/generators/cpf-generator-page/cpf-generator-page-component';
+// import { CpfGeneratorPageComponent } from './pages/generators/cpf-generator-page/cpf-generator-page-component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { TimeConverterPageComponent } from './pages/time-converter-page/time-converter-page.component';
 import { CnpjValidatorPageComponent } from './pages/validators/cnpj-validator-page/cnpj-validator-page.component';
@@ -9,6 +9,7 @@ import { LetterCounterComponent } from './pages/letter-counter/letter-counter.co
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { Csv2JsonPageComponent } from './pages/csv2-json-page/csv2-json-page.component';
 import { RemoverAcentoTextoPageComponent } from './pages/remover-acento-texto-page/remover-acento-texto-page.component';
+import { CpfGeneratorPageComponent } from './pages/generators/cpf-generator-page/cpf-generator-page.component';
 
 export const routes: Routes = [
     { path: '', component: HomePageComponent },
