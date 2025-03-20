@@ -66,6 +66,10 @@ export class LetterCounterComponent extends PageBase implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addDescription('Ferramenta para contagem de caracteres.');
+    // this.addDescription('Ferramenta para contagem de caracteres.');
+    this.title = 'Contador de Letras Online';
+    this.description = 'Conte letras, palavras, números e outros elementos do seu texto com nossa ferramenta online de contagem de caracteres.';
+    this.robots = 'index, follow';
+    this.keywords = 'contador de letras, contar caracteres, contar palavras, contagem de texto, ferramenta de contagem de caracteres';
   }
 }
